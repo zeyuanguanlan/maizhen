@@ -1,0 +1,3517 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="night">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#03070c">
+<meta name="description" content="脉诊廿七脉：以位、数、形、势四维拆解每一个脉象，按类成谱，可对比、可自测。">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="脉诊廿七脉">
+<title>脉诊筑基 · 四言举要｜廿七脉｜位数形势 四位一体</title>
+<style>
+/* ============ 设计令牌 ============ */
+:root{
+  --paper:#f6f1e7; --paper-2:#fbf7ef; --card:#fffdf8;
+  --ink:#221c16; --ink-2:#4b4038; --ink-3:#86776a;
+  --line:#e3d8c4; --line-2:#efe6d4;
+  --zhu:#a8311f; --zhu-2:#c9503a; --zhu-bg:rgba(168,49,31,.07);
+  --jade:#1c6e63; --jade-bg:rgba(28,110,99,.08);
+  --gold:#a8802f; --gold-bg:rgba(168,128,47,.1);
+  --sel:#fff3cf;
+  --fs:1;
+  --r:14px; --r-s:9px;
+  --shadow:0 1px 2px rgba(60,40,20,.05), 0 8px 24px rgba(60,40,20,.05);
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  --serif:"Songti SC","STSong","Source Han Serif SC","Noto Serif SC",serif;
+  --mono:ui-monospace,"SF Mono",Menlo,monospace;
+}
+html[data-theme="night"]{
+  --paper:#13100d; --paper-2:#191512; --card:#1e1915;
+  --ink:#ece3d5; --ink-2:#c3b6a6; --ink-3:#8c7f70;
+  --line:#342b23; --line-2:#2a221b;
+  --zhu:#e0776a; --zhu-2:#ef9184; --zhu-bg:rgba(224,119,106,.13);
+  --jade:#5fc0b2; --jade-bg:rgba(95,192,178,.12);
+  --gold:#d0a55c; --gold-bg:rgba(208,165,92,.13);
+  --sel:#3a3119;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 26px rgba(0,0,0,.34);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{font-size:calc(16px * var(--fs));-webkit-text-size-adjust:100%}
+body{
+  margin:0;font-family:var(--sans);background:var(--paper);color:var(--ink);
+  line-height:1.65;overflow-x:hidden;
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(168,49,31,.035), transparent 42%),
+    radial-gradient(circle at 88% 92%, rgba(28,110,99,.04), transparent 46%);
+  background-attachment:fixed;
+  padding-bottom:calc(66px + env(safe-area-inset-bottom));
+}
+html[data-theme="night"] body{background-image:radial-gradient(circle at 12% 6%,rgba(224,119,106,.06),transparent 44%),radial-gradient(circle at 88% 94%,rgba(95,192,178,.06),transparent 46%)}
+button,select,input{font-family:inherit;color:inherit;border:0;background:none;cursor:pointer}
+::selection{background:var(--sel);color:var(--ink)}
+:focus-visible{outline:2.5px solid var(--jade);outline-offset:2px;border-radius:4px}
+
+/* ============ 骨架 ============ */
+.wrap{max-width:660px;margin:0 auto;padding:0 15px}
+.screen{display:none;padding:0 0 24px}
+.screen.on{display:block;animation:fade .22s ease}
+@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* 顶栏 */
+.top{
+  position:sticky;top:0;z-index:60;
+  background:color-mix(in srgb,var(--paper) 88%,transparent);
+  backdrop-filter:blur(14px) saturate(1.2);
+  border-bottom:1px solid var(--line);
+  padding:calc(9px + env(safe-area-inset-top)) 15px 9px;
+}
+.top-in{max-width:660px;margin:0 auto;display:flex;align-items:center;gap:10px}
+.brand{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+.brand b{font-family:var(--serif);font-size:1rem;letter-spacing:.2em;font-weight:700}
+.brand span{font-size:.6rem;color:var(--ink-3);letter-spacing:.1em;margin-top:2px;font-variant-numeric:tabular-nums}
+.top-r{margin-left:auto;display:flex;align-items:center;gap:6px}
+.ibtn{
+  width:33px;height:33px;border-radius:50%;border:1px solid var(--line);
+  display:grid;place-items:center;font-size:.86rem;background:var(--card);
+  transition:.16s;flex:none;color:var(--ink-2)
+}
+.ibtn:active{transform:scale(.92)}
+
+/* 通用块 */
+.sec-t{display:flex;align-items:baseline;gap:8px;margin:24px 0 10px}
+.sec-t h2{font-family:var(--serif);font-size:.95rem;letter-spacing:.16em;margin:0;font-weight:700}
+.sec-t .sub{font-size:.66rem;color:var(--ink-3);letter-spacing:.06em}
+.sec-t .r{margin-left:auto;font-size:.7rem;color:var(--jade);letter-spacing:.04em}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.mono{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+.tag{display:inline-block;font-size:.6rem;letter-spacing:.06em;padding:2px 7px;border-radius:99px;border:1px solid var(--line);color:var(--ink-3);line-height:1.6}
+.tag.hot{color:var(--zhu);border-color:rgba(168,49,31,.32);background:var(--zhu-bg)}
+.tag.jade{color:var(--jade);border-color:rgba(28,110,99,.3);background:var(--jade-bg)}
+.tag.gold{color:var(--gold);border-color:rgba(168,128,47,.34);background:var(--gold-bg)}
+
+/* 首页 hero */
+.hero{padding:26px 0 4px;text-align:center}
+.hero .k{font-size:.64rem;letter-spacing:.34em;color:var(--ink-3);margin-bottom:12px}
+.hero .big{
+  font-family:var(--serif);font-size:4rem;line-height:.94;font-weight:700;
+  color:var(--zhu);letter-spacing:-.02em;display:block;
+}
+.hero .unit{font-size:.72rem;color:var(--ink-3);letter-spacing:.2em;margin-top:8px}
+.hero .tip{font-size:.78rem;color:var(--ink-2);margin-top:12px;line-height:1.7}
+
+/* 四维 */
+.axes{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+@media(min-width:420px){.axes{grid-template-columns:repeat(4,1fr)}}
+.ax{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 11px;text-align:center}
+.ax b{display:block;font-family:var(--serif);font-size:1.5rem;line-height:1;color:var(--zhu);font-weight:700}
+.ax span{display:block;font-size:.62rem;color:var(--ink-3);margin-top:6px;letter-spacing:.02em}
+.ax em{display:block;font-size:.6rem;color:var(--jade);font-style:normal;margin-top:4px}
+
+/* 分类条 */
+.bar-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line-2)}
+.bar-row:last-child{border-bottom:0}
+.bar-row .nm{font-family:var(--serif);font-size:.86rem;letter-spacing:.06em;width:5.2em;flex:none;font-weight:700}
+.bar-row .ax2{font-size:.6rem;color:var(--ink-3);width:3.6em;flex:none}
+.bar-wrap{flex:1;height:6px;background:var(--line-2);border-radius:99px;overflow:hidden}
+.bar-fill{height:100%;background:linear-gradient(90deg,var(--zhu),var(--zhu-2));border-radius:99px;transition:width .6s cubic-bezier(.2,.8,.3,1)}
+.bar-row .n{font-size:.72rem;color:var(--ink-3);width:2em;text-align:right;flex:none}
+
+/* 步骤 */
+.steps{margin:0;padding:0;list-style:none;counter-reset:s}
+.steps li{
+  counter-increment:s;position:relative;padding:11px 12px 11px 40px;
+  font-size:.8rem;color:var(--ink-2);border-bottom:1px solid var(--line-2);line-height:1.7
+}
+.steps li:last-child{border-bottom:0}
+.steps li::before{
+  content:counter(s);position:absolute;left:12px;top:11px;
+  width:19px;height:19px;border-radius:50%;background:var(--zhu-bg);color:var(--zhu);
+  font-size:.62rem;display:grid;place-items:center;font-weight:700
+}
+.steps b{color:var(--ink);font-weight:600}
+
+/* 脉谱：筛选 */
+.filters{position:sticky;top:calc(52px + env(safe-area-inset-top));z-index:40;
+  background:color-mix(in srgb,var(--paper) 94%,transparent);backdrop-filter:blur(10px);
+  padding:8px 0 7px;margin:0 -2px}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:0 2px 2px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{
+  flex:none;font-size:.72rem;padding:6px 12px;border-radius:99px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink-2);
+  letter-spacing:.04em;transition:.16s;white-space:nowrap
+}
+.chip .c{font-size:.6rem;color:var(--ink-3);margin-left:4px}
+.chip.on{background:var(--zhu);border-color:var(--zhu);color:#fff}
+.chip.on .c{color:rgba(255,255,255,.75)}
+html[data-theme="night"] .chip.on{color:#1a1210}
+html[data-theme="night"] .chip.on .c{color:rgba(26,18,16,.65)}
+.searchbox{display:flex;align-items:center;gap:8px;margin-top:8px;
+  background:var(--card);border:1px solid var(--line);border-radius:10px;padding:0 11px}
+.searchbox input{flex:1;border:0;background:none;padding:9px 0;font-size:.84rem;outline:none;min-width:0}
+.searchbox input::placeholder{color:var(--ink-3);opacity:.75}
+.searchbox .ic{color:var(--ink-3);font-size:.8rem}
+
+/* 脉列表 */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px;margin-top:10px}
+.pcard{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r-s);
+  padding:11px 8px 10px;text-align:center;transition:.16s;position:relative
+}
+.pcard:active{transform:scale(.97);border-color:var(--zhu)}
+.pcard b{display:block;font-family:var(--serif);font-size:1.5rem;line-height:1.1;font-weight:700;letter-spacing:.02em}
+.pcard .py{display:block;font-size:.56rem;color:var(--ink-3);margin-top:2px;letter-spacing:.02em;height:1em}
+.pcard .md{display:block;font-size:.58rem;color:var(--jade);margin-top:6px;letter-spacing:.02em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pcard .dot{position:absolute;top:7px;right:7px;width:5px;height:5px;border-radius:50%;background:var(--zhu)}
+.empty{padding:34px 0;text-align:center;color:var(--ink-3);font-size:.8rem}
+
+/* 详情 */
+.nav-back{display:flex;align-items:center;gap:6px;padding:12px 0 4px;font-size:.76rem;color:var(--ink-3)}
+.nav-back button{display:flex;align-items:center;gap:5px;color:var(--jade);font-size:.76rem;letter-spacing:.04em}
+.nhead{padding:6px 0 14px;border-bottom:1px solid var(--line)}
+.nhead .row1{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.nhead .nm{font-family:var(--serif);font-size:2.5rem;font-weight:700;line-height:1;letter-spacing:.04em}
+.nhead .py{font-size:.72rem;color:var(--ink-3);padding-bottom:5px;letter-spacing:.04em}
+.nhead .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:11px}
+.lays{display:flex;gap:5px;margin:14px 0 4px;position:sticky;top:calc(52px + env(safe-area-inset-top));
+  z-index:40;background:color-mix(in srgb,var(--paper) 94%,transparent);backdrop-filter:blur(10px);padding:6px 0}
+.lay{
+  flex:1;padding:9px 2px;border-radius:9px;border:1px solid var(--line);background:var(--card);
+  font-size:.74rem;letter-spacing:.1em;color:var(--ink-2);transition:.16s;text-align:center
+}
+.lay.on{background:var(--zhu);border-color:var(--zhu);color:#fff;font-weight:600}
+html[data-theme="night"] .lay.on{color:#1a1210}
+.lay small{display:block;font-size:.52rem;opacity:.7;letter-spacing:.02em;margin-top:1px}
+.pane{display:none;animation:fade .2s ease}
+.pane.on{display:block}
+.blk{margin-top:14px}
+.blk .lb{font-size:.63rem;letter-spacing:.16em;color:var(--ink-3);margin-bottom:7px;display:flex;align-items:center;gap:6px}
+.blk .lb::after{content:"";flex:1;height:1px;background:var(--line-2)}
+.quote{
+  font-family:var(--serif);font-size:1.02rem;line-height:2;letter-spacing:.05em;
+  padding:14px 16px;background:var(--paper-2);border-left:3px solid var(--zhu);
+  border-radius:0 var(--r-s) var(--r-s) 0
+}
+.quote .ref{display:block;font-family:var(--sans);font-size:.62rem;color:var(--ink-3);letter-spacing:.04em;margin-top:9px;text-align:right}
+.txt{font-size:.84rem;line-height:1.85;color:var(--ink-2)}
+.txt em{font-style:normal;color:var(--zhu);font-weight:600}
+.dimt{width:100%;border-collapse:collapse;font-size:.78rem}
+.dimt th,.dimt td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+.dimt th{background:var(--paper-2);font-weight:600;font-size:.7rem;letter-spacing:.1em;color:var(--ink-3);width:3.4em;white-space:nowrap}
+.dimt td{color:var(--ink-2);line-height:1.7}
+.dimt tr.cal td{background:rgba(168,128,47,.055)}
+.dimt tr.cal th{color:var(--gold)}
+.dimt .cw{font-size:.55rem;color:var(--gold);border:1px solid rgba(168,128,47,.4);
+  border-radius:3px;padding:0 3px;margin-left:5px;vertical-align:middle;letter-spacing:0}
+.listing{margin:0;padding:0;list-style:none}
+.listing li{position:relative;padding:8px 0 8px 16px;font-size:.8rem;line-height:1.75;color:var(--ink-2);border-bottom:1px dashed var(--line-2)}
+.listing li:last-child{border-bottom:0}
+.listing li::before{content:"·";position:absolute;left:4px;top:8px;color:var(--zhu);font-weight:700}
+.flow{display:grid;gap:0;border:1px solid var(--line);border-radius:var(--r-s);overflow:hidden}
+.flow .fr{display:flex;gap:10px;padding:10px 12px;font-size:.79rem;border-bottom:1px solid var(--line-2);background:var(--card)}
+.flow .fr:last-child{border-bottom:0}
+.flow .fk{flex:none;width:2.4em;font-family:var(--serif);font-weight:700;color:var(--zhu);letter-spacing:.06em;font-size:.74rem;padding-top:1px}
+.flow .fv{color:var(--ink-2);line-height:1.7}
+.cmp{border:1px solid var(--line);border-radius:var(--r-s);overflow:hidden;background:var(--card)}
+.cmp .cr{display:flex;gap:10px;padding:9px 12px;border-bottom:1px solid var(--line-2);font-size:.78rem}
+.cmp .cr:last-child{border-bottom:0}
+.cmp .cd{flex:none;width:2em;font-family:var(--serif);font-weight:700;color:var(--ink-3)}
+.cmp .ct{flex:1;color:var(--ink-2);line-height:1.7}
+.cmp .cr.warn .cd{color:var(--zhu)}
+.goto{display:block;width:100%;text-align:left;padding:10px 12px;border:1px solid var(--line);
+  border-radius:var(--r-s);background:var(--card);font-size:.78rem;margin-top:7px;transition:.16s}
+.goto:active{background:var(--paper-2)}
+.goto b{font-family:var(--serif);font-size:.95rem;color:var(--zhu);margin-right:7px}
+.goto span{color:var(--ink-3);font-size:.72rem}
+
+/* 回忆卡 */
+.recall{border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:16px;text-align:center}
+.recall .q{font-size:.8rem;color:var(--ink-2);line-height:1.8;margin-bottom:12px}
+.recall .q b{font-family:var(--serif);font-size:1.3rem;color:var(--zhu);display:block;margin-bottom:8px;letter-spacing:.06em}
+.reveal{margin-top:12px;padding:13px;background:var(--paper-2);border-radius:var(--r-s);font-size:.79rem;
+  color:var(--ink-2);line-height:1.8;text-align:left;display:none}
+.reveal.on{display:block;animation:fade .2s ease}
+.btn{display:block;width:100%;padding:12px;border-radius:var(--r-s);background:var(--zhu);color:#fff;
+  font-size:.82rem;letter-spacing:.14em;font-weight:600;text-align:center;transition:.16s}
+html[data-theme="night"] .btn{color:#1a1210}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:transparent;color:var(--jade);border:1px solid var(--jade);box-shadow:none}
+.btn.sm{padding:10px;font-size:.76rem;letter-spacing:.1em}
+
+/* 对比页 */
+.selrow{display:grid;grid-template-columns:1fr 26px 1fr;gap:6px;align-items:center;margin-top:10px}
+.selwrap{position:relative}
+.selwrap select{
+  width:100%;appearance:none;background:var(--card);border:1px solid var(--line);
+  border-radius:var(--r-s);padding:12px 10px;font-size:.92rem;font-family:var(--serif);
+  letter-spacing:.1em;text-align:center;font-weight:700;color:var(--ink)
+}
+.selwrap::after{content:"▾";position:absolute;right:9px;top:50%;transform:translateY(-50%);
+  font-size:.6rem;color:var(--ink-3);pointer-events:none}
+.selrow .vs{text-align:center;font-size:.68rem;color:var(--ink-3);letter-spacing:.06em}
+.vt{width:100%;border-collapse:collapse;margin-top:14px;font-size:.78rem}
+.vt th,.vt td{border:1px solid var(--line);padding:9px 8px;vertical-align:top;line-height:1.7}
+.vt thead th{background:var(--paper-2);font-family:var(--serif);font-size:1rem;letter-spacing:.08em;font-weight:700}
+.vt tbody th{background:var(--paper-2);font-size:.68rem;color:var(--ink-3);width:2.4em;letter-spacing:.1em;font-weight:600}
+.vt td{color:var(--ink-2)}
+.vt tr.same td{color:var(--ink-3);opacity:.62}
+.vt tr.diff td{background:rgba(168,49,31,.045)}
+.vt tr.diff td:first-child{border-left:3px solid var(--zhu)}
+.vt .mk{display:block;font-size:.55rem;color:var(--zhu);letter-spacing:.04em;margin-top:3px}
+.note{font-size:.72rem;color:var(--ink-3);line-height:1.75;margin-top:10px}
+
+/* 自测 */
+.qbox{padding:18px 16px;text-align:center;border-radius:var(--r);border:1px solid var(--line);background:var(--card)}
+.qbox .prog{font-size:.62rem;color:var(--ink-3);letter-spacing:.16em;margin-bottom:12px}
+.qbox .clue{font-family:var(--serif);font-size:.98rem;line-height:1.95;color:var(--ink);letter-spacing:.02em}
+.qbox .hintx{font-size:.7rem;color:var(--ink-3);margin-top:10px;letter-spacing:.04em}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.opt{
+  padding:14px 8px;border-radius:var(--r-s);border:1px solid var(--line);background:var(--card);
+  font-family:var(--serif);font-size:1.28rem;font-weight:700;letter-spacing:.06em;transition:.14s
+}
+.opt:active{transform:scale(.98)}
+.opt.right{background:var(--jade);border-color:var(--jade);color:#fff}
+.opt.wrong{background:rgba(168,49,31,.1);border-color:var(--zhu);color:var(--zhu)}
+html[data-theme="night"] .opt.right{color:#10201d}
+.opt:disabled{cursor:default}
+.fb{margin-top:13px;padding:13px;border-radius:var(--r-s);font-size:.79rem;line-height:1.8;
+  background:var(--paper-2);color:var(--ink-2);text-align:left;display:none}
+.fb.on{display:block;animation:fade .2s ease}
+.fb .verdict{font-weight:700;letter-spacing:.06em;margin-bottom:5px;display:block}
+.fb .verdict.ok{color:var(--jade)}
+.fb .verdict.no{color:var(--zhu)}
+.stat{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.stat div{background:var(--card);border:1px solid var(--line);border-radius:var(--r-s);padding:12px 6px;text-align:center}
+.stat b{display:block;font-family:var(--serif);font-size:1.5rem;line-height:1;font-weight:700;color:var(--zhu)}
+.stat span{display:block;font-size:.6rem;color:var(--ink-3);margin-top:5px;letter-spacing:.06em}
+
+/* 底栏 */
+.tabbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:70;
+  background:color-mix(in srgb,var(--paper) 94%,transparent);
+  backdrop-filter:blur(16px) saturate(1.2);
+  border-top:1px solid var(--line);
+  padding:6px 6px calc(6px + env(safe-area-inset-bottom));
+}
+.tabbar-in{max-width:660px;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr);gap:2px}
+.tb{display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 0;border-radius:9px;transition:.16s}
+.tb i{font-style:normal;font-family:var(--serif);font-size:1.06rem;line-height:1.1;color:var(--ink-3)}
+.tb span{font-size:.56rem;color:var(--ink-3);letter-spacing:.1em}
+.tb.on i{color:var(--zhu)}
+.tb.on span{color:var(--zhu)}
+.tb:active{transform:scale(.95)}
+.foot{padding:26px 0 10px;text-align:center;font-size:.62rem;color:var(--ink-3);line-height:1.9;letter-spacing:.04em}
+.toast{
+  position:fixed;left:50%;bottom:calc(86px + env(safe-area-inset-bottom));transform:translate(-50%,10px);
+  background:var(--ink);color:var(--paper);font-size:.75rem;padding:9px 16px;border-radius:99px;
+  opacity:0;pointer-events:none;transition:.24s;z-index:90;max-width:80vw;text-align:center
+}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* ===== 朗读 / 遮字 / 字号 / 复习 / 关联 ===== */
+.ibtn:disabled{opacity:.3;cursor:default}
+.blk .lb::after{order:1}
+.spk{order:2;flex:none;font-size:.56rem;letter-spacing:.02em;padding:2px 7px;border-radius:99px;
+  border:1px solid var(--line);color:var(--ink-3);background:var(--card);
+  transition:.15s;line-height:1.5;white-space:nowrap
+}
+.spk:active{transform:scale(.94)}
+.spk.on{color:#fff;background:var(--jade);border-color:var(--jade)}
+html[data-theme="night"] .spk.on{color:#10201d}
+/* 遮字背诵 */
+.maskbar{display:flex;gap:7px;margin-top:9px;align-items:center;flex-wrap:wrap}
+.maskbar .hint{font-size:.64rem;color:var(--ink-3);letter-spacing:.02em;line-height:1.5}
+.mchar{border-radius:2px;transition:color .14s,background .14s}
+.quote.hidden .mchar{background:var(--ink-3);color:transparent!important;user-select:none}
+.quote.hidden .mchar.lit{background:var(--paper-2)!important;color:var(--ink)!important}
+/* 搜索清空 */
+.sclear{flex:none;width:20px;height:20px;border-radius:50%;font-size:.6rem;
+  background:var(--line-2);color:var(--ink-3);display:grid;place-items:center;line-height:1}
+/* 复习台 */
+.rev-hero{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.rev-hero>div{background:var(--card);border:1px solid var(--line);border-radius:var(--r-s);padding:13px 6px;text-align:center}
+.rev-hero b{display:block;font-family:var(--serif);font-size:1.55rem;line-height:1;font-weight:700;color:var(--zhu)}
+.rev-hero span{display:block;font-size:.6rem;color:var(--ink-3);margin-top:5px;letter-spacing:.06em}
+.revlist{margin-top:10px;display:grid;gap:7px}
+.revitem{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);
+  border-radius:var(--r-s);padding:11px 12px;text-align:left;transition:.15s;width:100%}
+.revitem:active{transform:scale(.99);border-color:var(--zhu)}
+.revitem .rn{font-family:var(--serif);font-size:1.3rem;font-weight:700;line-height:1;flex:none;min-width:1.4em}
+.revitem .rm{flex:1;min-width:0}
+.revitem .rm i{display:block;font-style:normal;font-size:.72rem;color:var(--ink-2);line-height:1.5;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.revitem .rm em{display:block;font-style:normal;font-size:.6rem;color:var(--ink-3);margin-top:2px;letter-spacing:.02em}
+.revitem .rd{flex:none;font-size:.58rem;letter-spacing:.04em;padding:2px 7px;border-radius:99px;white-space:nowrap}
+.rd.due{color:#fff;background:var(--zhu)}
+html[data-theme="night"] .rd.due{color:#1a1210}
+.rd.new{color:var(--jade);border:1px solid var(--jade)}
+.rd.ok{color:var(--ink-3);border:1px solid var(--line)}
+/* 关联区 */
+.relbox{margin-top:14px;border:1px solid var(--line);border-radius:var(--r-s);background:var(--card);overflow:hidden}
+.relbox .rh{display:flex;align-items:center;gap:6px;padding:9px 12px;background:var(--paper-2);
+  font-size:.66rem;letter-spacing:.12em;color:var(--ink-3)}
+.relbox .rh b{margin-left:auto;font-size:.6rem;color:var(--jade);font-weight:400;letter-spacing:.02em}
+.relrow{display:flex;gap:9px;padding:9px 12px;border-top:1px solid var(--line-2);font-size:.78rem;align-items:flex-start}
+.relrow .rk{flex:none;width:3.2em;font-size:.62rem;color:var(--ink-3);letter-spacing:.04em;padding-top:4px}
+.relrow .rv{flex:1;display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.relchip{font-size:.72rem;padding:3px 9px;border-radius:99px;border:1px solid var(--line);
+  background:var(--paper-2);color:var(--ink-2);transition:.15s;line-height:1.6}
+.relchip:active{background:var(--zhu-bg);border-color:var(--zhu)}
+.relchip b{font-family:var(--serif);font-weight:700;color:var(--zhu)}
+.relchip span{font-size:.55rem;color:var(--ink-3);margin-left:4px}
+
+/* ===== 背诵台 v1.3 ===== */
+.rc-sec{margin-bottom:6px}
+.rc-sh{display:flex;align-items:center;gap:7px;margin:15px 0 8px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+.rc-sh b{font-family:var(--serif);font-size:.84rem;letter-spacing:.09em;color:var(--zhu)}
+.rc-sh .cn{font-size:.6rem;color:var(--ink-3);border:1px solid var(--line);border-radius:99px;padding:0 6px}
+.rc-lines{}
+.rc-line{display:flex;align-items:flex-start;gap:7px;padding:6px 9px;border-radius:9px;border:1px solid var(--line-2);background:var(--card);margin-bottom:4px;transition:.15s}
+.rc-line:hover{border-color:var(--line)}
+.rc-txt{flex:1;font-family:var(--serif);font-size:.92rem;line-height:1.9;letter-spacing:.05em;color:var(--ink);word-break:break-word}
+.rc-txt .mchar{border-radius:2px;transition:color .14s,background .14s}
+.rc-txt.hidden .mchar{background:var(--ink-3);color:transparent!important;user-select:none}
+.rc-txt.hidden .mchar.lit{background:var(--paper-2)!important;color:var(--ink)!important}
+.rc-spk{flex:none;font-size:.58rem;padding:2px 7px;border-radius:99px;border:1px solid var(--line);color:var(--ink-3);background:transparent;transition:.15s;margin-top:3px}
+.rc-spk:hover{border-color:var(--jade);color:var(--jade)}
+.rc-spk.on{background:var(--zhu);border-color:var(--zhu);color:#fff}
+.rc-lab{font-size:.62rem;color:var(--jade);letter-spacing:.07em;margin:13px 0 6px;border-left:2px solid var(--jade);padding-left:7px;font-weight:600}
+.rc-note{font-size:.62rem;color:var(--ink-3);line-height:1.75;margin:5px 0 2px;padding-left:9px}
+.rc-sec.fold .rc-lines{display:none}
+.rc-src{font-size:.6rem;color:var(--ink-3);line-height:1.8;margin-top:14px;padding:10px;border:1px dashed var(--line);border-radius:var(--r-s);background:var(--paper-2)}
+.rc-sel{display:flex;gap:5px;overflow-x:auto;padding:2px 0 4px;scrollbar-width:none}
+.rc-sel::-webkit-scrollbar{display:none}
+.rc-sel .chip{flex:none}
+
+
+.rc-grp{margin:0 0 16px}
+.rc-gh{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;padding:5px 0 5px 9px;border-left:3px solid var(--jade);margin:16px 0 8px}
+.rc-gh b{font-family:var(--serif);font-size:.86rem;letter-spacing:.07em}
+.rc-gh .gd{flex:1 1 100%;font-size:.62rem;color:var(--ink-3);line-height:1.7}
+.rc-glist{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 9px}
+.rc-gm{display:inline-flex;align-items:baseline;gap:3px;font-family:var(--serif);font-size:.82rem;padding:3px 9px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--ink);transition:.15s}
+.rc-gm i{font-style:normal;font-size:.54rem;color:var(--ink-3);font-family:var(--sans)}
+.rc-gm:hover{border-color:var(--jade);color:var(--jade)}
+.rc-pulse{border:1px solid var(--line-2);border-radius:var(--r-s);padding:9px 10px 7px;margin-bottom:9px;background:var(--paper-2);transition:.25s}
+.rc-pulse.hit{box-shadow:0 0 0 2px var(--zhu) inset;background:var(--card)}
+.rc-ph{display:flex;align-items:center;gap:6px;margin-bottom:5px}
+.rc-ph b{font-family:var(--serif);font-size:.95rem;letter-spacing:.06em;color:var(--ink)}
+
+/* =========================================================
+   科技视觉皮肤 v1.4 —— 冷光蓝青 / 网格底纹 / 等宽数字 / 锐角描边
+   仅覆盖视觉层，不动结构与逻辑
+   ========================================================= */
+:root{
+  --paper:#eef2f7; --paper-2:#e6ecf4; --card:#ffffff;
+  --ink:#0d1526; --ink-2:#33415a; --ink-3:#67768f;
+  --line:#c6d2e2; --line-2:#dee6f1;
+  --zhu:#0b6f8a; --zhu-2:#0e8fb0; --zhu-bg:rgba(11,111,138,.08);
+  --jade:#1749a6; --jade-bg:rgba(23,73,166,.08);
+  --gold:#6d28d9; --gold-bg:rgba(109,40,217,.08);
+  --sel:#d4f2fb;
+  --r:7px; --r-s:4px;
+  --shadow:0 1px 0 rgba(13,21,38,.04), 0 10px 26px -14px rgba(13,21,38,.35);
+  --glow:0 0 0 1px rgba(11,111,138,.16), 0 0 18px -6px rgba(14,143,176,.45);
+  --grid:rgba(13,21,38,.045);
+}
+html[data-theme="night"]{
+  --paper:#060a12; --paper-2:#0a1120; --card:#0d1626;
+  --ink:#dfe9f5; --ink-2:#9fb0c6; --ink-3:#6b7f9b;
+  --line:#1d2b40; --line-2:#152134;
+  --zhu:#25d3ec; --zhu-2:#6ae8fa; --zhu-bg:rgba(37,211,236,.12);
+  --jade:#4c9dff; --jade-bg:rgba(76,157,255,.12);
+  --gold:#a78bfa; --gold-bg:rgba(167,139,250,.13);
+  --sel:#0a3346;
+  --shadow:0 1px 0 rgba(0,0,0,.5), 0 12px 30px -12px rgba(0,0,0,.8);
+  --glow:0 0 0 1px rgba(37,211,236,.22), 0 0 22px -4px rgba(37,211,236,.42);
+  --grid:rgba(37,211,236,.055);
+}
+
+/* 网格底纹 + 冷光晕 */
+body{
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px),
+    radial-gradient(circle at 14% 6%, var(--zhu-bg), transparent 46%),
+    radial-gradient(circle at 88% 94%, var(--jade-bg), transparent 48%) !important;
+  background-size:26px 26px, 26px 26px, auto, auto !important;
+  background-attachment:fixed !important;
+}
+html[data-theme="night"] body{
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px),
+    radial-gradient(circle at 14% 6%, rgba(37,211,236,.10), transparent 50%),
+    radial-gradient(circle at 88% 94%, rgba(76,157,255,.10), transparent 52%) !important;
+}
+
+/* 数字与徽标统一等宽 */
+.c, .cn, b, .sub, .gd, .rc-gm i, .num, [class*="count"]{
+  font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum" 1;
+}
+
+/* 标题：字距拉开 + 冷光下划线 */
+.sec-t h2{
+  letter-spacing:.22em;
+  font-family:var(--sans);
+  font-weight:700;
+  text-transform:uppercase;
+}
+.sec-t h2::after{
+  content:"";
+  display:block;
+  width:38px; height:2px;
+  margin-top:7px;
+  background:linear-gradient(90deg, var(--zhu), transparent);
+  box-shadow:0 0 10px -1px var(--zhu);
+}
+.sec-t .sub{
+  font-family:var(--mono);
+  font-size:.6rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+}
+
+/* 卡片：细描边 + 悬停冷光 */
+.card{
+  border:1px solid var(--line-2) !important;
+  box-shadow:var(--shadow) !important;
+  transition:border-color .18s, box-shadow .18s, transform .18s;
+}
+.card:hover{ border-color:var(--zhu) !important; box-shadow:var(--glow) !important; }
+
+/* 芯片：胶囊收紧、字距、激活发光 */
+.chip{
+  border-radius:3px !important;
+  letter-spacing:.06em;
+  font-family:var(--mono);
+  font-size:.68rem !important;
+  transition:.16s;
+}
+.chip.on{
+  box-shadow:var(--glow);
+  border-color:var(--zhu) !important;
+}
+
+/* 顶栏 */
+header, .topbar, .hd{ border-bottom:1px solid var(--line) !important; }
+
+/* 底部导航：等宽图标 + 激活发光条 */
+.tabbar{
+  border-top:1px solid var(--line) !important;
+  backdrop-filter:blur(12px) saturate(1.2);
+}
+.tb i{
+  font-family:var(--mono);
+  font-weight:600;
+  letter-spacing:0;
+}
+.tb.on i{
+  text-shadow:0 0 14px var(--zhu);
+}
+.tb.on::before{
+  content:"";
+  position:absolute; left:50%; top:0;
+  width:22px; height:2px; transform:translateX(-50%);
+  background:var(--zhu);
+  box-shadow:0 0 10px var(--zhu);
+}
+.tb{ position:relative; }
+
+/* 背诵台精修 */
+.rc-line{
+  border-radius:2px !important;
+  border-left:2px solid transparent;
+}
+.rc-line:hover{
+  border-left-color:var(--zhu);
+  box-shadow:var(--glow);
+}
+.rc-line .rc-txt{ font-family:var(--serif); }
+/* 逐行「已背」标记与进度条 */
+.rc-ok{flex:0 0 auto;width:21px;height:21px;border-radius:6px;border:1px solid var(--line-2);
+  background:transparent;color:var(--ink-3);font-size:.6rem;line-height:1;cursor:pointer;
+  transition:.15s;padding:0;display:flex;align-items:center;justify-content:center}
+.rc-ok:hover{border-color:var(--jade);color:var(--jade)}
+.rc-line.ok{border-color:var(--jade);background:linear-gradient(90deg,rgba(79,179,160,.13),transparent 72%)}
+.rc-line.ok .rc-ok{background:var(--jade);border-color:var(--jade);color:#fff}
+.rc-line.ok .rc-txt{opacity:.82}
+.rc-done{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:9px 0 4px;padding:7px 10px;
+  border:1px solid var(--line-2);border-radius:9px;background:var(--card);
+  font-family:var(--mono);font-size:.56rem;color:var(--ink-3);letter-spacing:.06em}
+.rc-done b{color:var(--jade);font-size:.74rem}
+.rc-done-bar{flex:1 1 90px;min-width:70px;height:4px;border-radius:99px;background:var(--line-2);overflow:hidden}
+.rc-done-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--jade),#d7a86b);transition:width .25s}
+.rc-done-rst{margin-left:auto;border:1px solid var(--line-2);background:transparent;color:var(--ink-3);
+  border-radius:99px;padding:2px 9px;font-size:.54rem;cursor:pointer;letter-spacing:.04em}
+.rc-done-rst:hover{border-color:#c0504d;color:#c0504d}
+.rc-spk, .rc-gm{
+  border-radius:2px !important;
+  font-family:var(--mono);
+  font-size:.58rem !important;
+  letter-spacing:.05em;
+}
+.rc-spk:hover, .rc-gm:hover{
+  box-shadow:var(--glow);
+  border-color:var(--zhu) !important;
+}
+.rc-gm{ font-size:.76rem !important; }
+.rc-gm i{ font-family:var(--mono); }
+.rc-lab{
+  font-family:var(--mono) !important;
+  letter-spacing:.16em !important;
+  text-transform:uppercase;
+  font-size:.56rem !important;
+  border-left-width:2px !important;
+  box-shadow:inset 2px 0 0 -1px var(--jade);
+}
+.rc-gh{
+  border-left-width:2px !important;
+  background:linear-gradient(90deg, var(--zhu-bg), transparent 72%);
+  padding:6px 0 6px 9px !important;
+}
+.rc-gh b{
+  font-family:var(--sans) !important;
+  letter-spacing:.14em !important;
+  font-weight:700;
+}
+.rc-pulse{
+  border-radius:2px !important;
+  background:var(--card) !important;
+}
+.rc-pulse.hit{
+  box-shadow:var(--glow) !important;
+  border-color:var(--zhu) !important;
+}
+.rc-src{
+  border-radius:2px !important;
+  font-family:var(--mono);
+  font-size:.58rem !important;
+  line-height:1.85 !important;
+}
+
+/* 大字脉名：更强的技术感 */
+.dt-name, .big, .pname{
+  letter-spacing:.1em;
+  text-shadow:0 0 26px var(--zhu-bg);
+}
+
+/* 表格线 */
+table, .tbl{ border-color:var(--line) !important; }
+th{
+  font-family:var(--mono);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  font-size:.6rem;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar{ width:7px; height:7px; }
+::-webkit-scrollbar-thumb{ background:var(--line); border-radius:2px; }
+::-webkit-scrollbar-thumb:hover{ background:var(--zhu); }
+
+
+/* ===== v1.5 百分比遮字 / 分级 / 六纲 / 今日一课 ===== */
+.mchar.mhide{background:var(--ink-3);color:transparent!important;user-select:none}
+.mchar.mhide.lit{background:var(--zhu-bg)!important;color:var(--zhu)!important;box-shadow:inset 0 0 0 1px var(--zhu)}
+.rc-plan{margin:10px 0 4px;border:1px solid var(--line);border-radius:var(--r-s);background:var(--card);overflow:hidden}
+.rc-plan>summary{list-style:none;cursor:pointer;padding:9px 11px;font-family:var(--sans);font-size:.72rem;letter-spacing:.06em;color:var(--ink);display:flex;align-items:center;gap:7px;background:linear-gradient(90deg,rgba(90,160,170,.10),transparent)}
+.rc-plan>summary::-webkit-details-marker{display:none}
+.rc-plan>summary::before{content:'＋';font-family:var(--mono);color:var(--jade);font-size:.8rem}
+.rc-plan[open]>summary::before{content:'－'}
+.rc-plan>summary .k{font-family:var(--mono);font-size:.56rem;color:var(--ink-3);letter-spacing:.1em;margin-left:auto}
+.rc-plan-b{padding:4px 12px 12px;font-size:.68rem;color:var(--ink-2);line-height:1.95}
+.rc-plan-b h4{margin:11px 0 4px;font-size:.68rem;font-family:var(--sans);letter-spacing:.1em;color:var(--jade);font-weight:600}
+.rc-plan-b ol,.rc-plan-b ul{margin:0;padding-left:1.15em}
+.rc-plan-b li{margin:2px 0}
+.rc-plan-b b{color:var(--ink);font-weight:600}
+.rc-plan-b .t{font-family:var(--mono);font-size:.62rem;color:var(--ink-3);margin-right:5px}
+.rc-pctbar{display:flex;gap:4px;align-items:center;flex-wrap:wrap;margin:2px 0 8px}
+.rc-pct{font-family:var(--mono);font-size:.6rem;padding:3px 8px;border-radius:2px;border:1px solid var(--line);background:var(--card);color:var(--ink-3);transition:.15s}
+.rc-pct:hover{border-color:var(--zhu);color:var(--zhu)}
+.rc-pct.on{background:var(--zhu);border-color:var(--zhu);color:#fff;box-shadow:var(--glow)}
+.rc-pct .k{opacity:.6;font-size:.5rem;margin-left:2px}
+.rc-lv{display:inline-block;font-family:var(--mono);font-size:.5rem;padding:1px 5px;border-radius:2px;margin-left:5px;letter-spacing:.08em;vertical-align:middle}
+.rc-lv1{background:rgba(200,40,60,.12);color:#c0283c;border:1px solid rgba(200,40,60,.3)}
+.rc-lv2{background:rgba(190,120,0,.12);color:#b06a00;border:1px solid rgba(190,120,0,.3)}
+.rc-lv3{background:rgba(90,110,140,.12);color:#5a6e8c;border:1px solid rgba(90,110,140,.3)}
+html[data-theme="night"] .rc-lv1{color:#ff8fa3;border-color:rgba(255,143,163,.35);background:rgba(255,143,163,.12)}
+html[data-theme="night"] .rc-lv2{color:#ffc46b;border-color:rgba(255,196,107,.35);background:rgba(255,196,107,.12)}
+html[data-theme="night"] .rc-lv3{color:#9fb0c6;border-color:rgba(159,176,198,.3);background:rgba(159,176,198,.1)}
+.rc-eye{font-family:var(--mono);font-size:.58rem;color:var(--zhu);letter-spacing:.05em;margin:0 0 6px;padding:3px 8px;border-radius:2px;background:var(--zhu-bg);display:inline-block;border:1px solid transparent}
+.rc-eye b{font-weight:600;opacity:.65;margin-right:4px;font-size:.52rem}
+.rc-today{border:1px solid var(--line);border-radius:3px;padding:10px 11px;margin:10px 0 12px;background:linear-gradient(135deg,var(--zhu-bg),transparent 65%);position:relative;overflow:hidden}
+.rc-today::after{content:"";position:absolute;right:-18px;top:-18px;width:70px;height:70px;border-radius:50%;background:radial-gradient(circle,var(--zhu-bg),transparent 70%)}
+.rc-today .th{display:flex;align-items:center;gap:7px;margin-bottom:7px}
+.rc-today .th b{font-family:var(--sans);font-size:.78rem;letter-spacing:.1em;color:var(--zhu)}
+.rc-today .th .cn{font-family:var(--mono);font-size:.54rem;color:var(--ink-3);letter-spacing:.08em}
+.rc-today .tl{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:7px}
+.rc-today .tc{flex:1 1 96px;border:1px solid var(--line-2);border-radius:2px;padding:7px 9px;background:var(--card);text-align:left}
+.rc-today .tc b{font-family:var(--serif);font-size:1.02rem;letter-spacing:.07em;display:block;margin-bottom:3px}
+.rc-today .tc i{font-style:normal;font-family:var(--mono);font-size:.54rem;color:var(--ink-3);line-height:1.6;display:block}
+.rc-today .tc.done{border-color:var(--zhu);box-shadow:inset 0 0 0 1px var(--zhu)}
+.rc-today .tc.done b::after{content:" ✓";color:var(--zhu);font-size:.7rem}
+.rc-prog{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.56rem;color:var(--ink-3)}
+.rc-bar{flex:1;height:4px;border-radius:2px;background:var(--line-2);overflow:hidden}
+.rc-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--zhu),var(--jade));width:0;transition:width .4s}
+.rc-gm em{font-style:normal;font-size:.5rem;color:var(--ink-3);font-family:var(--mono);margin-left:2px}
+.rc-gh .sx{font-family:var(--mono);font-size:.52rem;padding:0 5px;border:1px solid var(--line);border-radius:2px;color:var(--ink-3)}
+
+/* ===== v1.7 HUD skin injected ===== */
+/* ================= v1.7 · HOLO TERMINAL ================= */
+/* 只改视觉层：变量重定义 + 装饰层 + 组件外形。不改任何结构与数据。 */
+
+html{
+  --mono-ui:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+  --holo:#3ce9ff; --holo-2:#9bf8ff; --holo-d:#0a8fb2;
+  --mint:#63f7c8; --amber:#ffb54e; --rose:#ff5d7a; --violet:#a678ff;
+  --g1:rgba(60,233,255,.055);
+}
+
+/* ---------- 夜间：深空全息 ---------- */
+html[data-theme="night"]{
+  --paper:#03070c; --paper-2:#061019; --paper-3:#0a1822;
+  --card:rgba(7,18,27,.82); --card-2:rgba(9,22,32,.66);
+  --ink:#e2f6ff; --ink-2:#a2c4d6; --ink-3:#5d8298;
+  --line:rgba(60,233,255,.18); --line-2:rgba(60,233,255,.34);
+  --zhu:#3ce9ff; --zhu-2:#9bf8ff; --zhu-bg:rgba(60,233,255,.10);
+  --jade:#63f7c8; --jade-bg:rgba(99,247,200,.10);
+  --gold:#ffb54e; --gold-bg:rgba(255,181,78,.10);
+  --sel:rgba(60,233,255,.16);
+  --r:3px; --r-s:2px; --r-l:4px;
+  --shadow:inset 0 0 0 1px rgba(60,233,255,.05),0 20px 46px -30px #000;
+  --glow:0 0 20px -7px rgba(60,233,255,.9);
+  --scrim:rgba(3,7,12,.86);
+}
+html[data-theme="night"] body{
+  background-color:var(--paper);
+  background-image:
+    radial-gradient(1150px 560px at 50% -14%,rgba(60,233,255,.11),transparent 64%),
+    radial-gradient(760px 440px at 104% 104%,rgba(166,120,255,.075),transparent 62%),
+    radial-gradient(620px 380px at -6% 92%,rgba(99,247,200,.055),transparent 60%);
+  background-attachment:fixed;
+}
+
+/* ---------- 日间：实验室冷光玻璃 ---------- */
+html[data-theme="day"]{
+  --paper:#e9f1f7; --paper-2:#f5fafd; --paper-3:#dfeaf2;
+  --card:rgba(255,255,255,.90); --card-2:rgba(248,253,255,.86);
+  --ink:#05161f; --ink-2:#325869; --ink-3:#6d8fa0;
+  --line:rgba(8,138,168,.22); --line-2:rgba(8,138,168,.42);
+  --zhu:#0484a3; --zhu-2:#0aa6c6; --zhu-bg:rgba(4,132,163,.10);
+  --jade:#0a9c78; --jade-bg:rgba(10,156,120,.10);
+  --gold:#a96a06; --gold-bg:rgba(169,106,6,.10);
+  --sel:rgba(4,132,163,.15);
+  --r:3px; --r-s:2px; --r-l:4px;
+  --shadow:inset 0 0 0 1px rgba(8,138,168,.05),0 16px 36px -28px rgba(4,42,58,.6);
+  --glow:0 0 16px -7px rgba(4,132,163,.7);
+  --scrim:rgba(233,241,247,.88);
+  --g1:rgba(8,138,168,.07);
+}
+html[data-theme="day"] body{
+  background-color:var(--paper);
+  background-image:
+    radial-gradient(1000px 520px at 50% -12%,rgba(4,132,163,.10),transparent 62%),
+    radial-gradient(700px 420px at 100% 100%,rgba(120,90,255,.05),transparent 60%);
+  background-attachment:fixed;
+}
+
+/* ---------- 装饰层 ---------- */
+.hud{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;contain:strict}
+.hud-flat{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(var(--g1) 1px,transparent 1px),
+    linear-gradient(90deg,var(--g1) 1px,transparent 1px);
+  background-size:44px 44px;
+  -webkit-mask-image:radial-gradient(ellipse 78% 62% at 50% 42%,#000 8%,transparent 82%);
+  mask-image:radial-gradient(ellipse 78% 62% at 50% 42%,#000 8%,transparent 82%);
+}
+.hud-floor{
+  position:absolute;left:-40%;right:-40%;bottom:-14%;height:62%;
+  background-image:
+    linear-gradient(rgba(60,233,255,.17) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(60,233,255,.17) 1px,transparent 1px);
+  background-size:60px 46px;
+  transform:perspective(420px) rotateX(64deg);
+  transform-origin:50% 100%;
+  animation:floorDrift 18s linear infinite;
+  opacity:.32;
+  -webkit-mask-image:linear-gradient(180deg,transparent 8%,#000 55%,transparent 96%);
+  mask-image:linear-gradient(180deg,transparent 8%,#000 55%,transparent 96%);
+}
+html[data-theme="day"] .hud-floor{
+  background-image:
+    linear-gradient(rgba(8,138,168,.20) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(8,138,168,.20) 1px,transparent 1px);
+  opacity:.22;
+}
+.hud-scan{
+  position:absolute;left:0;right:0;top:-30%;height:38%;
+  background:linear-gradient(180deg,
+    transparent 0%,
+    rgba(60,233,255,.028) 34%,
+    rgba(60,233,255,.075) 50%,
+    rgba(60,233,255,.028) 66%,
+    transparent 100%);
+  animation:sweepY 9.5s cubic-bezier(.4,0,.6,1) infinite;
+}
+html[data-theme="day"] .hud-scan{
+  background:linear-gradient(180deg,transparent 0%,rgba(4,132,163,.02) 34%,rgba(4,132,163,.055) 50%,rgba(4,132,163,.02) 66%,transparent 100%);
+}
+.hud-frame{position:absolute;inset:9px;opacity:.5;
+  background:
+    linear-gradient(var(--line-2),var(--line-2)) left top/16px 1px no-repeat,
+    linear-gradient(var(--line-2),var(--line-2)) left top/1px 16px no-repeat,
+    linear-gradient(var(--line-2),var(--line-2)) right top/16px 1px no-repeat,
+    linear-gradient(var(--line-2),var(--line-2)) right top/1px 16px no-repeat,
+    linear-gradient(var(--line-2),var(--line-2)) left bottom/16px 1px no-repeat,
+    linear-gradient(var(--line-2),var(--line-2)) left bottom/1px 16px no-repeat,
+    linear-gradient(var(--line-2),var(--line-2)) right bottom/16px 1px no-repeat,
+    linear-gradient(var(--line-2),var(--line-2)) right bottom/1px 16px no-repeat;
+}
+@keyframes floorDrift{from{background-position:0 0,0 0}to{background-position:0 46px,60px 0}}
+@keyframes sweepY{0%{transform:translateY(0)}100%{transform:translateY(360%)}}
+
+/* ---------- 页头 ---------- */
+.top{
+  background:linear-gradient(180deg,color-mix(in srgb,var(--paper) 94%,transparent),color-mix(in srgb,var(--paper) 74%,transparent));
+  backdrop-filter:blur(18px) saturate(1.35);
+  border-bottom:1px solid var(--line-2);
+  box-shadow:0 10px 34px -26px rgba(0,0,0,.9);
+}
+.top::after{
+  content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--zhu) 18%,var(--zhu-2) 50%,var(--zhu) 82%,transparent);
+  background-size:60% 100%;
+  animation:edgeRun 5.2s linear infinite;
+  opacity:.9;
+}
+@keyframes edgeRun{from{background-position:-60% 0}to{background-position:160% 0}}
+.brand b{
+  letter-spacing:.16em;
+  color:var(--ink);
+  text-shadow:0 0 18px rgba(60,233,255,.55);
+  font-weight:650;
+}
+html[data-theme="day"] .brand b{text-shadow:0 0 14px rgba(4,132,163,.28)}
+#topMeta{
+  font-family:var(--mono-ui);
+  font-size:.56rem !important;
+  letter-spacing:.20em;
+  text-transform:uppercase;
+  color:var(--ink-3) !important;
+}
+/* 页头读数 */
+.hud-stat{
+  margin-left:auto;flex:0 0 auto;
+  display:flex;align-items:center;gap:5px;
+  padding:3px 7px;border:1px solid var(--line);border-radius:2px;
+  background:var(--card-2);
+  font-family:var(--mono-ui);font-size:.5rem;letter-spacing:.13em;
+  color:var(--ink-3);
+}
+.hud-stat b{color:var(--mint);font-weight:600;letter-spacing:.15em}
+.hud-stat span{color:var(--ink-2);font-variant-numeric:tabular-nums}
+.hud-stat .dot{
+  width:4px;height:4px;border-radius:50%;background:var(--mint);
+  box-shadow:0 0 8px var(--mint);animation:blink 1.6s steps(2,end) infinite;
+}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:.15}}
+
+/* ---------- 卡片 ---------- */
+.card{
+  border-radius:2px !important;
+  border:1px solid var(--line);
+  background:
+    linear-gradient(158deg,rgba(60,233,255,.055),transparent 42%),
+    var(--card);
+  box-shadow:var(--shadow);
+}
+html[data-theme="day"] .card{
+  background:linear-gradient(158deg,rgba(4,132,163,.045),transparent 42%),var(--card);
+}
+.card::after{
+  content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:
+    linear-gradient(var(--zhu),var(--zhu)) left top/13px 1px no-repeat,
+    linear-gradient(var(--zhu),var(--zhu)) left top/1px 13px no-repeat,
+    linear-gradient(var(--zhu),var(--zhu)) right top/13px 1px no-repeat,
+    linear-gradient(var(--zhu),var(--zhu)) right top/1px 13px no-repeat,
+    linear-gradient(var(--zhu),var(--zhu)) left bottom/13px 1px no-repeat,
+    linear-gradient(var(--zhu),var(--zhu)) left bottom/1px 13px no-repeat,
+    linear-gradient(var(--zhu),var(--zhu)) right bottom/13px 1px no-repeat,
+    linear-gradient(var(--zhu),var(--zhu)) right bottom/1px 13px no-repeat;
+  opacity:.42;
+}
+.card:not(.card){position:relative}
+
+/* ---------- 分节标题 ---------- */
+.sec-t{
+  position:relative;
+  padding-left:9px;
+  border-left:2px solid var(--zhu);
+  box-shadow:-6px 0 18px -10px var(--zhu);
+}
+.sec-t h2{
+  font-family:var(--mono-ui) !important;
+  letter-spacing:.10em !important;
+  font-weight:600 !important;
+}
+.sec-t .sub{
+  font-family:var(--mono-ui);
+  font-size:.5rem !important;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--ink-3) !important;
+}
+
+/* ---------- 按钮 / 芯片 ---------- */
+.btn,.chip,.opt,.tb,.spk,.lay{
+  font-family:var(--mono-ui);
+  letter-spacing:.07em;
+  border-radius:2px !important;
+  transition:box-shadow .18s,transform .12s,border-color .18s,color .18s;
+}
+.btn{
+  position:relative;
+  border:1px solid var(--line-2) !important;
+  box-shadow:inset 0 0 22px -14px var(--zhu),0 0 0 0 transparent;
+}
+.btn:hover{box-shadow:inset 0 0 26px -10px var(--zhu),0 0 18px -8px var(--zhu)}
+.btn:active{transform:translateY(1px)}
+.chip,.opt{border-radius:2px !important}
+.chip.on,.opt.on{box-shadow:0 0 16px -7px var(--zhu),inset 0 0 0 1px color-mix(in srgb,var(--zhu) 42%,transparent)}
+
+/* ---------- 底部导航 ---------- */
+.tabbar{
+  background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--paper) 88%,transparent) 38%,color-mix(in srgb,var(--paper) 97%,transparent));
+  backdrop-filter:blur(18px) saturate(1.3);
+  border-top:1px solid var(--line-2);
+}
+.tb{position:relative;font-family:var(--mono-ui)}
+.tb i{font-style:normal}
+.tb.on{color:var(--zhu) !important;text-shadow:0 0 16px rgba(60,233,255,.6)}
+.tb.on::after{
+  content:"";position:absolute;top:0;left:16%;right:16%;height:2px;
+  background:var(--zhu);
+  box-shadow:0 0 12px var(--zhu),0 0 26px -6px var(--zhu);
+}
+html[data-theme="day"] .tb.on{text-shadow:0 0 12px rgba(4,132,163,.35)}
+
+/* ---------- 遮字：改成发光栅格 ---------- */
+.mchar.mhide{
+  background:color-mix(in srgb,var(--zhu) 16%,transparent) !important;
+  color:transparent !important;
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--zhu) 30%,transparent);
+  border-radius:1px;
+}
+.mchar.mhide.lit{
+  background:var(--zhu-bg) !important;
+  color:var(--zhu) !important;
+  box-shadow:inset 0 0 0 1px var(--zhu),0 0 10px -3px var(--zhu);
+}
+
+/* ---------- 细节强化 ---------- */
+.pm-nm,.pm-en,[id^="pm"],.badge,.num,.k{
+  font-variant-numeric:tabular-nums;
+}
+.lede,.quote,.rc-txt{text-wrap:pretty}
+a{color:var(--zhu)}
+::selection{background:var(--sel)}
+
+/* ---------- 入场 ---------- */
+.hud-on .scr.on{animation:hudIn .34s cubic-bezier(.2,.7,.3,1) both}
+@keyframes hudIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+@media(prefers-reduced-motion:reduce){
+  .hud-floor,.hud-scan,.top::after,.hud-stat .dot{animation:none !important}
+  .hud-on .scr.on{animation:none !important}
+}
+
+
+/* ---------- v1.7 fix：入场只做位移，绝不碰透明度（避免淡入卡死导致正文不可见） ---------- */
+html body .screen.on{
+  opacity:1 !important;
+  animation:hudSlide .30s cubic-bezier(.2,.7,.3,1) both !important;
+}
+@keyframes hudSlide{from{transform:translateY(7px)}to{transform:translateY(0)}}
+
+/* 夜间对比度加厚：卡底更实，次级文字提亮 */
+html[data-theme="night"]{
+  --card:rgba(8,20,30,.92);
+  --card-2:rgba(11,26,38,.86);
+  --ink-2:#b6d3e2;
+  --ink-3:#7ea1b3;
+}
+html[data-theme="night"] .card{
+  background:linear-gradient(158deg,rgba(60,233,255,.07),transparent 44%),rgba(8,20,30,.92);
+}
+html[data-theme="night"] .sec-t h2{color:var(--zhu-2) !important;text-shadow:0 0 16px rgba(60,233,255,.4)}
+html[data-theme="night"] .big{
+  text-shadow:0 0 34px rgba(60,233,255,.55),0 0 8px rgba(60,233,255,.45);
+}
+
+
+/* ---------- v1.7 主视觉：脉象波形 + 雷达环 ---------- */
+.hero{position:relative;isolation:isolate}
+.hero>*{position:relative;z-index:2}
+.hero{padding-bottom:78px}
+.hero .hud-wave{
+  position:absolute;left:0;right:0;bottom:0;height:66px;width:100%;
+  z-index:1;pointer-events:none;opacity:.72;mix-blend-mode:screen;
+}
+html[data-theme="day"] .hero .hud-wave{mix-blend-mode:multiply;opacity:.5}
+
+.hero .big{position:relative;display:inline-block}
+/* 虚线刻度环 */
+.hero .big::before{
+  content:"";position:absolute;left:50%;top:50%;
+  width:176px;height:176px;margin:-88px 0 0 -88px;border-radius:50%;
+  border:1px dashed color-mix(in srgb,var(--zhu) 30%,transparent);
+  animation:radarSpin 26s linear infinite;pointer-events:none;z-index:-1;
+}
+/* 扫描扇区 */
+.hero .big::after{
+  content:"";position:absolute;left:50%;top:50%;
+  width:196px;height:196px;margin:-98px 0 0 -98px;border-radius:50%;
+  background:conic-gradient(from 0deg,
+    transparent 0deg,
+    color-mix(in srgb,var(--zhu) 34%,transparent) 26deg,
+    transparent 62deg,
+    transparent 360deg);
+  -webkit-mask-image:radial-gradient(circle,transparent 56%,#000 59%,#000 100%);
+  mask-image:radial-gradient(circle,transparent 56%,#000 59%,#000 100%);
+  animation:radarSpin 5.2s linear infinite;
+  pointer-events:none;z-index:-1;
+}
+@keyframes radarSpin{to{transform:rotate(360deg)}}
+
+/* 分节标题下的细扫描线 */
+.sec-t{overflow:visible}
+.sec-t::after{
+  content:"";position:absolute;left:9px;right:0;bottom:-1px;height:1px;
+  background:linear-gradient(90deg,var(--zhu),transparent 72%);
+  opacity:.34;
+}
+
+/* 底部导航项悬停微光 */
+.tb:hover{color:var(--ink) !important}
+.tb:not(.on):hover::after{
+  content:"";position:absolute;top:0;left:32%;right:32%;height:1px;
+  background:color-mix(in srgb,var(--zhu) 55%,transparent);
+}
+
+/* 卡片悬停：边缘点亮 */
+.card{transition:border-color .22s,box-shadow .22s,transform .22s}
+.card:hover{
+  border-color:color-mix(in srgb,var(--zhu) 42%,transparent);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--zhu) 10%,transparent),0 0 26px -16px var(--zhu),var(--shadow);
+}
+
+@media(prefers-reduced-motion:reduce){
+  .hero .big::before,.hero .big::after{animation:none !important}
+}
+
+</style>
+</head>
+
+<body class="hud-on">
+<div class="hud" aria-hidden="true">
+  <div class="hud-flat"></div>
+  <div class="hud-floor"></div>
+  <div class="hud-scan"></div>
+  <div class="hud-frame"></div>
+</div>
+
+
+<header class="top">
+  <div class="top-in"><div class="hud-stat" title="本机状态"><span class="dot"></span><b id="hudTag">SYS</b><span id="hudClock">--:--</span></div>
+    <div class="brand">
+      <b>脉诊筑基</b>
+      <span id="topMeta">廿七脉 · 位数形势</span>
+    </div>
+    <div class="top-r">
+      <button class="ibtn" id="btnFontDn" aria-label="缩小字号" title="缩小字号" style="font-size:.66rem">A－</button>
+      <button class="ibtn" id="btnFontUp" aria-label="放大字号" title="放大字号" style="font-size:.66rem">A＋</button>
+      <button class="ibtn" id="btnTheme" aria-label="切换日夜模式">☾</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ============ 首页 ============ -->
+<section class="screen on" id="scHome">
+  <div class="hero"><canvas class="hud-wave" id="hudWave" aria-hidden="true"></canvas>
+    <div class="k">脉 学 单 行 本</div>
+    <div>
+      <span class="big mono" id="homeNum">27</span>
+      <div class="unit">脉</div>
+    </div>
+    <p class="tip">不看歌诀，先看四个坐标。<br>位、数、形、势一旦定死，二十七脉各有其位。</p>
+  </div>
+
+  <div class="sec-t">
+    <h2>四 维 坐 标</h2>
+    <span class="sub">每脉必落其一</span>
+  </div>
+  <div class="axes">
+    <div class="ax"><b>位</b><span>浮沉深浅</span><em id="axWei">2 值</em></div>
+    <div class="ax"><b>数</b><span>至数疾缓</span><em id="axShu">3 值</em></div>
+    <div class="ax"><b>形</b><span>大小粗细</span><em id="axXing">3 值</em></div>
+    <div class="ax"><b>势</b><span>强弱流止</span><em id="axShi">4 值</em></div>
+  </div>
+
+  <div class="sec-t">
+    <h2>五 类 分 布</h2>
+    <span class="sub">按主导维归堆</span>
+  </div>
+  <div class="card" style="padding:12px 14px">
+    <div id="barBox"></div>
+  </div>
+
+  <div class="sec-t">
+    <h2>多 人 共 用</h2>
+    <span class="sub">各记各的</span>
+  </div>
+  <div class="card" style="padding:12px 14px">
+    <p style="margin:0 0 8px;line-height:1.75">多人共用同一台设备时，点右上角「学习档案」新建自己的名字即可。每人的背诵进度、字眼、字号、主题分开存放，切换档案不会串档。想知道进度是否保存，看头像旁那行「已存档 时:分」。</p>
+    <button class="btn ghost" id="goProfile">打开 学习档案 →</button>
+  </div>
+
+  <div class="sec-t">
+    <h2>怎 么 用</h2>
+    <span class="sub">三步</span>
+  </div>
+  <div class="card">
+    <ol class="steps">
+      <li><b>先认位</b>：手指轻放到重按，先判浮还是沉。这一步定错，后面全错。</li>
+      <li><b>再拆形与势</b>：在既定位置上问「多宽、多细」「有力、无力」「流不流利」。</li>
+      <li><b>最后核对比</b>：凡是拿不准的，一律进对比页并排看，别靠记忆分。</li>
+    </ol>
+  </div>
+
+  <div class="sec-t">
+    <h2>高 频 脉</h2>
+    <span class="sub">先掌握这些</span>
+  </div>
+  <div class="grid" id="hotGrid"></div>
+
+  <button class="btn ghost" style="margin-top:16px" id="goList">看 全 部 廿 七 脉 →</button>
+
+  <div class="foot">
+    脉诊筑基 v1.8<br>
+    逐段朗读 · 遮字默写 · 复习台 · 逐维对比<br>四言举要 166 行 · 廿七脉诗 72 首（按类分组）<br>
+    你的学习与背诵进度自动存档在本机，关掉重开也从上次的地方接着练<br>
+    多人共用一台设备时，可在右上角「学习档案」里各建一份，互不干扰<br>
+    原文与主病待校条目已标出，临证请以教材与师授为准<br>
+    <b>本页为中医脉学学习与背诵工具，非医疗器械，不提供诊断或治疗建议；身体不适请及时就医。</b><br>
+    古籍原文属公有领域；注音、校记、遮字默写、复习台与界面代码为本页原创
+  </div>
+</section>
+
+<!-- ============ 脉谱 ============ -->
+<section class="screen" id="scList">
+  <div class="sec-t" style="margin-top:18px">
+    <h2>脉 谱</h2>
+    <span class="sub" id="listCount">27 脉</span>
+  </div>
+
+  <div class="filters">
+    <div class="chips" id="chips"></div>
+    <div class="searchbox">
+      <span class="ic">⌕</span>
+      <input id="q" type="search" placeholder="搜脉名、别名、主病，如 浮 / 葱管 / 虚弱" autocomplete="off" aria-label="搜索脉">
+      <button class="sclear" id="qClear" aria-label="清空搜索" style="display:none">✕</button>
+    </div>
+  </div>
+
+  <div class="grid" id="listGrid"></div>
+  <div class="empty" id="listEmpty" style="display:none">没有匹配的脉，换个说法试试</div>
+</section>
+
+<!-- ============ 详情 ============ -->
+<section class="screen" id="scDetail">
+  <div class="nav-back">
+    <button id="btnBack">← 返回脉谱</button>
+  </div>
+  <div class="nhead">
+    <div class="row1">
+      <span class="nm" id="dName">—</span>
+      <span class="py" id="dPy"></span>
+    </div>
+    <div class="meta" id="dMeta"></div>
+  </div>
+
+  <div class="lays" id="lays">
+    <button class="lay on" data-lay="1">认<small>触感</small></button>
+    <button class="lay" data-lay="2">记<small>原文</small></button>
+    <button class="lay" data-lay="3">辨<small>四维</small></button>
+    <button class="lay" data-lay="4">用<small>主病</small></button>
+    <button class="lay" data-lay="5">验<small>易混</small></button>
+  </div>
+
+  <!-- 认 -->
+  <div class="pane on" id="pane1">
+    <div class="blk">
+      <div class="lb">一句能记住</div>
+      <div class="txt" id="dUnderstand"></div>
+    </div>
+    <div class="blk">
+      <div class="lb">指下怎么找</div>
+      <table class="dimt" id="dDimQuick"></table>
+    </div>
+    <div class="blk">
+      <div class="lb">回忆卡</div>
+      <div class="recall">
+        <div class="q" id="dRecallQ"></div>
+        <button class="btn sm" id="btnReveal">看 答 案</button>
+        <div class="reveal" id="dRecallA"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 记 -->
+  <div class="pane" id="pane2">
+    <div class="blk">
+      <div class="lb">原文</div>
+      <div class="quote" id="dRecite"></div>
+      <div class="maskbar">
+        <button class="chip" id="btnMask" aria-pressed="false">遮字背诵</button>
+        <span class="hint">点单个字可临时露出</span>
+      </div>
+    </div>
+    <div class="blk">
+      <div class="lb">背诵要点</div>
+      <ul class="listing" id="dKey"></ul>
+    </div>
+    <div class="blk">
+      <div class="lb">别名</div>
+      <ul class="listing" id="dAlias"></ul>
+    </div>
+  </div>
+
+  <!-- 辨 -->
+  <div class="pane" id="pane3">
+    <div class="blk">
+      <div class="lb">四维拆解<em style="font-style:normal;color:var(--gold);font-size:.55rem;margin-left:4px">黄底为待校</em></div>
+      <table class="dimt" id="dDims"></table>
+    </div>
+    <div class="blk">
+      <div class="lb">与同类脉的分水岭</div>
+      <ul class="listing" id="dContrast"></ul>
+    </div>
+  </div>
+
+  <!-- 用 -->
+  <div class="pane" id="pane4">
+    <div class="blk">
+      <div class="lb">学习第一反应</div>
+      <div class="txt" id="dClinical"></div>
+    </div>
+    <div class="blk">
+      <div class="lb">决策链</div>
+      <div class="flow" id="dApply"></div>
+    </div>
+    <div class="blk">
+      <div class="lb">禁忌与误判</div>
+      <ul class="listing" id="dCaveat"></ul>
+    </div>
+  </div>
+
+  <!-- 验 -->
+  <div class="pane" id="pane5">
+    <div class="blk">
+      <div class="lb">易混对照</div>
+      <div class="cmp" id="dCmp"></div>
+    </div>
+    <div class="blk">
+      <div class="lb">并排对比</div>
+      <button class="goto" id="btnCmpFromDetail">⇄ <b>开对比页</b><span>与任一同类脉逐维对照</span></button>
+    </div>
+    <div class="blk">
+      <div class="lb">自测</div>
+      <button class="goto" id="btnTestFromDetail">✓ <b>就这一个出题</b><span>用四维描述反推脉名</span></button>
+    </div>
+  </div>
+
+  <!-- 关联区（常显） -->
+  <div class="relbox" id="relBox"></div>
+</section>
+
+<!-- ============ 对比 ============ -->
+<section class="screen" id="scCompare">
+  <div class="sec-t" style="margin-top:18px">
+    <h2>并 排 对 比</h2>
+    <span class="sub">逐维看差别</span>
+  </div>
+  <div class="selrow">
+    <div class="selwrap"><select id="selA" aria-label="选择脉 A"></select></div>
+    <div class="vs">对<br>比</div>
+    <div class="selwrap"><select id="selB" aria-label="选择脉 B"></select></div>
+  </div>
+  <div style="display:flex;gap:6px;margin-top:9px;align-items:center">
+    <button class="chip" id="btnSwap" style="padding:5px 10px">⇄ 互换</button>
+    <button class="chip" id="btnRand" style="padding:5px 10px">随机一对同名类</button>
+  </div>
+  <table class="vt" id="cmpTable"></table>
+  <p class="note" id="cmpNote"></p>
+</section>
+
+<!-- ============ 自测 ============ -->
+<section class="screen" id="scTest">
+  <div class="sec-t" style="margin-top:18px">
+    <h2>自 测</h2>
+    <span class="sub">四维反推脉名</span>
+  </div>
+  <div class="qbox">
+    <div class="prog" id="tProg">第 1 / 10 题</div>
+    <div class="clue" id="tClue">—</div>
+    <div class="hintx" id="tHint"></div>
+  </div>
+  <div class="opts" id="tOpts"></div>
+  <div class="fb" id="tFb"></div>
+  <div style="display:flex;gap:8px;margin-top:12px">
+    <button class="btn ghost sm" id="btnNext" style="display:none">下 一 题 →</button>
+    <button class="btn ghost sm" id="btnRestart">重 新 开 始</button>
+  </div>
+  <div class="stat">
+    <div><b class="mono" id="stDone">0</b><span>已答</span></div>
+    <div><b class="mono" id="stOk">0</b><span>正确</span></div>
+    <div><b class="mono" id="stRate">—</b><span>正确率</span></div>
+  </div>
+</section>
+
+<!-- ============ 复习台 ============ -->
+<section class="screen" id="scReview">
+  <div class="sec-t" style="margin-top:18px">
+    <h2>复 习 台</h2>
+    <span class="sub">今天该看哪几张</span>
+  </div>
+  <div class="rev-hero">
+    <div><b class="mono" id="rvDue">0</b><span>待复习</span></div>
+    <div><b class="mono" id="rvNew">0</b><span>新卡</span></div>
+    <div><b class="mono" id="rvDone">0</b><span>已学</span></div>
+  </div>
+  <div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;align-items:center">
+    <button class="chip on" id="rvTabDue">待复习</button>
+    <button class="chip" id="rvTabNew">新卡</button>
+    <button class="chip" id="rvTabAll">全部</button>
+    <button class="chip" id="rvReset" style="margin-left:auto;font-size:.66rem">重置记录</button>
+  </div>
+  <div class="revlist" id="rvList"></div>
+  <div class="empty" id="rvEmpty" style="display:none">这里空了。去「脉谱」开新卡，或用「自测」练一轮。</div>
+  <p class="note">答对即延后、答错即回到今天；间隔按答对次数递推。点条目直接进「记」层并翻开遮字，当场自测。记录只存本机。</p>
+</section>
+
+
+<!-- ============ 背诵台 ============ -->
+<section class="screen" id="scRecite">
+  <div class="sec-t" style="margin-top:18px">
+    <h2>背 诵 台</h2>
+    <span class="sub">原文逐行 · 可遮字可朗读</span>
+  </div>
+  <div class="chips" style="margin-bottom:8px">
+    <button class="chip on" id="rcTabSz">四言举要<span class="c">166 行</span></button>
+    <button class="chip" id="rcTabPm">濒湖脉学<span class="c">27 脉</span></button>
+  </div>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+    <button class="chip" id="rcSpkAll">朗读本板块</button>
+    <button class="chip" id="rcFill" title="把已遮的字全部揭开">全部揭开</button>
+    <button class="chip" id="rcFold" style="margin-left:auto">全展开</button>
+  </div>
+  <div class="rc-pctbar">
+    <span style="font-family:var(--mono);font-size:.56rem;color:var(--ink-3);letter-spacing:.1em">遮字</span>
+    <button class="rc-pct on" data-pct="0">0<span class="k">原文</span></button>
+    <button class="rc-pct" data-pct="30">30<span class="k">%</span></button>
+    <button class="rc-pct" data-pct="50">50<span class="k">%</span></button>
+    <button class="rc-pct" data-pct="70">70<span class="k">%</span></button>
+    <button class="rc-pct" data-pct="100">100<span class="k">全遮</span></button>
+  </div>
+  <div class="rc-pctbar">
+    <span style="font-family:var(--mono);font-size:.56rem;color:var(--ink-3);letter-spacing:.1em">分级</span>
+    <button class="rc-pct on" data-lv="0">全部</button>
+    <button class="rc-pct" data-lv="1">必背</button>
+    <button class="rc-pct" data-lv="2">熟背</button>
+    <button class="rc-pct" data-lv="3">熟读</button>
+    <span style="width:1px;height:14px;background:var(--line);margin:0 3px"></span>
+    <button class="rc-pct on" data-gm="five">五类</button>
+    <button class="rc-pct" data-gm="six">六纲</button>
+  </div>
+  <div class="rc-done" id="rcDone"></div>
+  <details class="rc-plan" id="rcPlan">
+    <summary>筑基三十日 · 背法与验收<span class="k">照着做</span></summary>
+    <div class="rc-plan-b">
+      <h4>一、三层背法（与上方「分级」按钮一一对应）</h4>
+      <ol>
+        <li><b>必背 · 一字不落</b>：四言举要 166 行 ＋ 27 首《体状诗》。四言举要是脉学的总纲（脉位、至数、胃气、四时平脉、脏腑分属全在其中），《体状诗》是每脉的判据——模糊一个字，指下就偏一分。</li>
+        <li><b>熟背 · 顺口成诵</b>：27 首《相类诗》。这是原书替你备好的鉴别笔记（沉与伏、牢、弱怎么分，迟与缓、涩怎么辨），能背出八九成、关键鉴别点不含糊即可，反复对摸时会自然补全。</li>
+        <li><b>熟读 · 暂不强记</b>：27 首《主病诗》。这是「某脉主某病」的断语，眼下背它是死知识；留到接上「以脉定证」的框架再回头读，几遍自然上口。</li>
+      </ol>
+      <h4>二、每日节奏</h4>
+      <ul>
+        <li><span class="t">第1–2周</span>四言举要每日约十句，滚动复习，不贪多。</li>
+        <li><span class="t">第3–4周</span>27 脉每日两脉，早晚各过一遍；当天背哪一脉，就在「六纲」视图里确认它挂在哪根柱子下。</li>
+        <li><span class="t">全程</span>雷打不动，宁可每日两条，不可三日突击后搁浅。</li>
+      </ul>
+      <h4>三、三个窍门</h4>
+      <ul>
+        <li><b>出声诵读</b>：七言歌诀本就为口诵而作，默看十遍不如出声三遍。用每行右侧的「读」逐行跟读。</li>
+        <li><b>边背边摸</b>：当天背哪一脉，就在自己与家人的寸口上找这一脉；找不到完全对应的，就先找它的纲（如背伏脉时先确认沉取的感觉）。口诀与指感互相锚定，比干背牢固数倍。</li>
+        <li><b>抓字眼</b>：每脉只先记一个核心词（迟＝三至、数＝六至、滑＝如珠、涩＝如刀刮竹、弦＝如按琴弦），先记字眼再串全句；配上方「遮字 100%」自测，看字眼能否默出全诗。</li>
+      </ul>
+      <h4>四、三十日验收标准</h4>
+      <ol>
+        <li>随口报出任一脉名，能脱口背出它的《体状诗》；</li>
+        <li>说得出这一脉归哪一纲；</li>
+        <li>指得出它最容易混淆的相类脉（并能说出分别）；</li>
+        <li>四言举要通背；</li>
+        <li>《主病诗》只要求读得顺、懂意思，不做背诵考核。</li>
+      </ol>
+      <p style="margin:9px 0 0;color:var(--ink-3)">达到这五条，筑基即成。戒一条：<b>不可疾贞</b>——百日之内只练「摸脉并记录指下感觉」，不给自己「下断语」的许可。刚摸出点滑涩之分就急于替人定病，一定就错、一错就挫、一挫就弃，多数人败在这一环。</p>
+    </div>
+  </details>
+  <div id="rcToday"></div>
+  <div id="rcSzBox"></div>
+  <div id="rcPmBox" style="display:none"></div>
+  <div class="rc-src">
+    <b>原文出处</b>：《濒湖脉学》，明·李时珍撰。全书两部分——前半为二十七脉七言诀（体状诗／相类诗／主病诗），后半为李言闻据崔嘉彦《四言脉诀》删补之《四言举要》。<br>
+    底本：四言举要取汉典古籍《濒湖脉学·四言举要》简体本（宋·崔嘉彦著、明·李言闻删补），据明刊本二种校订 25 处（补「是谓平脉／太过实强／不及虚微」三句，正「令仰其掌」「曰浮中沉」「下至跟踝」「沉脉主里」「风伤于卫」「肠痈实热」等）；二十七脉诗取《濒湖脉学》原文，与《脉经》《素问》引文互见处悉依原书体例。<br>
+    李时珍（1518—1593）为明代人，该二种均属公有领域，可自由使用；原文断句与校记为本版所加。
+  </div>
+</section>
+
+</main>
+
+<nav class="tabbar">
+  <div class="tabbar-in">
+    <button class="tb on" data-go="scHome"><i>脉</i><span>总览</span></button>
+    <button class="tb" data-go="scRecite"><i>诵</i><span>背诵</span></button>
+    <button class="tb" data-go="scList"><i>谱</i><span>脉谱</span></button>
+    <button class="tb" data-go="scCompare"><i>比</i><span>对比</span></button>
+    <button class="tb" data-go="scReview"><i>复</i><span>复习</span></button>
+    <button class="tb" data-go="scTest"><i>测</i><span>自测</span></button>
+  </div>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================
+   脉诊筑基 · 数据层
+   自「中医筑基 9.2」征站·诊法脉学剥离
+   结构：类(Group) → 脉(Node) → 四维(付) + 五层
+   ========================================================= */
+const MAI = [
+{
+    id:'mai-fu',
+    g:'g_mai_fu',
+    name:'浮',
+    py:'fú',
+    aliases:['浮脉','毛脉'],
+    reciteMode:'原文',
+    recite:'举之有余，按之不足',
+    reciteRef:'《脉经》· 待校',
+    keyPoints:['位','势','主病'],
+    dims:{位:'轻取即得，举之有余',数:'未及（不以此维分）',形:'浮而在表，按之稍减',势:'来去从容，按之不足'},
+    dimsCal:['位','势'],
+    understand:'脉位浅表，手指轻放即能感到搏动，稍加压力反而减弱。形象地说，像水面浮木——按下去能感觉到它在下面顶着，松手又浮起来。这一层讲的是「怎么摸到」，不是「主什么病」。',
+    clinical:'遇到起病急、怕冷发热、脉位浅 → 第一个想到浮',
+    apply:{if:'新感外邪、脉位浅表',via:'解表',then:'随兼症分表寒表热选方'},
+    caveat:['久病见浮，多属虚浮，不可径作表证','浮而无力与浮而有力，方向相反'],
+    contrast:[
+      {target:'mai-kou',dim:'形',trap:'芤是中空，浮是「按之不足」但中间有实'},
+      {target:'mai-ru',dim:'形',trap:'濡是浮而细软，浮是浮而相对有力'},
+    ],
+    hot:true,
+  },
+{
+    id:'mai-kou',
+    g:'g_mai_fu',
+    name:'芤',
+    py:'kōu',
+    aliases:['芤脉'],
+    reciteMode:'原文',
+    recite:'浮大而软，按之中央空，两边实',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['形','位'],
+    dims:{位:'浮取即得',数:'未及（不以此维分）',形:'大而中空，有边无中',势:'按之中央独空，两边实'},
+    dimsCal:['形'],
+    understand:'脉管像葱管：两边能摸到，中间按下去是空的。关键不在浮，而在「中间空」——这是它与浮脉的分水岭。',
+    clinical:'遇到失血之后、脉形大而中间空 → 第一个想到芤',
+    apply:{if:'失血伤津、脉道未充',via:'益气生血',then:'随失血原因选方'},
+    caveat:['芤必兼浮大，单见细弱不称芤'],
+    contrast:[
+      {target:'mai-fu',dim:'形',trap:'把「按之不足」误当「中间空」'},
+      {target:'mai-ge',dim:'势',trap:'革是弦急中空，芤是软而中空'},
+    ],
+    hot:false,
+  },
+{
+    id:'mai-ru',
+    g:'g_mai_fu',
+    name:'濡',
+    py:'rú',
+    aliases:['濡脉','软脉'],
+    reciteMode:'原文',
+    recite:'极软而浮细，如帛在水中，轻手相得，按之无有',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['形','势'],
+    dims:{位:'浮而浅',数:'未及（不以此维分）',形:'细而软，如絮浮水',势:'无力，按之即散'},
+    dimsCal:['形','势'],
+    understand:'两个条件同时成立才算：浮 + 细软无力。缺任一条都不叫濡。所以它是「复合判据」，比浮脉多一道关。',
+    clinical:'遇到久病体虚、脉浮细软无力 → 第一个想到濡',
+    apply:{if:'虚证、湿困，脉浮细软',via:'补虚 / 化湿',then:'随虚实偏重选方'},
+    caveat:['濡与浮的关键差别在「细软无力」，不在「浮」'],
+    contrast:[
+      {target:'mai-fu',dim:'势',trap:'濡无力，浮可有力亦可无力'},
+      {target:'mai-kou',dim:'形',trap:'濡是细软，芤是大而中空'},
+    ],
+    hot:false,
+  },
+{
+    id:'mai-hong',
+    g:'g_mai_fu',
+    name:'洪',
+    py:'hóng',
+    aliases:['洪脉'],
+    reciteMode:'原文',
+    recite:'来盛去衰，来大去长',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['形','势'],
+    dims:{位:'浮取即大',数:'未及（不以此维分）',形:'宽大满指',势:'来盛去衰，有力'},
+    dimsCal:['形','势'],
+    understand:'波形宽、力量足，但消退得快。「来盛去衰」是它的特征节奏，不是单纯「大」。',
+    clinical:'遇到高热、脉宽大有力 → 第一个想到洪',
+    apply:{if:'热盛、气分热',via:'清热',then:'随热所在选方'},
+    caveat:['久病见洪，多属虚阳外越，须与实热分清'],
+    contrast:[
+      {target:'mai-fu',dim:'形',trap:'洪是宽大，浮只是位置浅'},
+      {target:'mai-san',dim:'势',trap:'洪有力，散无力而涣'},
+    ],
+    hot:true,
+  },
+{
+    id:'mai-san',
+    g:'g_mai_fu',
+    name:'散',
+    py:'sǎn',
+    aliases:['散脉'],
+    reciteMode:'原文',
+    recite:'大而散，有表无里，涣散不收',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['势','形'],
+    dims:{位:'浮而散漫',数:'节律不齐',形:'大而涣散，边界不清',势:'按之即散，无根'},
+    dimsCal:['势'],
+    understand:'关键在「无根」——轻按有、重按没了，且边界模糊。这是正气将散的表现，不是普通的浮。',
+    clinical:'遇到久病危重、脉浮散无根 → 第一个想到散',
+    apply:{if:'正气将散、气血耗竭',via:'益气固脱',then:'属危候，需急救处置'},
+    caveat:['散属危候，与浮脉性质完全不同，不可混为一谈'],
+    contrast:[
+      {target:'mai-fu',dim:'势',trap:'浮有根，散无根'},
+      {target:'mai-hong',dim:'势',trap:'洪来盛去衰但有力，散按之即散'},
+    ],
+    hot:false,
+  },
+{
+    id:'mai-ge',
+    g:'g_mai_fu',
+    name:'革',
+    py:'gé',
+    aliases:['革脉'],
+    reciteMode:'原文',
+    recite:'弦而芤，如按鼓皮',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['形','势'],
+    dims:{位:'浮取即得',数:'未及（不以此维分）',形:'弦急而中空，外坚内虚',势:'按之中央空，边有弦意'},
+    dimsCal:['形'],
+    understand:'和芤都「中空」，区别在外层：革的外边是弦急的（紧、硬），芤的外边是软的。一个是鼓皮，一个是葱管。',
+    clinical:'遇到失血、半产漏下，脉外坚中空 → 第一个想到革',
+    apply:{if:'精血亏虚、脉道失养',via:'补益精血',then:'随虚损程度选方'},
+    caveat:['革与芤同属中空，凭外层软硬分'],
+    contrast:[
+      {target:'mai-kou',dim:'形',trap:'都中空，革外弦急、芤外柔软'},
+      {target:'mai-fu',dim:'形',trap:'革的关键是「中空」，不是「浮」'},
+    ],
+    hot:false,
+  },
+{
+    id:'mai-chen',
+    g:'g_mai_chen',
+    name:'沉',
+    py:'chén',
+    aliases:['沉脉'],
+    reciteMode:'原文',
+    recite:'举之不足，按之有余',
+    reciteRef:'《脉经》· 待校',
+    keyPoints:['位','势'],
+    dims:{位:'轻取不应，重按始得',数:'未及（不以此维分）',形:'沉而在里，着筋骨间',势:'按之乃得，举之则无'},
+    dimsCal:['位'],
+    understand:'浮的反面：手指轻放摸不到，要按到筋骨之间才有搏动。这是「位置」这一维的判断，与脉的强弱无关——沉而有力、沉而无力是两回事。',
+    clinical:'遇到病程较长、脉位深 → 第一个想到沉',
+    apply:{if:'病在里、脉位深沉',via:'随里证性质攻或补',then:'先分里实里虚再选方'},
+    caveat:['沉而有力为里实，沉而无力为里虚，不可只凭「沉」断虚实'],
+    contrast:[
+      {target:'mai-fu',dim:'位',trap:'浮沉是同一维的两极，按取法即分'},
+      {target:'mai-fu2',dim:'位',trap:'伏是沉到推筋着骨才见，沉不必那么深'},
+    ],
+    hot:true,
+  },
+{
+    id:'mai-fu2',
+    g:'g_mai_chen',
+    name:'伏',
+    py:'fú',
+    aliases:['伏脉'],
+    reciteMode:'原文',
+    recite:'重按着骨，指下裁动',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['位'],
+    dims:{位:'推筋着骨始得，甚则伏而不见',数:'未及（不以此维分）',形:'深藏于骨上',势:'按之至骨方见搏动'},
+    dimsCal:['位'],
+    understand:'沉的加深版：不是「按重一点」,而是要推到筋骨之上才勉强摸到。它和沉是同一条轴上的不同深度，不是两种性质。',
+    clinical:'遇到剧痛、厥逆、或邪闭，脉沉伏不出 → 第一个想到伏',
+    apply:{if:'邪闭、痛极、阳气不通',via:'通阳 / 破结',then:'随闭阻原因选方'},
+    caveat:['伏脉须与「无脉」鉴别，前者推筋着骨可得'],
+    contrast:[
+      {target:'mai-chen',dim:'位',trap:'沉是重按即得，伏须推筋着骨'},
+      {target:'mai-lao',dim:'形',trap:'牢是沉而实大弦长，伏是深伏不显'},
+    ],
+    hot:false,
+  },
+{
+    id:'mai-lao',
+    g:'g_mai_chen',
+    name:'牢',
+    py:'láo',
+    aliases:['牢脉'],
+    reciteMode:'原文',
+    recite:'似沉似伏，实大而长，微弦',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['位','形','势'],
+    dims:{位:'沉取始得，位深',数:'未及（不以此维分）',形:'实大而长，微弦',势:'按之坚牢不移'},
+    dimsCal:['形','势'],
+    understand:'三个条件叠加：位置沉 + 形体大长 + 力道坚牢。它不是「沉」的加强，而是「沉 + 实」的复合体，所以主病以里实积寒为主。',
+    clinical:'遇到沉取实大弦长、癥瘕积块 → 第一个想到牢',
+    apply:{if:'阴寒内积、癥瘕痼结',via:'温散 / 消积',then:'随积块性质选方'},
+    caveat:['牢主里实，虚证见牢多为危候'],
+    contrast:[
+      {target:'mai-chen',dim:'势',trap:'沉只讲位置，牢兼讲坚牢有力'},
+      {target:'mai-fu2',dim:'形',trap:'伏是伏而不显，牢是显而坚大'},
+    ],
+    hot:false,
+  },
+{
+    id:'mai-ruo',
+    g:'g_mai_chen',
+    name:'弱',
+    py:'ruò',
+    aliases:['弱脉'],
+    reciteMode:'原文',
+    recite:'极软而沉细，按之乃得，举手无有',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['位','势'],
+    dims:{位:'沉而深',数:'未及（不以此维分）',形:'细而软',势:'按之乃得，举之则无'},
+    dimsCal:['位','势'],
+    understand:'和濡正好是一对：濡是「浮 + 细软」，弱是「沉 + 细软」。同一个「细软无力」，位置一浮一沉，就分成了两脉。',
+    clinical:'遇到久病气血虚、脉沉细软 → 第一个想到弱',
+    apply:{if:'气血两虚、阳气不足',via:'益气养血',then:'随气血偏虚选方'},
+    caveat:['弱与濡的区别只在位置：濡浮弱沉'],
+    contrast:[
+      {target:'mai-ru',dim:'位',trap:'濡浮弱沉，同为细软无力'},
+      {target:'mai-chen',dim:'形',trap:'沉可实可虚，弱必细软无力'},
+    ],
+    hot:false,
+  },
+{
+    id:'mai-chi',
+    g:'g_mai_chishu',
+    name:'迟',
+    py:'chí',
+    aliases:['迟脉'],
+    reciteMode:'原文',
+    recite:'一息三至，去来极慢',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['数','势'],
+    dims:{位:'不拘浮沉',数:'一息三至，少于常度',形:'不拘',势:'去来极慢'},
+    dimsCal:['数'],
+    understand:'唯一只看「数」的脉：一呼一吸之间只跳三次（正常四至五至）。它是这一维里最容易客观判断的，不靠指感靠计数。',
+    clinical:'遇到心率慢、一息三至 → 第一个想到迟',
+    apply:{if:'寒证、阳气不足',via:'温阳散寒',then:'迟而有力为冷积，迟而无力为虚寒'},
+    caveat:['迟而有力多主寒积，迟而无力多主虚寒，方向不同'],
+    contrast:[
+      {target:'mai-shuo',dim:'数',trap:'迟三至、数六至，同一维的两极'},
+      {target:'mai-jie',dim:'数',trap:'结是缓而时止，迟是普遍慢而不止'},
+    ],
+    hot:true,
+  },
+{
+    id:'mai-shuo',
+    g:'g_mai_chishu',
+    name:'数',
+    py:'shuò',
+    aliases:['数脉'],
+    reciteMode:'原文',
+    recite:'一息六至，脉流薄疾',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['数'],
+    dims:{位:'不拘浮沉',数:'一息六至，多于常度',形:'不拘',势:'脉流薄疾'},
+    dimsCal:['数'],
+    understand:'和迟正好相反：一息六次以上。只要数够，不论浮沉大小都叫数。所以它常和其他脉叠加，如「浮数」「沉数」。',
+    clinical:'遇到发热、心率快、一息六至 → 第一个想到数',
+    apply:{if:'热证、阴虚内热',via:'清热 / 滋阴',then:'数而有力为实热，数而无力为虚热'},
+    caveat:['数而无力可为虚寒外浮之假热，勿一律作热治'],
+    contrast:[
+      {target:'mai-chi',dim:'数',trap:'数六至、迟三至'},
+      {target:'mai-cu',dim:'数',trap:'促是数而时止，数是数而不止'},
+    ],
+    hot:true,
+  },
+{
+    id:'mai-huan',
+    g:'g_mai_chishu',
+    name:'缓',
+    py:'huǎn',
+    aliases:['缓脉'],
+    reciteMode:'原文',
+    recite:'去来小驶于迟，浮大而软，阴浮与阳同等',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['数','势'],
+    dims:{位:'不拘浮沉',数:'一息四至，稍慢于平',形:'浮大而软',势:'来去从容和缓'},
+    dimsCal:['势'],
+    understand:'最容易误会的一脉：缓本来指「从容和缓」，是脾胃气和、无病的常脉；只有「缓而怠惰、兼见湿象」才是病脉。不能一见缓就当虚。',
+    clinical:'遇到脉来从容、一息四至 → 先想平脉，再看有无湿困',
+    apply:{if:'脾虚湿困，脉缓而怠',via:'健脾化湿',then:'若脉从容有力则为无病之常'},
+    caveat:['缓有常脉与病脉两义，不可一律作虚证'],
+    contrast:[
+      {target:'mai-chi',dim:'数',trap:'缓四至、迟三至，缓未必是病'},
+      {target:'mai-ru',dim:'形',trap:'濡细软而浮，缓从容而大'},
+    ],
+    hot:false,
+  },
+{
+    id:'mai-hua',
+    g:'g_mai_xing',
+    name:'滑',
+    py:'huá',
+    aliases:['滑脉'],
+    reciteMode:'原文',
+    recite:'往来流利，如盘走珠',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['形','势'],
+    dims:{位:'不拘浮沉',数:'可兼数',形:'圆滑如珠，替替然',势:'往来流利，应指圆滑'},
+    dimsCal:['形'],
+    understand:'指下的圆滑感最形象：像珠子在盘里滚过去，一个接一个没有滞涩。这个感觉比尺寸更难描述，只能靠反复摸出来。',
+    clinical:'遇到痰湿、食积、或妇人妊娠，脉往来流利 → 第一个想到滑',
+    apply:{if:'痰饮、食积、实热',via:'化痰 / 消食 / 清热',then:'妇人无病而滑，可为妊娠'},
+    caveat:['滑脉可见于平人，尤其妇人妊娠，不可径作病脉'],
+    contrast:[
+      {target:'mai-se',dim:'形',trap:'滑流利、涩艰涩，指感相反'},
+      {target:'mai-dong',dim:'形',trap:'动是如豆一点，滑是往来流利'},
+    ],
+    hot:true,
+  },
+{
+    id:'mai-se',
+    g:'g_mai_xing',
+    name:'涩',
+    py:'sè',
+    aliases:['涩脉'],
+    reciteMode:'原文',
+    recite:'细而迟，往来难，短且散，或一止复来',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['形','势'],
+    dims:{位:'不拘浮沉',数:'偏迟',形:'细而短，参差不齐',势:'往来艰涩，如刀刮竹'},
+    dimsCal:['形','势'],
+    understand:'和滑正好相反：指下不顺畅，像刀刮竹、像轻刀刮竹般滞涩，还常伴随细细的、时快时慢的不齐。',
+    clinical:'遇到精血亏虚、气滞血瘀，脉往来艰涩 → 第一个想到涩',
+    apply:{if:'精亏血少、气滞血瘀',via:'养血 / 行气活血',then:'涩而无力多虚，涩而有力多瘀'},
+    caveat:['涩而无力多主精血亏，涩而有力多主瘀阻'],
+    contrast:[
+      {target:'mai-hua',dim:'形',trap:'涩艰涩、滑流利'},
+      {target:'mai-wei',dim:'形',trap:'微是极细软若无，涩是细而往来难'},
+    ],
+    hot:false,
+  },
+{
+    id:'mai-chang',
+    g:'g_mai_xing',
+    name:'长',
+    py:'cháng',
+    aliases:['长脉'],
+    reciteMode:'原文',
+    recite:'不小不大，迢迢自若',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['形'],
+    dims:{位:'不拘浮沉',数:'未及（不以此维分）',形:'过于本位，迢迢而长',势:'和缓如循长竿'},
+    dimsCal:['形'],
+    understand:'判断标准是「本位」：寸关尺三段，脉波超出应有的长度就叫长。关键在于「长而和缓」是常脉，「长而弦硬」才是病脉。',
+    clinical:'遇到脉过本位、如循长竿 → 先分和缓与弦硬',
+    apply:{if:'气机调畅或有余',via:'和缓者不治，弦硬者泻实',then:'随兼脉定攻补'},
+    caveat:['长而和缓为无病，长而弦硬方为病脉'],
+    contrast:[
+      {target:'mai-duan',dim:'形',trap:'长过本位、短不及本位'},
+      {target:'mai-xian',dim:'形',trap:'弦是端直而紧，长只讲过本位'},
+    ],
+    hot:false,
+  },
+{
+    id:'mai-duan',
+    g:'g_mai_xing',
+    name:'短',
+    py:'duǎn',
+    aliases:['短脉'],
+    reciteMode:'原文',
+    recite:'不及本位，应指而回，不能满部',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['形'],
+    dims:{位:'不拘浮沉',数:'未及（不以此维分）',形:'不及本位，短缩',势:'应指而回，不能满部'},
+    dimsCal:['形'],
+    understand:'长的反面：脉波长度不够，寸关尺三段里只占其中一段。多见于气虚或气郁，一虚一实要分清。',
+    clinical:'遇到脉不足本位、短缩 → 第一个想到短',
+    apply:{if:'气虚血少，或气郁不行',via:'补气 / 行气',then:'短而无力多虚，短而有力多郁'},
+    caveat:['短而无力为气虚，短而有力为气郁，治法相反'],
+    contrast:[
+      {target:'mai-chang',dim:'形',trap:'短不及本位、长过本位'},
+      {target:'mai-dong',dim:'形',trap:'短是长度不足，动是如豆一点且跳动不安'},
+    ],
+    hot:false,
+  },
+{
+    id:'mai-xian',
+    g:'g_mai_xing',
+    name:'弦',
+    py:'xián',
+    aliases:['弦脉'],
+    reciteMode:'原文',
+    recite:'端直以长，如张弓弦',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['形','势'],
+    dims:{位:'不拘浮沉',数:'未及（不以此维分）',形:'端直而长，挺然指下',势:'如按琴弦，直而不柔'},
+    dimsCal:['形'],
+    understand:'指下有一条绷紧的直线感，像按在琴弦上。它讲的是「紧张度」，不是粗细、也不是快慢。',
+    clinical:'遇到肝胆病、痛证、痰饮，脉挺直如弦 → 第一个想到弦',
+    apply:{if:'肝胆气郁、痛证、痰饮',via:'疏肝 / 止痛 / 化饮',then:'弦而数多热，弦而迟多寒'},
+    caveat:['老年人脉弦多为常，须结合有无症状判断'],
+    contrast:[
+      {target:'mai-jin',dim:'形',trap:'弦如弓弦偏直，紧如转索兼左右弹手'},
+      {target:'mai-chang',dim:'形',trap:'弦必兼紧张，长只讲长度'},
+    ],
+    hot:true,
+  },
+{
+    id:'mai-jin',
+    g:'g_mai_xing',
+    name:'紧',
+    py:'jǐn',
+    aliases:['紧脉'],
+    reciteMode:'原文',
+    recite:'来往有力，左右弹手，如转索无常',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['形','势'],
+    dims:{位:'不拘浮沉',数:'可兼数',形:'绷急如索',势:'左右弹手，如转索无常'},
+    dimsCal:['势'],
+    understand:'比弦更紧一层：弦是「直」，紧是「直 + 绷 + 弹手」。摸起来像在转动的绳索，有左右滚动的感觉，这就是它和脉弦的分界。',
+    clinical:'遇到寒证、痛证，脉绷急弹手 → 第一个想到紧',
+    apply:{if:'寒邪、疼痛',via:'散寒 / 止痛',then:'浮紧多表寒，沉紧多里寒'},
+    caveat:['紧与弦的分界在「弹手」，不在「紧」这个字'],
+    contrast:[
+      {target:'mai-xian',dim:'势',trap:'弦直而不弹手，紧如转索左有余弹手'},
+      {target:'mai-huan',dim:'势',trap:'缓从容和缓，紧绷急有力'},
+    ],
+    hot:false,
+  },
+{
+    id:'mai-xi',
+    g:'g_mai_xing',
+    name:'细',
+    py:'xì',
+    aliases:['细脉','小脉'],
+    reciteMode:'原文',
+    recite:'小于微而常有，细直而软，若丝线之应指',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['形'],
+    dims:{位:'不拘浮沉',数:'未及（不以此维分）',形:'细直而软，如丝线',势:'虽细而常，按之不绝'},
+    dimsCal:['形'],
+    understand:'只讲「宽度」：脉道窄，像一根丝线。关键差别在「常有」——细是虽然窄但一直能摸到，微是窄到几乎摸不到。',
+    clinical:'遇到气血两虚、湿邪内阻，脉细如线 → 第一个想到细',
+    apply:{if:'气血不足，或湿阻脉道',via:'益气养血 / 化湿',then:'细而无力多虚，细而有力多湿'},
+    caveat:['细与微的分界在「有根无根」，不在宽窄'],
+    contrast:[
+      {target:'mai-wei',dim:'势',trap:'细按之不绝，微按之欲绝'},
+      {target:'mai-ru',dim:'位',trap:'细只讲宽度，濡必兼浮与软'},
+    ],
+    hot:false,
+  },
+{
+    id:'mai-wei',
+    g:'g_mai_xing',
+    name:'微',
+    py:'wēi',
+    aliases:['微脉'],
+    reciteMode:'原文',
+    recite:'极细而软，按之欲绝，若有若无',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['形','势'],
+    dims:{位:'浮沉皆微',数:'未及（不以此维分）',形:'极细极软',势:'按之欲绝，若有若无'},
+    dimsCal:['势'],
+    understand:'阳气的最后一点动静：极细极软，按下去就要断掉，像还有又像没有。这是虚损到极点的表现，与细脉的「常有」不同。',
+    clinical:'遇到久病虚极、阳气衰微，脉若有若无 → 第一个想到微',
+    apply:{if:'阳衰气微、气血大虚',via:'回阳救逆 / 大补气血',then:'属危候，须急处理'},
+    caveat:['微属危候，须与细脉严格区分'],
+    contrast:[
+      {target:'mai-xi',dim:'势',trap:'微按之欲绝，细按之不绝'},
+      {target:'mai-ruo',dim:'位',trap:'弱沉而细软尚可辨，微浮沉皆欲绝'},
+    ],
+    hot:false,
+  },
+{
+    id:'mai-xu',
+    g:'g_mai_shi',
+    name:'虚',
+    py:'xū',
+    aliases:['虚脉'],
+    reciteMode:'原文',
+    recite:'迟大而软，按之无力，隐指豁豁然空',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['势'],
+    dims:{位:'浮取无力，中取亦空',数:'偏迟',形:'大而软',势:'按之无力，豁然空'},
+    dimsCal:['势'],
+    understand:'「大而软 + 按之空」三个特征同时具备才叫虚。注意它不是「小」，反而偏大——大而无力的空壳感，才是虚。',
+    clinical:'遇到气血两虚、久病体弱，脉大而软无力 → 第一个想到虚',
+    apply:{if:'气血两虚',via:'补益气血',then:'随气血偏虚选方'},
+    caveat:['虚脉偏大，不可误以为「小弱」才是虚'],
+    contrast:[
+      {target:'mai-shi',dim:'势',trap:'虚实是同一维两极，按之有力无力即分'},
+      {target:'mai-wei',dim:'形',trap:'虚大而软，微极细欲绝'},
+    ],
+    hot:false,
+  },
+{
+    id:'mai-shi',
+    g:'g_mai_shi',
+    name:'实',
+    py:'shí',
+    aliases:['实脉'],
+    reciteMode:'原文',
+    recite:'浮沉皆得，脉大而长，微弦应指愊愊然',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['势','形'],
+    dims:{位:'浮沉皆得',数:'未及（不以此维分）',形:'大而长，微弦',势:'应指愊愊然，有力'},
+    dimsCal:['势'],
+    understand:'虚的反面：不管轻按重按都有力，而且大、长、带一点弦意。三个条件同时具备才是实，不是单纯「有力」。',
+    clinical:'遇到邪气盛实、脉浮沉皆有力 → 第一个想到实',
+    apply:{if:'邪实内盛',via:'攻邪泻实',then:'随邪性质选方'},
+    caveat:['久病见实脉，须防真气外越之假实'],
+    contrast:[
+      {target:'mai-xu',dim:'势',trap:'实按之有力，虚按之豁然空'},
+      {target:'mai-hong',dim:'位',trap:'实浮沉皆得，洪偏于浮取'},
+    ],
+    hot:false,
+  },
+{
+    id:'mai-dong',
+    g:'g_mai_shi',
+    name:'动',
+    py:'dòng',
+    aliases:['动脉'],
+    reciteMode:'原文',
+    recite:'乃数脉见于关，上下无头无尾，如豆大，厥厥动摇',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['形','势'],
+    dims:{位:'多见于关部',数:'兼数',形:'如豆一点，无头无尾',势:'厥厥动摇，跳动不安'},
+    dimsCal:['形','势'],
+    understand:'最特殊的一脉：它不只是「跳得快」，而是「只在一个点上跳」——像一颗豆子在关部鼓起、摇动，上下都摸不到头尾。',
+    clinical:'遇到惊恐、疼痛，关部一点如豆动摇 → 第一个想到动',
+    apply:{if:'惊恐、疼痛',via:'安神 / 止痛',then:'随病因选方'},
+    caveat:['动必见关部、如豆一点，非泛指跳动'],
+    contrast:[
+      {target:'mai-hua',dim:'形',trap:'动如豆一点，滑往来流利'},
+      {target:'mai-shuo',dim:'数',trap:'动兼数且限于一点，数只讲至数'},
+    ],
+    hot:false,
+  },
+{
+    id:'mai-cu',
+    g:'g_mai_shi',
+    name:'促',
+    py:'cù',
+    aliases:['促脉'],
+    reciteMode:'原文',
+    recite:'来去数，时一止复来',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['数','势'],
+    dims:{位:'不拘浮沉',数:'数而时止，止无定数',形:'不拘',势:'时一止复来'},
+    dimsCal:['数'],
+    understand:'两件事叠加：快 + 偶尔停一下。停的间隔没有规律（止无定数）——这一点把它和「代脉」（止有定数）分开。',
+    clinical:'遇到阳盛热实、或气血痰食停滞，脉数而时止 → 第一个想到促',
+    apply:{if:'阳盛热实、气血痰食停滞',via:'清热 / 消导',then:'促而无力须防虚脱'},
+    caveat:['促而无力可为虚脱之兆，不可一律作实热'],
+    contrast:[
+      {target:'mai-jie',dim:'数',trap:'促数而止，结缓而止'},
+      {target:'mai-dai',dim:'数',trap:'促止无定数，代止有定数'},
+    ],
+    hot:false,
+  },
+{
+    id:'mai-jie',
+    g:'g_mai_shi',
+    name:'结',
+    py:'jié',
+    aliases:['结脉'],
+    reciteMode:'原文',
+    recite:'往来缓，时一止复来',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['数','势'],
+    dims:{位:'不拘浮沉',数:'缓而时止，止无定数',形:'不拘',势:'时一止复来'},
+    dimsCal:['数'],
+    understand:'和促是一对：促是「数 + 止」，结是「缓 + 止」。同样是停一下，快慢一分，寒热属性就变了。',
+    clinical:'遇到阴盛寒凝、气血痰食结滞，脉缓而时止 → 第一个想到结',
+    apply:{if:'阴盛寒凝、气血痰食结滞',via:'温通 / 行气化痰',then:'结而无力多虚，结而有力多实'},
+    caveat:['结与促的分界在快慢：结缓促数'],
+    contrast:[
+      {target:'mai-cu',dim:'数',trap:'结缓而止，促数而止'},
+      {target:'mai-dai',dim:'数',trap:'结止无定数，代止有定数'},
+    ],
+    hot:false,
+  },
+{
+    id:'mai-dai',
+    g:'g_mai_shi',
+    name:'代',
+    py:'dài',
+    aliases:['代脉'],
+    reciteMode:'原文',
+    recite:'动而中止，不能自还，因而复动',
+    reciteRef:'《濒湖脉学》体状 · 待校',
+    keyPoints:['数','势'],
+    dims:{位:'不拘浮沉',数:'止有定数',形:'不拘',势:'止不能自还，良久复动'},
+    dimsCal:['数'],
+    understand:'关键在「有定数」：停的次数有规律，比如每跳五次停一次，而且停得久、不能自己接上，要等一下才复动。这是脏气衰微的征象。',
+    clinical:'遇到脏气衰微，脉止有定数 → 第一个想到代',
+    apply:{if:'脏气衰微、气血亏损',via:'补益脏气',then:'代脉多属危候，须重处理'},
+    caveat:['代脉主脏气衰微，较结促更重；但有跌仆损伤一时见代者'],
+    contrast:[
+      {target:'mai-jie',dim:'数',trap:'代止有定数，结止无定数'},
+      {target:'mai-cu',dim:'数',trap:'代止不能自还，促止即复来'},
+    ],
+    hot:false,
+  },
+];
+
+const GROUPS = {
+  g_mai_fu:     {id:'g_mai_fu',     name:'浮类脉',   axis:'位', short:'浮类', color:'#a8311f', desc:'脉位浅表，轻取即得'},
+  g_mai_chen:   {id:'g_mai_chen',   name:'沉类脉',   axis:'位', short:'沉类', color:'#46617c', desc:'脉位深沉，重按始得'},
+  g_mai_chishu: {id:'g_mai_chishu', name:'迟数类脉', axis:'数', short:'迟数', color:'#8a3b12', desc:'以至数为纲，一息几至'},
+  g_mai_xing:   {id:'g_mai_xing',   name:'形类脉',   axis:'形', short:'形类', color:'#1f6f6b', desc:'以脉体形状为纲，大小长短粗细'},
+  g_mai_shi:    {id:'g_mai_shi',    name:'势类脉',   axis:'势', short:'势类', color:'#a4502a', desc:'以脉势强弱、流利与歇止为纲'}
+};
+const GORDER = ['g_mai_fu','g_mai_chen','g_mai_chishu','g_mai_xing','g_mai_shi'];
+const AXES = ['位','数','形','势'];
+/* =========================================================
+   v1.8 · 多用户学习档案 / 自动存档 / 云端同步
+   设计要点：
+   1) 每个使用者在浏览器内有独立命名空间 u:<id>:<原始键>，互不覆盖
+   2) 任何写入（save / saveDaily）都会自动落盘并刷新「已存档」时标
+   3) 可选接 Supabase：同一同步码在多设备间拉取/上传整份档案
+   ========================================================= */
+const MZ = (function(){
+  const PK = 'mz18_profiles', AK = 'mz18_active', CK = 'mz18_cloud', BK = 'mz18_backup_v17';
+  const DATA = ['maizhen_v1', 'mz_recite_daily_v15', 'mz_skin17'];
+  const readJ = (k, d) => { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } };
+  const writeJ = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+  const nowT = () => Date.now();
+  const uid = () => 'p' + nowT().toString(36) + Math.random().toString(36).slice(2, 5);
+  const mkCode = () => Array.from({ length: 8 }, () => '23456789ABCDEFGHJKLMNPQRSTUVWXYZ'[Math.floor(Math.random() * 32)]).join('');
+  const pref = (id, k) => 'u:' + id + ':' + k;
+  const hhmm = t => { const d = new Date(t); return ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2); };
+
+  let profiles = readJ(PK, null);
+  let active = (() => { try { return localStorage.getItem(AK) || ''; } catch (e) { return ''; } })();
+
+  /* ---- 首次运行：把 v1.7 单机数据整体迁入第一个档案 ---- */
+  if (!Array.isArray(profiles) || !profiles.length) {
+    const bak = {};
+    DATA.forEach(k => { try { const v = localStorage.getItem(k); if (v != null) bak[k] = v; } catch (e) {} });
+    if (Object.keys(bak).length) writeJ(BK, bak);
+    const id = uid();
+    profiles = [{ id: id, name: '本机学员', created: nowT(), last: nowT(), code: mkCode() }];
+    Object.keys(bak).forEach(k => { try { localStorage.setItem(pref(id, k), bak[k]); localStorage.removeItem(k); } catch (e) {} });
+    active = id;
+    writeJ(PK, profiles);
+    try { localStorage.setItem(AK, active); } catch (e) {}
+  }
+  if (!profiles.some(p => p.id === active)) { active = profiles[0].id; try { localStorage.setItem(AK, active); } catch (e) {} }
+  const cur = () => profiles.find(p => p.id === active) || profiles[0];
+
+  /* ---- 存档时标 ---- */
+  let lastTouch = 0, pushTimer = null;
+  function markSaved(t){
+    const el = document.getElementById('mzSaveTag');
+    if (el) { el.textContent = '已存档 ' + hhmm(t); el.classList.add('on'); setTimeout(() => el.classList.remove('on'), 1200); }
+  }
+  function touch(){
+    const p = cur(); if (!p) return;
+    const t = nowT(); p.last = t;
+    if (t - lastTouch > 3000) { lastTouch = t; writeJ(PK, profiles); markSaved(t); refresh(); }
+    schedulePush();
+  }
+
+  /* ---- 云端同步 ---- */
+  const cfg = () => readJ(CK, { url: '', key: '', auto: true });
+  function saveCfg(o){ writeJ(CK, Object.assign(cfg(), o)); }
+  function schedulePush(){ const c = cfg(); if (!c.url || !c.key || !c.auto) return; clearTimeout(pushTimer); pushTimer = setTimeout(() => { push().catch(() => {}); }, 1800); }
+  function bundle(p){
+    const data = {};
+    DATA.forEach(k => { try { const v = localStorage.getItem(pref(p.id, k)); if (v != null) data[k] = v; } catch (e) {} });
+    return { v: 1, name: p.name, at: new Date().toISOString(), data: data };
+  }
+  async function push(){
+    const c = cfg(), p = cur();
+    if (!c.url || !c.key) throw new Error('未填写云端地址或密钥');
+    const url = c.url.replace(/\/+$/, '') + '/rest/v1/mz_progress?on_conflict=user_key';
+    const r = await fetch(url, {
+      method: 'POST',
+      headers: { 'apikey': c.key, 'Authorization': 'Bearer ' + c.key, 'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates,return=minimal' },
+      body: JSON.stringify([{ user_key: p.code, payload: bundle(p), updated_at: new Date().toISOString() }])
+    });
+    if (!r.ok) throw new Error('上传失败 ' + r.status + ' ' + (await r.text()).slice(0, 160));
+    return true;
+  }
+  async function pull(){
+    const c = cfg(), p = cur();
+    if (!c.url || !c.key) throw new Error('未填写云端地址或密钥');
+    const url = c.url.replace(/\/+$/, '') + '/rest/v1/mz_progress?user_key=eq.' + encodeURIComponent(p.code) + '&select=payload,updated_at';
+    const r = await fetch(url, { headers: { 'apikey': c.key, 'Authorization': 'Bearer ' + c.key } });
+    if (!r.ok) throw new Error('拉取失败 ' + r.status + ' ' + (await r.text()).slice(0, 160));
+    const rows = await r.json();
+    if (!rows || !rows.length) throw new Error('云端没有这个同步码的存档');
+    const pl = rows[0].payload || {};
+    const d = pl.data || {};
+    Object.keys(d).forEach(k => { try { localStorage.setItem(pref(p.id, k), d[k]); } catch (e) {} });
+    return rows[0].updated_at || '';
+  }
+
+  /* ---- 档案操作 ---- */
+  function setActive(id){ if (!profiles.some(p => p.id === id)) return false; active = id; try { localStorage.setItem(AK, id); } catch (e) {} return true; }
+  function create(name){
+    const nm = (name || '').trim() || ('学员' + (profiles.length + 1));
+    const p = { id: uid(), name: nm.slice(0, 16), created: nowT(), last: nowT(), code: mkCode() };
+    profiles.push(p); writeJ(PK, profiles); return p;
+  }
+  function rename(id, name){
+    const p = profiles.find(x => x.id === id); if (!p) return false;
+    const nm = (name || '').trim(); if (!nm) return false;
+    p.name = nm.slice(0, 16); writeJ(PK, profiles); refresh(); return true;
+  }
+  function remove(id){
+    profiles = profiles.filter(p => p.id !== id);
+    DATA.forEach(k => { try { localStorage.removeItem(pref(id, k)); } catch (e) {} });
+    if (!profiles.length) profiles.push({ id: uid(), name: '本机学员', created: nowT(), last: nowT(), code: mkCode() });
+    if (!profiles.some(p => p.id === active)) { active = profiles[0].id; try { localStorage.setItem(AK, active); } catch (e) {} }
+    writeJ(PK, profiles); return true;
+  }
+  function statOf(p){
+    const ls = readJ(pref(p.id, 'maizhen_v1'), {}) || {};
+    const srs = ls.srs || {};
+    let n = 0; Object.keys(srs).forEach(k => { const v = srs[k]; if (v && (v.lv > 0 || v.lv === 0 || v.seen || v.n)) n++; });
+    if (!Object.keys(srs).length) n = 0;
+    return { learned: n, last: p.last || p.created };
+  }
+  function exportJSON(){
+    const p = cur();
+    return JSON.stringify({ app: 'maizhen', version: 1.8, profile: p.name, code: p.code, exportedAt: new Date().toISOString(), data: bundle(p).data }, null, 2);
+  }
+  async function importJSON(text){
+    const o = JSON.parse(text);
+    const d = o.data || o;
+    const p = cur(); let n = 0;
+    DATA.forEach(k => { if (d[k] != null) { try { localStorage.setItem(pref(p.id, k), typeof d[k] === 'string' ? d[k] : JSON.stringify(d[k])); n++; } catch (e) {} } });
+    return n;
+  }
+
+  /* ================= UI ================= */
+  let built = false, modal = null;
+  function h(html){ const d = document.createElement('div'); d.innerHTML = html.trim(); return d.firstElementChild; }
+  function build(){
+    if (built) return; built = true;
+    const style = h(`<style id="mz18css">
+      #mzUserBtn{display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap;gap:.34rem;height:1.72rem;padding:0 .5rem;border:1px solid var(--line,rgba(60,233,255,.28));background:color-mix(in srgb,var(--zhu,#3ce9ff) 10%,transparent);color:var(--ink,#e2f6ff);border-radius:2px;font-size:.62rem;letter-spacing:.04em;cursor:pointer;font-family:inherit}
+      #mzUserBtn:hover{border-color:var(--zhu,#3ce9ff);box-shadow:0 0 10px -2px var(--zhu,#3ce9ff)}
+      #mzUserBtn .av{width:1.05rem;height:1.05rem;display:grid;place-items:center;background:var(--zhu,#3ce9ff);color:#03070c;font-weight:800;font-size:.58rem;border-radius:1px}
+      #mzSaveTag{font-size:.54rem;color:var(--ink-3,#5d8298);letter-spacing:.06em;font-family:ui-monospace,monospace;opacity:.55;transition:opacity .2s,color .2s;white-space:nowrap}
+      #mzSaveTag.on{opacity:1;color:var(--jade,#63f7c8)}
+      .mzwrap{position:fixed;inset:0;z-index:9000;display:none;background:rgba(2,6,10,.72);backdrop-filter:blur(3px);padding:4vh 1rem;overflow:auto}
+      .mzwrap.on{display:block}
+      .mzbox{max-width:520px;margin:0 auto;background:var(--card,#07121b);border:1px solid var(--line,rgba(60,233,255,.28));border-radius:3px;box-shadow:0 20px 60px -20px #000;color:var(--ink,#e2f6ff);font-size:.72rem}
+      .mzhd{display:flex;align-items:center;justify-content:space-between;padding:.7rem .9rem;border-bottom:1px solid var(--line,rgba(60,233,255,.18))}
+      .mzhd b{font-size:.78rem;letter-spacing:.08em}
+      .mzhd .x{border:1px solid var(--line,rgba(60,233,255,.28));background:transparent;color:var(--ink,#e2f6ff);width:1.5rem;height:1.5rem;cursor:pointer;border-radius:2px;font-size:.8rem;line-height:1}
+      .mzbd{padding:.9rem}
+      .mzsec{margin-bottom:1rem}
+      .mzsec>h4{margin:0 0 .45rem;font-size:.62rem;letter-spacing:.14em;color:var(--ink-3,#5d8298);font-weight:600;text-transform:uppercase}
+      .mznow{border:1px solid var(--line,rgba(60,233,255,.3));background:color-mix(in srgb,var(--zhu,#3ce9ff) 7%,transparent);padding:.6rem .7rem;border-radius:2px}
+      .mznow .nm{font-size:.86rem;font-weight:700}
+      .mznow .cd{font-family:ui-monospace,monospace;font-size:.78rem;letter-spacing:.16em;color:var(--zhu,#3ce9ff);cursor:pointer}
+      .mzhint{color:var(--ink-3,#5d8298);font-size:.6rem;line-height:1.6;margin:.35rem 0 0}
+      .mzrow{display:flex;align-items:center;gap:.5rem;padding:.45rem .55rem;border:1px solid var(--line,rgba(60,233,255,.14));border-radius:2px;margin-bottom:.35rem;background:color-mix(in srgb,var(--paper,#03070c) 40%,transparent)}
+      .mzrow.cur{border-color:var(--zhu,#3ce9ff)}
+      .mzrow .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+      .mzrow .mt{font-size:.56rem;color:var(--ink-3,#5d8298);font-family:ui-monospace,monospace;white-space:nowrap}
+      .mzbtn{border:1px solid var(--line,rgba(60,233,255,.32));background:transparent;color:var(--ink,#e2f6ff);padding:.3rem .55rem;border-radius:2px;font-size:.6rem;cursor:pointer;font-family:inherit;white-space:nowrap}
+      .mzbtn:hover{border-color:var(--zhu,#3ce9ff);color:var(--zhu,#3ce9ff)}
+      .mzbtn.pri{background:color-mix(in srgb,var(--zhu,#3ce9ff) 16%,transparent);border-color:var(--zhu,#3ce9ff);color:var(--zhu,#2ad0e8)}
+      .mzbtn.del:hover{border-color:#ff6b81;color:#ff6b81}
+      .mzin, .mzbox input[type=text], .mzbox input[type=password]{width:100%;box-sizing:border-box;background:color-mix(in srgb,var(--paper,#03070c) 55%,transparent);border:1px solid var(--line,rgba(60,233,255,.22));color:var(--ink,#e2f6ff);padding:.4rem .5rem;border-radius:2px;font-size:.66rem;font-family:inherit;outline:none}
+      .mzbox input:focus{border-color:var(--zhu,#3ce9ff)}
+      .mzline{display:flex;gap:.4rem;margin-top:.4rem}
+      .mzmsg{margin-top:.5rem;font-size:.62rem;min-height:1em;color:var(--ink-2,#a2c4d6)}
+      .mzmsg.ok{color:var(--jade,#63f7c8)}
+      .mzmsg.bad{color:#ff8b9a}
+      .mzbox details{border:1px solid var(--line,rgba(60,233,255,.14));border-radius:2px;padding:.5rem .6rem}
+      .mzbox summary{cursor:pointer;font-size:.64rem;letter-spacing:.06em;color:var(--ink-2,#a2c4d6)}
+      .mzbox label.sw{display:flex;align-items:center;gap:.4rem;font-size:.62rem;color:var(--ink-2,#a2c4d6);margin-top:.45rem;cursor:pointer}
+      #mzUserName{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:4.2rem;display:inline-block}
+      .brand span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+      #topMeta{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+      @media(max-width:480px){
+        .brand span{letter-spacing:.04em !important;font-size:.52rem !important}
+        #topMeta{letter-spacing:.08em !important}
+        .top-in{gap:6px}
+      }
+      @media(max-width:560px){
+        #mzSaveTag{display:none}
+        #mzUserBtn #mzUserName{display:none}
+        #mzUserBtn{padding:0 .34rem}
+      }
+    </style>`);
+    document.head.appendChild(style);
+
+    const topR = document.querySelector('.top-r');
+    if (topR) {
+      const btn = h('<button class="ibtn" id="mzUserBtn" aria-label="学习档案" title="学习档案 · 自动存档"><span class="av">我</span><span id="mzUserName">本机学员</span></button>');
+      topR.insertBefore(btn, topR.firstChild);
+      const tag = h('<span id="mzSaveTag">已存档</span>');
+      topR.insertBefore(tag, topR.firstChild);
+    }
+
+    modal = h(`<div class="mzwrap" id="mzWrap" role="dialog" aria-modal="true" aria-label="学习档案">
+      <div class="mzbox">
+        <div class="mzhd"><b>学习档案 · 自动存档</b><button class="x" id="mzClose" aria-label="关闭">✕</button></div>
+        <div class="mzbd">
+          <div class="mzsec">
+            <h4>当前使用者</h4>
+            <div class="mznow">
+              <div class="nm" id="mzNowName">本机学员</div>
+              <div style="margin-top:.3rem;font-size:.6rem;color:var(--ink-3,#5d8298)">同步码（多设备共用同一码即可互相同步）</div>
+              <div class="cd" id="mzNowCode" title="点击复制">--------</div>
+            </div>
+            <p class="mzhint">每人的背诵进度、字眼设置、主题字号都独立存放；换人只需切换档案，不会串档。</p>
+          </div>
+
+          <div class="mzsec">
+            <h4>档案列表</h4>
+            <div id="mzList"></div>
+            <div class="mzline">
+              <input type="text" id="mzNewName" placeholder="输入新使用者名字，如「阿睿」" maxlength="16">
+              <button class="mzbtn pri" id="mzNew">新建</button>
+            </div>
+          </div>
+
+          <div class="mzsec">
+            <h4>备份</h4>
+            <div class="mzline">
+              <button class="mzbtn" id="mzExport">导出当前档案</button>
+              <button class="mzbtn" id="mzImportBtn">导入档案</button>
+              <input type="file" id="mzImportFile" accept=".json,application/json" style="display:none">
+            </div>
+            <p class="mzhint">导出得到一个 JSON 文件，可在别的浏览器/电脑导入，等于手动搬家。</p>
+          </div>
+
+          <div class="mzsec">
+            <h4>云端同步（可选）</h4>
+            <details>
+              <summary>展开配置 · 让手机与电脑共用同一份进度</summary>
+              <p class="mzhint">填你自己的 Supabase 项目地址与 anon key；同一同步码的设备会自动互相同步。不填也能用，数据只存本机。</p>
+              <div class="mzline" style="flex-direction:column">
+                <input type="text" id="mzUrl" placeholder="https://xxxx.supabase.co">
+                <input type="password" id="mzKey" placeholder="anon public key">
+                <label class="sw"><input type="checkbox" id="mzAuto"> 每次改动自动上传</label>
+                <div class="mzline">
+                  <button class="mzbtn" id="mzPush">立即上传</button>
+                  <button class="mzbtn" id="mzPull">从云端拉取</button>
+                  <button class="mzbtn" id="mzSave">保存配置</button>
+                </div>
+              </div>
+              <div class="mzmsg" id="mzCloudMsg"></div>
+            </details>
+          </div>
+          <div class="mzmsg" id="mzMsg"></div>
+        </div>
+      </div>
+    </div>`);
+    document.body.appendChild(modal);
+
+    /* 事件 */
+    document.getElementById('mzUserBtn').addEventListener('click', open);
+    document.getElementById('mzClose').addEventListener('click', close);
+    document.getElementById('mzWrap').addEventListener('click', e => { if (e.target.id === 'mzWrap') close(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('on')) close(); });
+    document.getElementById('mzNew').addEventListener('click', () => {
+      const inp = document.getElementById('mzNewName');
+      const nm = inp.value.trim(); if (!nm) { msg('请先输入名字', 1); return; }
+      const p = create(nm); setActive(p.id); location.reload();
+    });
+    document.getElementById('mzList').addEventListener('click', e => {
+      const btn = e.target.closest('button'); if (!btn) return;
+      const row = btn.closest('.mzrow'); if (!row) return;
+      const id = row.dataset.id;
+      const act = btn.dataset.act;
+      if (act === 'use') { if (setActive(id)) location.reload(); }
+      if (act === 'ren') { const p = profiles.find(x => x.id === id); const nm = window.prompt('新的名字', p ? p.name : ''); if (nm) rename(id, nm); }
+      if (act === 'del') {
+        if (profiles.length < 2) { msg('至少保留一个档案', 1); return; }
+        const p = profiles.find(x => x.id === id);
+        if (window.confirm('删除「' + (p ? p.name : '') + '」的全部学习记录？此操作不可撤销。')) {
+          const wasActive = id === active; remove(id); if (wasActive) location.reload(); else refresh();
+        }
+      }
+    });
+    document.getElementById('mzExport').addEventListener('click', () => {
+      const p = cur();
+      const blob = new Blob([exportJSON()], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = '脉诊学习档案-' + p.name + '-' + new Date().toISOString().slice(0, 10) + '.json';
+      a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 3000);
+      msg('已导出 JSON', 0);
+    });
+    document.getElementById('mzImportBtn').addEventListener('click', () => document.getElementById('mzImportFile').click());
+    document.getElementById('mzImportFile').addEventListener('change', async e => {
+      const f = e.target.files && e.target.files[0]; if (!f) return;
+      try { const txt = await f.text(); const n = await importJSON(txt); msg('已导入 ' + n + ' 项，刷新后生效', 0); setTimeout(() => location.reload(), 900); }
+      catch (err) { msg('导入失败：' + err.message, 1); }
+    });
+    document.getElementById('mzNowCode').addEventListener('click', () => {
+      const c = cur().code;
+      try { navigator.clipboard.writeText(c); msg('同步码已复制：' + c, 0); } catch (e) { msg('同步码：' + c, 0); }
+    });
+    document.getElementById('mzSave').addEventListener('click', () => {
+      saveCfg({ url: document.getElementById('mzUrl').value.trim(), key: document.getElementById('mzKey').value.trim(), auto: document.getElementById('mzAuto').checked });
+      cmsg('配置已保存到本机', 0);
+    });
+    document.getElementById('mzPush').addEventListener('click', async () => {
+      cmsg('上传中…', 0);
+      try { await push(); cmsg('已上传 ✓ ' + hhmm(nowT()), 0); } catch (e) { cmsg(e.message, 1); }
+    });
+    document.getElementById('mzPull').addEventListener('click', async () => {
+      cmsg('拉取中…', 0);
+      try { const at = await pull(); cmsg('已拉取 ' + (at ? new Date(at).toLocaleString() : '') + '，即将刷新', 0); setTimeout(() => location.reload(), 800); }
+      catch (e) { cmsg(e.message, 1); }
+    });
+    refresh();
+  }
+  function msg(t, bad){ const el = document.getElementById('mzMsg'); if (!el) return; el.textContent = t; el.className = 'mzmsg ' + (bad ? 'bad' : 'ok'); }
+  function cmsg(t, bad){ const el = document.getElementById('mzCloudMsg'); if (!el) return; el.textContent = t; el.className = 'mzmsg ' + (bad ? 'bad' : 'ok'); }
+  function open(){ build(); modal.classList.add('on'); refresh(); }
+  function close(){ if (modal) modal.classList.remove('on'); }
+
+  function refresh(){
+    const uEl = document.getElementById('mzUserName'); if (uEl) uEl.textContent = cur().name;
+    const nEl = document.getElementById('mzNowName'); if (nEl) nEl.textContent = cur().name;
+    const cEl = document.getElementById('mzNowCode'); if (cEl) cEl.textContent = cur().code;
+    const list = document.getElementById('mzList');
+    if (list) {
+      list.innerHTML = '';
+      profiles.slice().sort((a, b) => (b.last || 0) - (a.last || 0)).forEach(p => {
+        const s = statOf(p);
+        const row = h(`<div class="mzrow ${p.id === active ? 'cur' : ''}" data-id="${p.id}">
+          <span class="nm">${p.name}${p.id === active ? ' · 使用中' : ''}</span>
+          <span class="mt">已背 ${s.learned} · ${new Date(s.last).toLocaleDateString('zh-CN', { month: '2-digit', day: '2-digit' })}</span>
+          <button class="mzbtn" data-act="use">切换</button>
+          <button class="mzbtn" data-act="ren">改名</button>
+          <button class="mzbtn del" data-act="del">删除</button>
+        </div>`);
+        list.appendChild(row);
+      });
+    }
+    const c = cfg();
+    const u = document.getElementById('mzUrl'), k = document.getElementById('mzKey'), a = document.getElementById('mzAuto');
+    if (u && !u.value) u.value = c.url || '';
+    if (k && !k.value) k.value = c.key || '';
+    if (a) a.checked = !!c.auto;
+    const tag = document.getElementById('mzSaveTag');
+    if (tag && !tag.textContent.trim()) tag.textContent = '已存档';
+  }
+
+  document.addEventListener('DOMContentLoaded', build);
+  if (document.readyState !== 'loading') build();
+
+  return {
+    key: k => pref(active, k),
+    touch, open, close, refresh,
+    activeId: () => active,
+    profiles: () => profiles.slice(),
+    current: () => cur(),
+    statOf, exportJSON, importJSON, push, pull, cfg, saveCfg,
+    hasBackup: () => !!localStorage.getItem(BK)
+  };
+})();
+
+
+/* v1.8 存储键按使用者隔离 */
+let LSK = MZ.key('maizhen_v1');
+</script>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- 索引 ---------- */
+const BY_ID = {};
+MAI.forEach(n => BY_ID[n.id] = n);
+const BY_G = {};
+MAI.forEach(n => (BY_G[n.g] = BY_G[n.g] || []).push(n));
+const ORDER = MAI.map(n => n.id);
+
+/* ---------- 工具 ---------- */
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function toast(msg){
+  const t = $('#toast'); t.textContent = msg; t.classList.add('on');
+  clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('on'), 1700);
+}
+let LS = {theme:'night', fs:1, srs:{}, test:{done:0, ok:0}, last:'mai-fu'};
+try{ const raw = localStorage.getItem(LSK); if(raw) LS = Object.assign(LS, JSON.parse(raw)); }catch(e){}
+// v1.7 全息皮肤：首次加载强制切到夜间深空（只做一次，之后尊重用户选择）
+try{
+  if(!localStorage.getItem(MZ.key('mz_skin17'))){
+    LS.theme = 'night';
+    localStorage.setItem(MZ.key('mz_skin17'),'1');
+    localStorage.setItem(LSK, JSON.stringify(LS));
+  }
+}catch(e){}
+function save(){ try{ localStorage.setItem(LSK, JSON.stringify(LS)); }catch(e){} MZ.touch(); }
+
+/* =========================================================
+   朗读（移植自 6.5 并修复「首句被丢弃」）
+   根因：cancel() 后立刻 speak()，浏览器静默丢弃该句
+   对策：挑选中文音色 + cancel 与 speak 之间留出间隔
+   ========================================================= */
+const SPK = (function(){
+  let cur = null, timer = null, voice = null;
+  const has = ('speechSynthesis' in window);
+  function pick(){
+    if(!has) return null;
+    const vs = speechSynthesis.getVoices() || [];
+    return vs.find(v => /^zh[-_]CN/i.test(v.lang)) || vs.find(v => /^zh/i.test(v.lang)) || null;
+  }
+  if(has){
+    voice = pick();
+    speechSynthesis.onvoiceschanged = function(){ voice = pick(); };
+  }
+  function clearBtn(){
+    if(cur){ cur.classList.remove('on'); cur.textContent = '读'; cur = null; }
+  }
+  function stop(){
+    clearTimeout(timer); timer = null;
+    if(has) speechSynthesis.cancel();
+    clearBtn();
+  }
+  function speak(text, btn){
+    const same = btn && cur === btn;
+    stop();
+    if(same) return;                       // 再点即停
+    if(!has){ toast('此浏览器不支持朗读'); return; }
+    const body = String(text||'').replace(/\s+/g,' ').trim();
+    if(!body){ toast('这一段没有可读文字'); return; }
+    if(!voice) voice = pick();
+    if(!voice && !SPK._warned){ SPK._warned = 1; toast('未检测到中文语音，可在系统设置中安装'); }
+    const u = new SpeechSynthesisUtterance(body);
+    u.lang = 'zh-CN'; u.rate = 0.92; u.pitch = 1;
+    if(voice) u.voice = voice;
+    u.onend = u.onerror = function(){ clearBtn(); };
+    if(btn){ btn.classList.add('on'); btn.textContent = '停'; cur = btn; }
+    timer = setTimeout(function(){ if(has) speechSynthesis.speak(u); }, 70);
+  }
+  return {speak:speak, stop:stop, get active(){return cur;}};
+})();
+
+/* =========================================================
+   复习调度（答对递推、答错归零）
+   ========================================================= */
+const SRS = (function(){
+  const DAY = 86400000;
+  const STEP = [1,2,4,7,15,30];
+  function today(){ return Math.floor(Date.now()/DAY); }
+  function map(){ if(!LS.srs) LS.srs = {}; return LS.srs; }
+  function rec(id){ return map()[id]; }
+  function grade(id, ok){
+    const m = map();
+    const r = m[id] || {n:0, due:today(), seen:0};
+    r.seen = (r.seen||0) + 1;
+    if(ok){ r.n = (r.n||0) + 1; r.due = today() + STEP[Math.min(r.n-1, STEP.length-1)]; }
+    else  { r.n = 0; r.due = today(); }
+    r.at = Date.now();
+    m[id] = r; save();
+  }
+  function status(id){
+    const r = map()[id];
+    if(!r || !r.seen) return 'new';
+    return r.due <= today() ? 'due' : 'ok';
+  }
+  function reset(){ LS.srs = {}; save(); }
+  return {grade:grade, status:status, rec:rec, reset:reset, today:today};
+})();
+
+/* =========================================================
+   字号调节
+   ========================================================= */
+const FMIN = 0.88, FMAX = 1.2, FSTEP = 0.06;
+function applyFont(){
+  let f = Number(LS.fs) || 1;
+  f = Math.min(FMAX, Math.max(FMIN, f));
+  LS.fs = f;
+  document.documentElement.style.setProperty('--fs', f.toFixed(2));
+  const dn = $('#btnFontDn'), up = $('#btnFontUp');
+  if(dn) dn.disabled = f <= FMIN + 0.001;
+  if(up) up.disabled = f >= FMAX - 0.001;
+}
+
+/* =========================================================
+   遮字背诵
+   ========================================================= */
+const MASK = (function(){
+  let on = false;
+  function wrap(text){
+    return String(text == null ? '' : text).split('').map(function(ch){
+      if(/\s/.test(ch)) return ch;
+      return '<span class="mchar">' + ch + '</span>';
+    }).join('');
+  }
+  function sync(){
+    const q = $('#dRecite'); if(!q) return;
+    q.classList.toggle('hidden', on);
+    const b = $('#btnMask'); if(!b) return;
+    b.classList.toggle('on', on);
+    b.textContent = on ? '退出遮字' : '遮字背诵';
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+  }
+  function set(v){ on = !!v; sync(); }
+  function reset(){ on = false; sync(); }
+  function toggle(){ on = !on; sync(); return on; }
+  function light(el){ if(on && el && el.classList.contains('mchar')) el.classList.toggle('lit'); }
+  return {wrap:wrap, set:set, reset:reset, toggle:toggle, light:light, get on(){return on;}};
+})();
+
+/* =========================================================
+   关联区（把「孤立的知识点」补上边）
+   ========================================================= */
+function renderRel(n){
+  const box = $('#relBox'); if(!box) return;
+  const G = GROUPS[n.g];
+  const kp = (n.keyPoints || []).filter(function(k){ return AXES.indexOf(k) >= 0; });
+  const sib = (BY_G[n.g] || []).filter(function(x){ return x.id !== n.id; });
+  const conf = (n.contrast || []).map(function(c){ return BY_ID[c.target]; }).filter(Boolean);
+  const confIds = conf.map(function(x){ return x.id; });
+  // 同维优先；若全维一致者不存在，退为「对举」——在主维上取值相反的其他组脉
+  let twin = [], twinKind = '同维';
+  if(kp.length){
+    twin = MAI.filter(function(x){
+      return x.g !== n.g && x.id !== n.id && kp.every(function(k){ return x.dims[k] === n.dims[k]; });
+    }).slice(0,4);
+    if(!twin.length){
+      twinKind = '对举';
+      twin = MAI.filter(function(x){
+        return x.g !== n.g && x.id !== n.id && x.dims[kp[0]] !== n.dims[kp[0]];
+      }).slice(0,4);
+    }
+  }
+
+  function chip(x, note){
+    return '<button class="relchip" data-id="' + x.id + '"><b>' + esc(x.name) + '</b>' +
+      (note ? '<span>' + esc(note) + '</span>' : '') + '</button>';
+  }
+  const rows = [];
+  rows.push('<div class="rh">关 联<b>' + MAI.length + ' 脉中 · 本脉有 ' +
+    (sib.length ? 1 : 0) + ' 组同类</b></div>');
+  if(sib.length){
+    rows.push('<div class="relrow"><span class="rk">同类</span><span class="rv">' +
+      sib.map(function(x){ return chip(x, ''); }).join('') + '</span></div>');
+  }
+  if(conf.length){
+    rows.push('<div class="relrow"><span class="rk">易混</span><span class="rv">' +
+      conf.map(function(x){
+        const c = (n.contrast || []).filter(function(y){ return y.target === x.id; })[0] || {};
+        return chip(x, c.dim ? '差在' + c.dim : '');
+      }).join('') + '</span></div>');
+  }
+  if(twin.length){
+    rows.push('<div class="relrow"><span class="rk">' + twinKind + '</span><span class="rv">' +
+      twin.map(function(x){
+        return chip(x, twinKind === '对举' ? ('主' + kp[0] + '相异') : GROUPS[x.g].short);
+      }).join('') + '</span></div>');
+  }
+  rows.push('<div class="relrow"><span class="rk">动作</span><span class="rv">' +
+    '<button class="relchip" data-act="cmp"><b>⇄</b><span>并排比这对</span></button>' +
+    '<button class="relchip" data-act="quiz"><b>✓</b><span>就这个出题</span></button>' +
+    '<button class="relchip" data-act="mask"><b>▤</b><span>遮字默写</span></button>' +
+    '</span></div>');
+  box.innerHTML = rows.join('');
+
+  box.querySelectorAll('.relchip[data-id]').forEach(function(b){
+    b.addEventListener('click', function(){ SPK.stop(); openNode(b.dataset.id); });
+  });
+  box.querySelectorAll('.relchip[data-act]').forEach(function(b){
+    b.addEventListener('click', function(){
+      const a = b.dataset.act;
+      if(a === 'cmp'){
+        const other = (conf[0] && conf[0].id) || (sib[0] && sib[0].id) || ORDER.filter(function(x){return x!==n.id;})[0];
+        setCompare(n.id, other); go('scCompare');
+      } else if(a === 'quiz'){
+        go('scTest'); startQuiz([n.id]);
+      } else {
+        setLayer(2); MASK.set(true); toast('遮住了，自己默一遍');
+      }
+    });
+  });
+}
+
+/* =========================================================
+   每段一个「读」按钮（移植 6.5 的逐行朗读思路）
+   ========================================================= */
+function plainText(el){
+  if(!el) return '';
+  const t = el.innerText || el.textContent || '';
+  return t.replace(/[ \t]+/g, ' ').replace(/\n{2,}/g, '\n').trim();
+}
+function attachSpeakers(){
+  $$('#scDetail .pane .blk').forEach(function(blk){
+    const lb = blk.querySelector('.lb');
+    if(!lb || lb.querySelector('.spk')) return;
+    const b = document.createElement('button');
+    b.className = 'spk'; b.textContent = '读';
+    b.setAttribute('aria-label', '朗读本段');
+    b.addEventListener('click', function(){
+      const body = blk.querySelector('.quote, .txt, .dimt, .flow, .cmp, .listing, .recall, .reveal');
+      SPK.speak(plainText(body || blk), b);
+    });
+    lb.appendChild(b);
+  });
+}
+
+/* =========================================================
+   复习台
+   ========================================================= */
+let rvTab = 'due';
+function renderReview(){
+  const rows = MAI.map(function(n){ return {n:n, st:SRS.status(n.id)}; });
+  const due = rows.filter(function(x){ return x.st === 'due'; });
+  const nw  = rows.filter(function(x){ return x.st === 'new'; });
+  const ok  = rows.filter(function(x){ return x.st === 'ok'; });
+
+  // 首次进入时「待复习」必然是空的；自动落到「新卡」，不让用户面对空白页
+  if(rvTab === 'due' && !due.length){
+    rvTab = nw.length ? 'new' : (ok.length ? 'all' : 'new');
+  }
+  $('#rvDue').textContent = due.length;
+  $('#rvNew').textContent = nw.length;
+  $('#rvDone').textContent = ok.length;
+  $('#rvTabDue').classList.toggle('on', rvTab === 'due');
+  $('#rvTabNew').classList.toggle('on', rvTab === 'new');
+  $('#rvTabAll').classList.toggle('on', rvTab === 'all');
+
+  let arr = rvTab === 'due' ? due : (rvTab === 'new' ? nw : rows);
+  arr = arr.slice().sort(function(a,b){
+    const rank = {due:0, new:1, ok:2};
+    if(rank[a.st] !== rank[b.st]) return rank[a.st] - rank[b.st];
+    return GORDER.indexOf(a.n.g) - GORDER.indexOf(b.n.g);
+  });
+
+  const label = {due:'该复', new:'新卡', ok:'已排'};
+  $('#rvList').innerHTML = arr.map(function(x){
+    const n = x.n, G = GROUPS[n.g];
+    const r = SRS.rec(n.id);
+    let em = G.name;
+    if(x.st === 'ok' && r) em = G.name + ' · 已对 ' + r.n + ' 次';
+    if(x.st === 'due' && r && r.n) em = G.name + ' · 上次错，今日回炉';
+    return '<button class="revitem" data-id="' + n.id + '">' +
+      '<span class="rn" style="color:' + G.color + '">' + esc(n.name) + '</span>' +
+      '<span class="rm"><i>' + esc(n.understand || '') + '</i><em>' + esc(em) + '</em></span>' +
+      '<span class="rd ' + x.st + '">' + (label[x.st] || '') + '</span></button>';
+  }).join('');
+  $('#rvEmpty').style.display = arr.length ? 'none' : 'block';
+
+  $('#rvList').querySelectorAll('.revitem').forEach(function(b){
+    b.addEventListener('click', function(){
+      openNode(b.dataset.id);
+      setLayer(2);
+      MASK.set(true);
+    });
+  });
+}
+
+
+/* ---------- 主题 ---------- */
+function applyTheme(){
+  document.documentElement.setAttribute('data-theme', LS.theme);
+  $('#btnTheme').textContent = LS.theme === 'night' ? '☀' : '☾';
+  const mt = document.querySelector('meta[name=theme-color]');
+  if(mt) mt.setAttribute('content', LS.theme === 'night' ? '#03070c' : '#e9f1f7');
+  applyFont();
+}
+$('#btnTheme').addEventListener('click', () => {
+  LS.theme = LS.theme === 'night' ? 'day' : 'night';
+  applyTheme(); save();
+});
+
+/* ---------- 路由 ---------- */
+const SCREENS = ['scHome','scList','scDetail','scCompare','scTest','scReview','scRecite'];
+function go(id, quiet){
+  SPK.stop();
+  SCREENS.forEach(s => $('#' + s).classList.toggle('on', s === id));
+  $$('.tb').forEach(b => b.classList.toggle('on', b.dataset.go === id));
+  window.scrollTo({top:0, behavior: quiet ? 'auto' : 'smooth'});
+}
+$$('.tb').forEach(b => b.addEventListener('click', () => {
+  SPK.stop();
+  if(b.dataset.go === 'scReview') renderReview();
+  go(b.dataset.go);
+}));
+
+/* =========================================================
+   首页
+   ========================================================= */
+function buildHome(){
+  $('#homeNum').textContent = MAI.length;
+  $('#axWei').textContent  = new Set(MAI.map(n => n.dims['位'])).size + ' 值';
+  $('#axShu').textContent  = new Set(MAI.map(n => n.dims['数'])).size + ' 值';
+  $('#axXing').textContent = new Set(MAI.map(n => n.dims['形'])).size + ' 值';
+  $('#axShi').textContent  = new Set(MAI.map(n => n.dims['势'])).size + ' 值';
+
+  const max = Math.max(...GORDER.map(g => (BY_G[g] || []).length));
+  $('#barBox').innerHTML = GORDER.map(g => {
+    const G = GROUPS[g], arr = BY_G[g] || [];
+    const w = Math.round(arr.length / max * 100);
+    return `<div class="bar-row">
+      <span class="nm" style="color:${G.color}">${G.short}</span>
+      <span class="ax2">主${G.axis}</span>
+      <span class="bar-wrap"><span class="bar-fill" style="width:${w}%;background:linear-gradient(90deg,${G.color},${G.color}bb)"></span></span>
+      <span class="n mono">${arr.length}</span>
+    </div>`;
+  }).join('');
+
+  const hot = MAI.filter(n => n.hot);
+  $('#hotGrid').innerHTML = hot.map(cardHTML).join('');
+  bindCards($('#hotGrid'));
+}
+function cardHTML(n){
+  const G = GROUPS[n.g];
+  return `<button class="pcard" data-id="${n.id}" title="${esc(n.name)}脉">
+    ${n.hot ? '<span class="dot"></span>' : ''}
+    <b>${esc(n.name)}</b>
+    <span class="py">${esc(n.py || '')}</span>
+    <span class="md" style="color:${G.color}">主${G.axis}</span>
+  </button>`;
+}
+function bindCards(root){
+  root.querySelectorAll('.pcard').forEach(el => {
+    el.addEventListener('click', () => openNode(el.dataset.id));
+  });
+}
+if($('#goProfile')) $('#goProfile').addEventListener('click', () => MZ.open());
+$('#goList').addEventListener('click', () => go('scList'));
+
+/* =========================================================
+   脉谱
+   ========================================================= */
+let curFilter = 'all';
+let curQ = '';
+
+function buildChips(){
+  const items = [{k:'all', t:'全部', n:MAI.length}].concat(
+    GORDER.map(g => ({k:g, t:GROUPS[g].short, n:(BY_G[g]||[]).length}))
+  ).concat([
+    {k:'__hot', t:'高频', n:MAI.filter(n=>n.hot).length}
+  ]);
+  $('#chips').innerHTML = items.map(it =>
+    `<button class="chip${it.k===curFilter?' on':''}" data-k="${it.k}">${it.t}<span class="c">${it.n}</span></button>`
+  ).join('');
+  $('#chips').querySelectorAll('.chip').forEach(el => {
+    el.addEventListener('click', () => {
+      curFilter = el.dataset.k;
+      buildChips(); renderList();
+    });
+  });
+}
+
+function match(n, q){
+  if(!q) return true;
+  const ap = n.apply || {};
+  const pool = [n.name, n.py, ...(n.aliases||[]), n.understand, n.clinical, ...(n.keyPoints||[]),
+                ...AXES.map(a => n.dims[a] || ''), n.recite, n.reciteRef,
+                ...(n.caveat||[]), ap['if'], ap.via, ap.then,
+                ...(n.contrast||[]).map(c => c.trap || '')].join(' ');
+  return pool.toLowerCase().includes(q.toLowerCase());
+}
+
+function renderList(){
+  let arr = MAI.slice();
+  if(curFilter === '__hot') arr = arr.filter(n => n.hot);
+  else if(curFilter !== 'all') arr = arr.filter(n => n.g === curFilter);
+  arr = arr.filter(n => match(n, curQ));
+
+  // 保持组内顺序
+  arr.sort((a,b) => {
+    const ga = GORDER.indexOf(a.g), gb = GORDER.indexOf(b.g);
+    if(ga !== gb) return ga - gb;
+    return BY_G[a.g].indexOf(a) - BY_G[b.g].indexOf(b);
+  });
+
+  $('#listCount').textContent = arr.length + ' 脉';
+  $('#listGrid').innerHTML = arr.map(cardHTML).join('');
+  $('#listEmpty').style.display = arr.length ? 'none' : 'block';
+  $('#qClear').style.display = curQ ? 'grid' : 'none';
+  bindCards($('#listGrid'));
+}
+$('#q').addEventListener('input', e => { curQ = e.target.value.trim(); renderList(); });
+$('#qClear').addEventListener('click', () => {
+  $('#q').value = ''; curQ = ''; renderList(); $('#q').focus();
+});
+$('#btnFontUp').addEventListener('click', () => { LS.fs = (Number(LS.fs)||1) + FSTEP; applyFont(); save(); });
+$('#btnFontDn').addEventListener('click', () => { LS.fs = (Number(LS.fs)||1) - FSTEP; applyFont(); save(); });
+
+/* =========================================================
+   详情
+   ========================================================= */
+let curNode = null;
+
+function openNode(id){
+  const n = BY_ID[id];
+  if(!n){ toast('找不到该脉'); return; }
+  curNode = n; LS.last = id; save();
+  const G = GROUPS[n.g];
+
+  $('#dName').textContent = n.name;
+  $('#dPy').textContent = n.py || '';
+  $('#dMeta').innerHTML = [
+    `<span class="tag" style="color:${G.color};border-color:${G.color}55;background:${G.color}12">${G.name}</span>`,
+    `<span class="tag">主${G.axis}</span>`,
+    n.hot ? '<span class="tag hot">高频</span>' : '',
+    (n.keyPoints||[]).map(k => `<span class="tag jade">${esc(k)}</span>`).join('')
+  ].join('');
+
+  /* 认 */
+  $('#dUnderstand').innerHTML = esc(n.understand || '');
+  $('#dDimQuick').innerHTML = AXES.map(a => {
+    const cal = (n.dimsCal||[]).includes(a);
+    return `<tr class="${cal?'cal':''}"><th>${a}</th><td>${esc(n.dims[a]||'—')}${cal?'<span class="cw">待校</span>':''}</td></tr>`;
+  }).join('');
+
+  // 回忆卡：给两个维，猜脉名
+  const kp = (n.keyPoints || AXES).filter(k => AXES.includes(k));
+  const shown = (kp.length >= 2 ? kp : AXES).slice(0, 2);
+  $('#dRecallQ').innerHTML = `<b>这个脉是什么？</b>已知：` +
+    shown.map(a => `<em style="font-style:normal;color:var(--zhu)">${a}</em> 为「${esc(n.dims[a]||'')}」`).join('；');
+  $('#dRecallA').innerHTML = `<b style="font-family:var(--serif);font-size:1.4rem;color:var(--zhu)">${esc(n.name)}</b><br>${esc(n.understand||'')}`;
+  $('#dRecallA').classList.remove('on');
+  $('#btnReveal').textContent = '看 答 案';
+  $('#btnReveal')._open = false;
+
+  /* 记 */
+  $('#dRecite').innerHTML = `${MASK.wrap(esc(n.recite||'—'))}<span class="ref">${esc(n.reciteRef||'')}</span>`;
+  MASK.reset();
+  $('#dKey').innerHTML = (n.keyPoints||[]).map(k => {
+    const d = n.dims[k];
+    return d ? `<li>记 <b style="color:var(--zhu)">${esc(k)}</b>：${esc(d)}</li>` : `<li>记 <b style="color:var(--zhu)">${esc(k)}</b></li>`;
+  }).join('') || '<li>—</li>';
+  $('#dAlias').innerHTML = (n.aliases||[]).map(a => `<li>${esc(a)}</li>`).join('') || '<li>无别名</li>';
+
+  /* 辨 */
+  $('#dDims').innerHTML = AXES.map(a => {
+    const cal = (n.dimsCal||[]).includes(a);
+    const main = (n.keyPoints||[]).includes(a);
+    return `<tr class="${cal?'cal':''}"><th>${a}${main?'<span class="cw" style="color:var(--jade);border-color:rgba(28,110,99,.4)">主</span>':''}</th><td>${esc(n.dims[a]||'—')}${cal?'<span class="cw">待校</span>':''}</td></tr>`;
+  }).join('');
+
+  const cons = n.contrast || [];
+  $('#dContrast').innerHTML = cons.map(c => {
+    const t = BY_ID[c.target];
+    const nm = t ? t.name : c.target;
+    return `<li>与 <b style="color:var(--zhu)">${esc(nm)}</b> 之分在「${esc(c.dim)}」：${esc(c.trap)}</li>`;
+  }).join('') || '<li>暂无显性易混项，可用对比页自行并排</li>';
+
+  /* 用 */
+  $('#dClinical').innerHTML = esc(n.clinical || '—');
+  const ap = n.apply || {};
+  $('#dApply').innerHTML = [
+    ['若', ap['if']], ['法', ap['via']], ['则', ap['then']]
+  ].map(([k,v]) => v ? `<div class="fr"><span class="fk">${k}</span><span class="fv">${esc(v)}</span></div>` : '').join('')
+    || '<div class="fr"><span class="fv">未录入决策链</span></div>';
+
+  $('#dCaveat').innerHTML = (n.caveat||[]).map(c => `<li>${esc(c)}</li>`).join('') || '<li>—</li>';
+
+  /* 验 */
+  $('#dCmp').innerHTML = cons.map(c => {
+    const t = BY_ID[c.target];
+    const nm = t ? t.name : c.target;
+    const td = t ? t.dims[c.dim] : '';
+    return `<div class="cr warn"><span class="cd">${esc(c.dim)}</span><span class="ct">
+      <b style="color:var(--zhu)">${esc(n.name)}</b> ${esc(n.dims[c.dim]||'')}<br>
+      <b style="color:var(--jade)">${esc(nm)}</b> ${esc(td)}<br>
+      <span style="color:var(--ink-3);font-size:.72rem">${esc(c.trap)}</span></span></div>`;
+  }).join('') || '<div class="cr"><span class="ct">暂无对照项</span></div>';
+
+  // 关联区 + 逐段朗读
+  renderRel(n);
+  attachSpeakers();
+
+  // 重置到「认」
+  setLayer(1);
+  go('scDetail');
+}
+function setLayer(k){
+  SPK.stop();
+  $$('.lay').forEach(b => b.classList.toggle('on', b.dataset.lay === String(k)));
+  for(let i=1;i<=5;i++) $('#pane'+i).classList.toggle('on', i === k);
+}
+$$('.lay').forEach(b => b.addEventListener('click', () => setLayer(+b.dataset.lay)));
+$('#btnBack').addEventListener('click', () => go('scList'));
+$('#btnMask').addEventListener('click', () => {
+  const on = MASK.toggle();
+  toast(on ? '已遮住，凭记忆默一遍' : '已显示原文');
+});
+$('#dRecite').addEventListener('click', e => {
+  if(e.target.classList && e.target.classList.contains('mchar')) MASK.light(e.target);
+});
+$('#btnReveal').addEventListener('click', function(){
+  const el = $('#dRecallA');
+  const on = el.classList.toggle('on');
+  this.textContent = on ? '收 起' : '看 答 案';
+});
+$('#btnCmpFromDetail').addEventListener('click', () => {
+  if(!curNode) return;
+  const sib = (BY_G[curNode.g]||[]).filter(x => x.id !== curNode.id);
+  const other = sib.length ? sib[0].id : ORDER[0];
+  setCompare(curNode.id, other);
+  go('scCompare');
+});
+$('#btnTestFromDetail').addEventListener('click', () => {
+  if(!curNode) return;
+  go('scTest');
+  startQuiz([curNode.id]);
+});
+
+/* =========================================================
+   对比
+   ========================================================= */
+function fillSelects(){
+  const opts = GORDER.map(g => {
+    const items = (BY_G[g]||[]).map(n => `<option value="${n.id}">${esc(n.name)}（${GROUPS[g].short}）</option>`).join('');
+    return `<optgroup label="${GROUPS[g].name}">${items}</optgroup>`;
+  }).join('');
+  $('#selA').innerHTML = opts;
+  $('#selB').innerHTML = opts;
+}
+function setCompare(a, b){
+  $('#selA').value = a; $('#selB').value = b;
+  renderCompare();
+}
+function renderCompare(){
+  const A = BY_ID[$('#selA').value], B = BY_ID[$('#selB').value];
+  if(!A || !B) return;
+  const rows = AXES.map(ax => {
+    const va = A.dims[ax] || '—', vb = B.dims[ax] || '—';
+    const same = va === vb;
+    return `<tr class="${same?'same':'diff'}">
+      <th>${ax}</th>
+      <td>${esc(va)}${(A.dimsCal||[]).includes(ax)?'<span class="cw" style="color:var(--gold);font-size:.55rem;border:1px solid rgba(168,128,47,.4);border-radius:3px;padding:0 3px;margin-left:4px">待校</span>':''}</td>
+      <td>${esc(vb)}${(B.dimsCal||[]).includes(ax)?'<span class="cw" style="color:var(--gold);font-size:.55rem;border:1px solid rgba(168,128,47,.4);border-radius:3px;padding:0 3px;margin-left:4px">待校</span>':''}</td>
+    </tr>`;
+  }).join('');
+
+  $('#cmpTable').innerHTML = `<thead><tr>
+      <th style="width:2.4em"></th>
+      <th>${esc(A.name)}<span style="display:block;font-size:.56rem;color:var(--ink-3);font-family:var(--sans);letter-spacing:.04em;font-weight:400">${GROUPS[A.g].short}</span></th>
+      <th>${esc(B.name)}<span style="display:block;font-size:.56rem;color:var(--ink-3);font-family:var(--sans);letter-spacing:.04em;font-weight:400">${GROUPS[B.g].short}</span></th>
+    </tr></thead><tbody>${rows}</tbody>`;
+
+  const diffN = AXES.filter(ax => A.dims[ax] !== B.dims[ax]).length;
+  const sameG = A.g === B.g;
+  $('#cmpNote').innerHTML = diffN === 0
+    ? '四维全同——这两条在此数据层里没有区分度，需回到原文或指感层面再辨。'
+    : `四维中 <b style="color:var(--zhu)">${diffN}</b> 维不同${sameG?'，且同属「'+GROUPS[A.g].name+'」，只有一维之别，最易混':''}。高亮行为差异维。`;
+}
+$('#selA').addEventListener('change', renderCompare);
+$('#selB').addEventListener('change', renderCompare);
+$('#btnSwap').addEventListener('click', () => {
+  const a = $('#selA').value; $('#selA').value = $('#selB').value; $('#selB').value = a;
+  renderCompare();
+});
+$('#btnRand').addEventListener('click', () => {
+  const g = GORDER[Math.floor(Math.random()*GORDER.length)];
+  const arr = BY_G[g] || [];
+  if(arr.length < 2){ toast('该类脉不足两条'); return; }
+  let i = Math.floor(Math.random()*arr.length), j = Math.floor(Math.random()*(arr.length-1));
+  if(j >= i) j++;
+  setCompare(arr[i].id, arr[j].id);
+  toast('随机：' + GROUPS[g].name);
+});
+
+/* =========================================================
+   自测
+   ========================================================= */
+let Q = {pool:[], idx:0, cur:null, answered:false, stat:{done:0, ok:0}};
+
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+function startQuiz(fixedIds){
+  let pool;
+  if(fixedIds && fixedIds.length){
+    pool = fixedIds.slice();
+  }else{
+    // 优先高频 + 随机，凑 10 题
+    const hot = MAI.filter(n=>n.hot).map(n=>n.id);
+    const rest = MAI.filter(n=>!n.hot).map(n=>n.id);
+    pool = shuffle(hot.slice()).concat(shuffle(rest.slice())).slice(0, 10);
+  }
+  Q.pool = pool; Q.idx = 0; Q.stat = {done:0, ok:0};
+  renderStat();
+  nextQ();
+}
+function renderStat(){
+  $('#stDone').textContent = Q.stat.done;
+  $('#stOk').textContent = Q.stat.ok;
+  $('#stRate').textContent = Q.stat.done ? Math.round(Q.stat.ok / Q.stat.done * 100) + '%' : '—';
+}
+function nextQ(){
+  if(Q.idx >= Q.pool.length){
+    $('#tProg').textContent = '本 轮 完 成';
+    $('#tClue').textContent = `共 ${Q.stat.done} 题，答对 ${Q.stat.ok} 题。`;
+    $('#tHint').textContent = '点「重新开始」再练一轮';
+    $('#tOpts').innerHTML = '';
+    $('#tFb').classList.remove('on');
+    $('#btnNext').style.display = 'none';
+    return;
+  }
+  const n = BY_ID[Q.pool[Q.idx]];
+  Q.cur = n; Q.answered = false;
+  $('#tProg').textContent = `第 ${Q.idx + 1} / ${Q.pool.length} 题`;
+  $('#btnNext').style.display = 'none';
+  $('#tFb').classList.remove('on');
+
+  // 出题：取该脉 2 个主导维
+  const kp = (n.keyPoints || []).filter(k => AXES.includes(k));
+  const shown = (kp.length >= 2 ? kp : AXES).slice(0, 2);
+  $('#tClue').innerHTML = shown.map(a => `<span style="color:var(--ink-3);font-size:.7rem;letter-spacing:.1em">${a}</span><br>「${esc(n.dims[a]||'')}」`).join('<br><span style="color:var(--line);font-size:1rem">·</span><br>');
+  $('#tHint').textContent = `所属：${GROUPS[n.g].name}`;
+
+  // 干扰项：同组优先
+  const sib = shuffle((BY_G[n.g]||[]).filter(x=>x.id!==n.id).map(x=>x.id));
+  const others = sib.concat(shuffle(MAI.filter(x=>x.g!==n.g && x.id!==n.id).map(x=>x.id)));
+  const picks = [n.id].concat(others.slice(0,3));
+  shuffle(picks);
+
+  $('#tOpts').innerHTML = picks.map(id => {
+    const t = BY_ID[id];
+    return `<button class="opt" data-id="${id}">${esc(t.name)}</button>`;
+  }).join('');
+  $('#tOpts').querySelectorAll('.opt').forEach(b => {
+    b.addEventListener('click', () => answer(b));
+  });
+}
+function answer(btn){
+  if(Q.answered) return;
+  Q.answered = true;
+  const n = Q.cur, picked = btn.dataset.id, ok = picked === n.id;
+  $('#tOpts').querySelectorAll('.opt').forEach(b => {
+    b.disabled = true;
+    if(b.dataset.id === n.id) b.classList.add('right');
+    else if(b.dataset.id === picked) b.classList.add('wrong');
+  });
+  Q.stat.done++; if(ok) Q.stat.ok++;
+  renderStat();
+  SRS.grade(n.id, ok);
+
+  const fb = $('#tFb');
+  fb.innerHTML = `<span class="verdict ${ok?'ok':'no'}">${ok ? '对' : '错 → 正确答案是「' + esc(n.name) + '」'}</span>
+    ${esc(n.understand||'')}<br>
+    <span style="color:var(--ink-3);font-size:.74rem">四维：${AXES.map(a=>a+'·'+esc(n.dims[a]||'')).join('　')}</span>`;
+  fb.classList.add('on');
+  $('#btnNext').style.display = 'block';
+}
+$('#rvTabDue').addEventListener('click', () => { rvTab='due'; renderReview(); });
+$('#rvTabNew').addEventListener('click', () => { rvTab='new'; renderReview(); });
+$('#rvTabAll').addEventListener('click', () => { rvTab='all'; renderReview(); });
+$('#rvReset').addEventListener('click', function(){
+  if(this._c){ SRS.reset(); renderReview(); this.textContent='重置记录'; this._c=0; toast('学习记录已清空'); }
+  else { this._c=1; this.textContent='再点确认'; setTimeout(()=>{this._c=0;this.textContent='重置记录';},2600); }
+});
+$('#btnNext').addEventListener('click', () => { Q.idx++; nextQ(); });
+$('#btnRestart').addEventListener('click', () => { startQuiz(); });
+
+
+/* =========================================================
+   背诵台 v1.3：四言举要 + 二十七脉三诗（按类分组）
+   原文公有领域，逐行朗读与遮字复用 SPK / .mchar 体系
+   ========================================================= */
+const SZ_DATA = [{"t":"一 · 脉理总纲","lines":[["脉乃血派","气血之先","血之隧道","气息应焉"],["其象法地","血之府也","心之合也","皮之部也"],["资始于肾","资生于胃","阳中之阴","本乎营卫"],["营者阴血","卫者阳气","营行脉中","卫行脉外"],["脉不自行","随气而至","气动脉应","阴阳之义"],["气如橐龠","血如波澜","血脉气息","上下循环"],["十二经中","皆有动脉","惟手太阴","寸口取决"],["此经属肺","上系吭嗌","脉之大会","息之出入"],["一呼一吸","四至为息","日夜一万","三千五百"],["一呼一吸","脉行六寸","日夜八百","十丈为准"]]},{"t":"二 · 持脉部位与七诊九候","lines":[["初持脉时","令仰其掌","掌后高骨","是谓关上"],["关前为阳","关后为阴","阳寸阴尺","先后推寻"],["心肝居左","肺脾居右","肾与命门","居两尺部"],["魂魄谷神","皆见寸口","左主司官","右主司府"],["左大顺男","右大顺女","本命扶命","男左女右"],["关前一分","人命之主","左为人迎","右为气口"],["神门决断","两在关后","人无二脉","病死不愈"],["男女脉同","惟尺则异","阳弱阴盛","反此病至"],["脉有七诊","曰浮中沉","上下左右","消息求寻"],["又有九候","举按轻重","三部浮沉","各候五动"],["寸候胸上","关候膈下","尺候于脐","下至跟踝"],["左脉候左","右脉候右","病随所在","不病者否"]]},{"t":"三 · 四时五脏平脉","lines":[["浮为心肺","沉为肾肝","脾胃中州","浮沉之间"],["心脉之浮","浮大而散","肺脉之浮","浮涩而短"],["肝脉之沉","沉而弦长","肾脉之沉","沉实而濡"],["脾胃属土","脉宜和缓","命为相火","左寸同断"],["春弦夏洪","秋毛冬石","四季和缓","是谓平脉"],["太过实强","病生于外"],["不及虚微","病生于内"],["春得秋脉","死在金日","五脏准此","推之不失"],["四时百病","胃气为本","脉贵有神","不可不审"]]},{"t":"四 · 呼吸定息与迟数","lines":[["调停自气","呼吸定息","四至五至","平和之则"],["三至为迟","迟则为冷","六至为数","数即热证"],["转迟转冷","转数转热","迟数既明","浮沉当别"]]},{"t":"五 · 内外因与四纲统脉","lines":[["浮沉迟数","辨内外因","外因于天","内因于人"],["天有阴阳","风雨晦冥","人喜怒忧","思悲恐惊"],["外因之浮","则为表证","沉里迟阴","数则阳盛"],["内因之浮","虚风所为","沉气迟冷","数热何疑"],["浮数表热","沉数里热","浮迟表虚","沉迟冷结"],["表里阴阳","风气冷热","辨内外因","脉证参别"],["脉理浩繁","总括于四","既得提纲","引申触类"]]},{"t":"六 · 诸脉体状总括","lines":[["浮脉法天","轻手可得","泛泛在上","如水漂木"],["有力洪大","来盛去悠","无力虚大","迟而且柔"],["虚甚则散","涣漫不收","有边无中","其名曰芤"],["浮小为濡","绵浮水面","濡甚则微","不任寻按"],["沉脉法地","近于筋骨","深深在下","沉极为伏"],["有力为牢","实大弦长","牢甚则实","愊愊而强"],["无力为弱","柔小如绵","弱甚则细","如蛛丝然"],["迟脉属阴","一息三至","小快于迟","缓不及四"],["二损一败","病不可治","两息夺精","脉已无气"],["浮大虚散","或见芤革","浮小濡微","沉小细弱"],["迟细为涩","往来极难","易散一止","止而复还"],["结则来缓","止而复来","代则来缓","止不能回"],["数脉属阳","六至一息","七疾八极","九至为脱"],["浮大者洪","沉大牢实","往来流利","是谓之滑"],["有力为紧","弹如转索","数见寸口","有止为促"],["数见关中","动脉可候","厥厥动摇","状如小豆"],["长则气治","过于本位","长而端直","弦脉应指"],["短则气病","不能满部","不见于关","惟尺寸候"]]},{"t":"七 · 诸脉主病","lines":[["一脉一形","各有主病","数脉相兼","则见诸证"],["浮脉主表","里必不足","有力风热","无力血弱"],["浮迟风虚","浮数风热","浮紧风寒","浮缓风湿"],["浮虚伤暑","浮芤失血","浮洪虚火","浮微劳极"],["浮濡阴虚","浮散虚剧","浮弦痰饮","浮滑痰热"],["沉脉主里","主寒主积","有力痰食","无力气郁"],["沉迟虚寒","沉数热伏","沉紧冷痛","沉缓水畜"],["沉牢痼冷","沉实热极","沉弱阴虚","沉细痹湿"],["沉弦饮痛","沉滑宿食","沉伏吐利","阴毒聚积"],["迟脉主脏","阳气伏潜","有力为痛","无力虚寒"],["数脉主腑","主吐主狂","有力为热","无力为疮"],["滑脉主痰","或伤于食","下为畜血","上为吐逆"],["涩脉少血","或中寒湿","反胃结肠","自汗厥逆"],["弦脉主饮","病属胆肝","弦数多热","弦迟多寒"],["浮弦支饮","沉弦悬痛","阳弦头痛","阴弦腹痛"],["紧脉主寒","又主诸痛","浮紧表寒","沉紧里痛"],["长脉气平","短脉气病","细则气少","大则病进"],["浮长风痫","沉短宿食","血虚脉虚","气实脉实"],["洪脉为热","其阴则虚","细脉为湿","其血则虚"],["缓大者风","缓细者湿","缓涩血少","缓滑内热"],["濡小阴虚","弱小阳竭","阳竭恶寒","阴虚发热"],["阳微恶寒","阴微发热","男微虚损","女微泻血"],["阳动汗出","阴动发热","为痛与惊","崩中失血"],["虚寒相搏","其名为革","男子失精","女子失血"],["阳盛则促","肺痈阳毒","阴盛则结","疝瘕积郁"],["代则气衰","或泄脓血","伤寒心悸","女胎三月"]]},{"t":"八 · 病脉宜忌与妇人小儿奇经真脏","lines":[["脉之主病","有宜不宜","阴阳顺逆","凶吉可推"],["中风浮缓","急实则忌","浮滑中痰","沉迟中气"],["尸厥沉滑","卒不知人","入脏身冷","入腑身温"],["风伤于卫","浮缓有汗","寒伤于营","浮紧无汗"],["暑伤于气","脉虚身热","湿伤于血","脉缓细涩"],["伤寒热病","脉喜浮洪","沉微涩小","证反必凶"],["汗后脉静","身凉则安","汗后脉躁","热甚必难"],["阳病见阴","病必危殆","阴病见阳","虽困无害"],["上不至关","阴气已绝","下不至关","阳气已竭"],["代脉止歇","脏绝倾危","散脉无根","形损难医"],["饮食内伤","气口急滑","劳倦内伤","脾脉大弱"],["欲知是气","下手脉沉","沉极则伏","涩弱久深"],["火郁多沉","滑痰紧食","气涩血芤","数火细湿"],["滑主多痰","弦主留饮","热则滑数","寒则弦紧"],["浮滑兼风","沉滑兼气","食伤短疾","湿留濡细"],["疟脉自弦","弦数者热","弦迟者寒","代散者折"],["泄泻下痢","沉小滑弱","实大浮洪","发热则恶"],["呕吐反胃","浮滑者昌","弦数紧涩","结肠者亡"],["霍乱之候","脉代勿讶","厥逆迟微","是则可怕"],["咳嗽多浮","聚肺关胃","沉紧小危","浮濡易治"],["喘急息肩","浮滑者顺","沉涩肢寒","散脉逆证"],["病热有火","洪数可医","沉微无火","无根者危"],["骨蒸发热","脉数而虚","热而涩小","必殒其躯"],["劳极诸虚","浮软微弱","土败双弦","火炎急数"],["诸病失血","脉必见芤","缓小可喜","数大可忧"],["瘀血内蓄","却宜牢大","沉小涩微","反成其害"],["遗精白浊","微涩而弱","火盛阴虚","芤濡洪数"],["三消之脉","浮大者生","细小微涩","形脱可惊"],["小便淋闭","鼻头色黄","涩小无血","数大何妨"],["大便燥结","须分气血","阳数而实","阴迟而涩"],["癫乃重阴","狂乃重阳","浮洪吉兆","沉急凶殃"],["痫脉宜虚","实急者恶","浮阳沉阴","滑痰数热"],["喉痹之脉","数热迟寒","缠喉走马","微伏则难"],["诸风眩晕","有火有痰","左涩死血","右大虚看"],["头痛多弦","浮风紧寒","热洪湿细","缓滑厥痰"],["气虚弦软","血虚微涩","肾厥弦坚","真痛短涩"],["心腹之痛","其类有九","细迟从吉","浮大延久"],["疝气弦急","积聚在里","牢急者生","弱急者死"],["腰痛之脉","多沉而弦","兼浮者风","兼紧者寒"],["弦滑痰饮","濡细肾著","大乃肾虚","沉实闪肭"],["脚气有四","迟寒数热","浮滑者风","濡细者湿"],["痿病肺虚","脉多微缓","或涩或紧","或细或濡"],["风寒湿气","合而为痹","浮涩而紧","三脉乃备"],["五疸实热","脉必洪数","涩微属虚","切忌发渴"],["脉得诸沉","责其有水","浮气与风","沉石或里"],["沉数为阳","沉迟为阴","浮大出厄","虚小可惊"],["胀满脉弦","土制于木","湿热数洪","阴寒迟弱"],["浮为虚满","紧则中实","浮大可治","虚小危极"],["五脏为积","六腑为聚","实强者生","沉细者死"],["中恶腹胀","紧细者生","脉若浮大","邪气已深"],["痈疽浮散","恶寒发热","若有痛处","痈疽所发"],["脉数发热","而痛者阳","不数不热","不疼阴疮"],["未溃痈疽","不怕洪大","已溃痈疽","洪大可怕"],["肺痈已成","寸数而实","肺痿之形","数而无力"],["肺痈色白","脉宜短涩","不宜浮大","唾糊呕血"],["肠痈实热","滑数可知","数而不热","关脉芤虚"],["微涩而紧","未脓当下","紧数脓成","切不可下"],["妇人之脉","以血为本","血旺易胎","气旺难孕"],["少阴动甚","谓之有子","尺脉滑利","妊娠可喜"],["滑疾不散","胎必三月","但疾不散","五月可别"],["左疾为男","右疾为女","女腹如箕","男腹如斧"],["欲产之脉","其至离经","水下乃产","未下勿惊"],["新产之脉","缓滑为吉","实大弦牢","有证则逆"],["小儿之脉","七至为平","更察色证","与虎口纹"],["奇经八脉","其诊又别","直上直下","浮则为督"],["牢则为冲","紧则任脉","寸左右弹","阳蹻可决"],["尺左右弹","阴蹻可别","关左右弹","带脉当诀"],["尺外斜上","至寸阴维","尺内斜上","至寸阳维"],["督脉为病","脊强癫痫","任脉为病","七疝瘕坚"],["冲脉为病","逆气里急","带主带下","脐痛精失"],["阳维寒热","目眩僵仆","阴维心痛","胸胁刺筑"],["阳跷为病","阳缓阴急","阴跷为病","阴缓阳急"],["癫痫瘈瘲","寒热恍惚","八脉脉证","各有所属"],["平人无脉","移于外络","兄位弟乘","阳溪列缺"],["病脉既明","吉凶当别","经脉之外","又有真脉"],["肝绝之脉","循刀责责","心绝之脉","转豆躁疾"],["脾则雀啄","如屋之漏","如水之流","如杯之覆"],["肺绝如毛","无根萧索","麻子动摇","浮波之合"],["肾脉将绝","至如省客","来如弹石","去如解索"],["命脉将绝","虾游鱼翔","至如涌泉","绝在膀胱"],["真脉既形","胃已无气","参察色证","断之以臆"]]}];
+const PM_DATA = [{"name":"浮","yy":"阳","poems":[{"lab":"体状诗","lines":[["浮脉惟从肉上行","如循榆荚似毛轻"],["三秋得令知无恙","久病逢之却可惊"]],"note":""},{"lab":"相类诗","lines":[["浮如木在水中浮","浮大中空乃是芤"],["拍拍而浮是洪脉","来时虽盛去悠悠"],["浮而柔细方为濡","散似杨花无定踪"]],"note":""},{"lab":"主病诗","lines":[["浮脉为阳表病居","迟风数热紧寒拘"],["浮而有力多风热","无力而浮是血虚"],["寸浮头痛眩生风","或有风痰聚在胸"],["关上土衰兼木旺","尺中溲便不流通"]],"note":""}]},{"name":"沉","yy":"阴","poems":[{"lab":"体状诗","lines":[["水行润下脉来沉","筋骨之间软滑匀"],["女子寸兮男子尺","四时如此号为平"]],"note":""},{"lab":"相类诗","lines":[["沉帮筋骨自调匀","伏则推筋着骨寻"],["沉细如绵真弱脉","弦长实大是牢形"]],"note":""},{"lab":"主病诗","lines":[["沉潜水蓄阴经病","数热迟寒滑有痰"],["无力而沉虚与气","沉而有气积并寒"],["寸沉痰郁水停胸","关主中寒痛不通"],["尺部浊遗并泄痢","肾虚腰及下元"]],"note":""}]},{"name":"迟","yy":"阴","poems":[{"lab":"体状诗","lines":[["迟来一息至惟三","阳不胜阴气血寒"],["但把浮沉分表里","消阴须益火之原"],["迟细而难知是涩","浮而迟大以虚推"]],"note":"原书注：）"},{"lab":"主病诗","lines":[["迟司脏病或多痰","沉痼瘕仔细看"],["有力而迟为冷痛","迟而无力定虚寒"],["寸迟必是上焦寒","关主中寒痛不堪"],["尺是肾虚腰脚重","溲便不禁疝牵丸"]],"note":""}]},{"name":"数","yy":"阳","poems":[{"lab":"体状诗","lines":[["数脉息间常六至","阴微阳盛必狂烦"],["浮沉表里分虚实","惟有儿童作吉看"]],"note":""},{"lab":"相类诗","lines":[["数比平人多一至","紧来如数似弹绳"],["数而时止名为促","数见关中动脉形"]],"note":""},{"lab":"主病诗","lines":[["数脉为阳热可知","只将君相火来医"],["实宜凉泻虚温补","肺病秋深却畏之"],["寸数咽喉口舌疮","吐红咳嗽肺生疡"],["当关胃火并肝火","尺属滋阴降火汤"]],"note":""}]},{"name":"滑","yy":"阳中阴","poems":[{"lab":"体状相类诗","lines":[["滑脉如珠替替然","往来流利却还前"],["莫将滑数为同类","数脉惟看至数间"]],"note":""},{"lab":"主病诗","lines":[["滑脉为阳元气衰","痰生百病食生灾"],["上为吐逆下蓄血","女脉调时定有胎"],["寸滑膈痰生呕吐","吞酸舌强或咳嗽"],["当关宿食肝脾热","渴痢淋看尺部"]],"note":""}]},{"name":"涩","yy":"阴","poems":[{"lab":"体状诗","lines":[["细迟短涩往来难","散止依稀应指间"],["如雨沾沙容易散","病蚕食叶慢而艰"]],"note":""},{"lab":"相类诗","lines":[["微似秒芒微软甚","浮沉不别有无间"]],"note":""},{"lab":"主病诗","lines":[["涩缘血少或伤精","反胃亡阳汗雨淋"],["寒湿入营为血痹","女人非孕即无经"],["寸涩心虚痛对胸","胃虚胁胀察关中"],["尺为精血俱伤候","肠结溲淋或下红"]],"note":""}]},{"name":"虚","yy":"阴","poems":[{"lab":"体状相类诗","lines":[["举之迟大按之松","脉状无涯类谷空"],["莫把芤虚为一例","芤来浮大似慈葱"]],"note":""},{"lab":"主病诗","lines":[["脉虚身热为伤暑","自汗怔忡惊悸多"],["发热阴虚须早治","养营益气莫蹉跎"],["血不荣心寸口虚","关中腹胀食难舒"],["骨蒸痿痹伤精血","却在神门两部居"]],"note":""}]},{"name":"实","yy":"阳","poems":[{"lab":"体状诗","lines":[["热蕴三焦成壮火","通肠发汗始安康"]],"note":""},{"lab":"相类诗","lines":[["实脉浮沉有力强","紧如弹索转无常"],["须知牢脉帮筋骨","实大微弦更带长"]],"note":""},{"lab":"主病诗","lines":[["实脉为阳火郁成","发狂谵语吐频频"],["或为阳毒或伤食","大便不通或气疼"],["寸实应知面热风","咽疼舌强气填胸"],["当关脾热中宫满","尺实腰肠痛不通"]],"note":""}]},{"name":"长","yy":"阳","poems":[{"lab":"体状相类诗","lines":[["过于本位脉名长","弦则非然但满张"],["弦脉与长争较远","良工尺度自能量"]],"note":""},{"lab":"主病诗","lines":[["长脉迢迢大小匀","反常为病似牵绳"],["若非阳毒癫痫病","即是阳明热势深"]],"note":""}]},{"name":"短","yy":"阴","poems":[{"lab":"体状相类诗","lines":[["两头缩缩名为短","涩短迟迟细且难"],["短涩而浮秋喜见","三春为贼有邪干"]],"note":""},{"lab":"主病诗","lines":[["短脉惟于尺寸寻","短而滑数酒伤神"],["浮为血涩沉为痞","寸主头疼尺腹疼"]],"note":""}]},{"name":"洪","yy":"阳","poems":[{"lab":"体状诗","lines":[["脉来洪盛去还衰","满指淹淹应夏时"],["若在春秋冬月分","升阳散火莫狐疑"]],"note":""},{"lab":"相类诗","lines":[["洪脉来时拍拍然","去衰来盛似波澜"]],"note":"（洪而有力为实实而无力为洪）"},{"lab":"主病诗","lines":[["脉洪阳盛血应虚","相火炎炎热病居"],["胀满胃翻须早治","阴虚泄痢可愁如"],["寸洪心火上焦炎","肺脉洪时金不堪"],["肝火胃虚肝内察","肾虚阴火尺中看"]],"note":""}]},{"name":"微","yy":"阴","poems":[{"lab":"体状相类诗","lines":[["微脉轻微瞥瞥乎","按之欲绝有如无"]],"note":""},{"lab":"主病诗","lines":[["气血微兮脉亦微","恶寒发热汗淋漓"],["男为劳极诸虚候","女作崩中带下医"],["寸微气促或心惊","关脉微时胀满形"],["尺部见之精血弱","恶寒消瘅痛呻吟"]],"note":""}]},{"name":"紧","yy":"阳","poems":[{"lab":"体状诗","lines":[["举如转索切如绳","脉象因之得紧名"],["总是寒邪来作寇","内为腹痛外身疼"]],"note":""},{"lab":"相类诗","lines":[],"note":"原书注：见弦、实"},{"lab":"主病诗","lines":[["紧为诸痛主于寒","喘咳风痫吐冷痰"],["浮紧表寒须发越","紧沉温散自然安"],["寸紧人迎气口分","当关心腹痛沉沉"],["尺中有紧为阴冷","定是奔豚与疝疼"],["诸紧为寒为痛","人迎紧盛伤于寒"],["气口紧盛伤于食","尺紧痛居其腹"]],"note":"原书注：况乃疾在其腹"}]},{"name":"缓","yy":"阴","poems":[{"lab":"体状诗","lines":[["缓脉阿阿四至通","柳梢袅袅轻风"],["欲从脉里求神气","只在从容和缓中"]],"note":""},{"lab":"相类诗","lines":[],"note":"原书注：见迟脉"},{"lab":"主病诗","lines":[["缓脉营衰卫有余","或风或湿或脾虚"],["上为项强下痿痹","分别浮沉大小区"],["寸缓风邪项背拘","关为风眩胃家虚"],["神门濡泄或风秘","或者蹒跚足力迂"]],"note":""}]},{"name":"芤","yy":"阳中阴","poems":[{"lab":"体状诗","lines":[["芤形浮大软如葱","按之旁有中央空"],["火犯阳经血上溢","热侵阴络下流红"]],"note":""},{"lab":"相类诗","lines":[["中空旁实乃为芤","浮大而迟虚脉呼"]],"note":""},{"lab":"主病诗","lines":[["寸芤积血在于胸","关内逢芤肠胃痈"],["尺部见之多下血","赤淋红痢漏崩中"]],"note":""}]},{"name":"弦","yy":"阳中阴","poems":[{"lab":"体状诗","lines":[["弦脉迢迢端直长","肝经木旺土应伤"],["怒气满胸常欲叫","翳蒙瞳子泪淋浪"]],"note":""},{"lab":"相类诗","lines":[["弦来端直似丝弦","紧则如绳左右弹"],["紧言其力弦言象","牢脉弦长沉伏间"]],"note":"原书注：（又见长脉）"},{"lab":"主病诗","lines":[["弦应东方肝胆经","饮痰寒热疟缠身"],["浮沉迟数须分别","大小单双有重轻"],["寸弦头痛膈多痰","寒热瘕察左关"],["关右胃寒心腹痛","尺中阴疝脚拘挛"],["浮弦支饮外溢","沉弦悬饮内痛"]],"note":"原书注：弦为木盛之病"}]},{"name":"革","yy":"阴","poems":[{"lab":"体状主病诗","lines":[["革脉形如按鼓皮","芤弦相合脉寒虚"],["女人半产并崩漏","男子营虚或梦遗"]],"note":""},{"lab":"相类诗","lines":[],"note":"原书注：见芤、牢"}]},{"name":"牢","yy":"阴中阳","poems":[{"lab":"体状相类诗","lines":[["弦长实大脉牢坚","牢位常居沉伏间"],["革脉芤弦自浮起","革虚牢实要详看"]],"note":""},{"lab":"主病诗","lines":[["寒则牢坚里有余","腹心寒痛木乘脾"]],"note":""}]},{"name":"濡","yy":"阴，即软字","poems":[{"lab":"体状诗","lines":[["濡形浮细按须轻","水面浮绵力不禁"],["病后产中犹有药","平人若见是无根"]],"note":""},{"lab":"相类诗","lines":[["浮而柔细知为濡","沉细诸柔作弱持"],["微则浮微如欲绝","细来沉细近于微"]],"note":""},{"lab":"主病诗","lines":[["濡为亡血阴虚病","髓海丹田暗已亏"],["汗雨夜来蒸入骨","血山崩倒湿侵脾"],["寸濡阳微自汗多","关中其奈气虚何"],["尺伤精血虚寒甚","温补真阴可起"]],"note":""}]},{"name":"弱","yy":"阴","poems":[{"lab":"体状诗","lines":[["弱来无力按之柔","柔细而沉不见浮"],["阳陷入阴精血弱","白头犹可少年愁"]],"note":""},{"lab":"相类诗","lines":[],"note":"原书注：见濡脉"},{"lab":"主病诗","lines":[["弱脉阴虚阳气衰","恶寒发热骨筋痿"],["多惊多汗精神减","益气调营急早医"],["寸弱阳虚病可知","关为胃弱与脾衰"],["欲求阳陷阴虚病","须把神门两部推"]],"note":"原书注：弱主气虚之病"}]},{"name":"散","yy":"阴","poems":[{"lab":"体状诗","lines":[["散似杨花散漫飞","去来无定至难齐"],["产为生兆胎为堕","久病逢之不必医"]],"note":""},{"lab":"相类诗","lines":[["散脉无拘散漫然","濡来浮细水中绵"],["浮而迟大为虚脉","芤脉中空有两边"]],"note":""},{"lab":"主病诗","lines":[["左寸怔忡右寸汗","溢饮左关应软散"]],"note":""}]},{"name":"细","yy":"阴","poems":[{"lab":"体状诗","lines":[["细来累累细如丝","应指沉沉无绝期"],["春夏少年俱不利","秋冬老弱却相宜"]],"note":""},{"lab":"相类诗","lines":[],"note":"原书注：见微、濡"},{"lab":"主病诗","lines":[["细脉萦萦血气衰","诸虚劳损七情乖"],["若非湿气侵腰肾","即是伤精汗泄来"],["寸细应知呕吐频","入关腹胀胃虚形"],["尺逢定是丹田冷","泄痢遗精号脱阴"]],"note":""}]},{"name":"伏","yy":"阴","poems":[{"lab":"体状诗","lines":[["伏脉推筋着骨寻","指间裁动隐然深"],["伤寒欲汗阳将解","厥逆脐疼证属阴"]],"note":""},{"lab":"相类诗","lines":[],"note":"原书注：见沉脉"},{"lab":"主病诗","lines":[["伏为霍乱吐频频","腹痛多缘宿食停"],["蓄饮老痰成积聚","散寒温里莫因循"],["食郁胸中双寸伏","欲吐不吐常兀兀"],["当关腹痛困沉沉","关后疝疼还破腹"]],"note":""}]},{"name":"动","yy":"阳","poems":[{"lab":"体状诗","lines":[["动脉摇摇数在关","无头无尾豆形团"],["其原本是阴阳搏","虚者摇兮胜者安"]],"note":""},{"lab":"主病诗","lines":[["动脉专司痛与惊","汗因阳动热因阴"],["或为泄痢拘挛病","男子亡精女子崩"]],"note":""}]},{"name":"促","yy":"阳","poems":[{"lab":"体状诗","lines":[["促脉数而时一止","此为阳极欲亡阴"],["三焦郁火炎炎盛","进必无生退可生"]],"note":""},{"lab":"相类诗","lines":[],"note":"原书注：见代脉"},{"lab":"主病诗","lines":[["促脉惟将火病医","其因有五细推之"],["时时喘咳皆痰积","或发狂斑与毒疽"]],"note":"原书注：促主阳盛之病"}]},{"name":"结","yy":"阴","poems":[{"lab":"体状诗","lines":[["结脉缓而时一止","独阴偏盛欲亡阳"],["浮为气滞沉为积","汗下分明在主张"]],"note":""},{"lab":"相类诗","lines":[],"note":"原书注：见代脉"},{"lab":"主病诗","lines":[["结脉皆因气血凝","老痰结滞苦沉吟"]],"note":"原书注：结主阴盛之病"}]},{"name":"代","yy":"阴","poems":[{"lab":"体状诗","lines":[["动而中止不能还","复动因而作代看"],["病者得之犹可疗","平人却与寿相关"]],"note":""},{"lab":"相类诗","lines":[["数而时至名为促","缓止须将结脉呼"],["止不能回方是代","结生代死自殊涂"]],"note":""},{"lab":"主病诗","lines":[["代脉元因脏气衰","腹痛泄痢下元亏"],["或为吐泻中宫病","女子怀胎三月兮"],["五十不止身无病","数内有止皆知定"],["四十一止一脏绝","四年之后多亡命"],["三十一止即三年","二十一止二年应"],["十动一止一年殂","更观气色兼形证"],["两动一止三四日","三四动止应六七"],["五六一止七八朝","次第推之自无失"]],"note":"原书注：生泄及便脓血"}]}];
+
+const RC = (function(){
+  let tab = 'sz', maskPct = 0, lvFilter = 0, grpMode = 'five', folded = false, pmCur = null;
+  const SIX = {"g_six_fu":{"n":"浮纲","axis":"位","d":"举之有余，按之不足；主表。","m":["浮","洪","濡","散","芤","革"]},"g_six_chen":{"n":"沉纲","axis":"位","d":"轻取不应，重按始得；主里。","m":["沉","伏","牢","弱"]},"g_six_chi":{"n":"迟纲","axis":"数","d":"一息三至，去来极慢；主寒。","m":["迟","缓","涩","结"]},"g_six_shu":{"n":"数纲","axis":"数","d":"一息六至，来去薄疾；主热。","m":["数","促","动"]},"g_six_xu":{"n":"虚纲","axis":"势","d":"按之无力，脉体不足；主虚。","m":["虚","微","细","代","短"]},"g_six_shi":{"n":"实纲","axis":"势","d":"按之有力，脉体有余；主实。","m":["实","滑","紧","长","弦"]}};
+  const EYE = {"浮":"如水漂木·举有余","沉":"如石投水·按至骨","迟":"一息三至","数":"一息六至","滑":"如珠替替·流利","涩":"如刀刮竹·往来难","虚":"迟大而软·按之空","实":"大而长·应指愊愊","长":"过于本位·迢迢","短":"不能满部·两头缩","洪":"来盛去衰·拍拍然","微":"极细而软·若有若无","紧":"如转索·左右弹手","缓":"一息四至·阿阿然","芤":"如按慈葱·中空","弦":"端直以长·如张弓弦","革":"如按鼓皮·芤弦合","牢":"沉伏之间·实大弦长","濡":"如帛在水·浮细而软","弱":"沉细而软·按乃得","散":"杨花散漫·去来无定","细":"细直而软·如丝线","伏":"推筋着骨·指下裁动","动":"如豆·厥厥动摇","促":"数而时一止","结":"缓而时一止","代":"止有常数·不能自还"};
+  let LS_KEY = MZ.key('mz_recite_daily_v15');
+
+  const wrap = t => String(t||'').split('').map(ch =>
+    /\s/.test(ch) ? ch : '<span class="mchar">' + ch + '</span>').join('');
+  const lineText = cl => cl.join('，') + '。';
+  const yyLab = v => String(v||'').replace(/，即软字/g, '（软）').replace(/，/g, '·');
+  const lvOf = lab => {
+    if(/相类诗/.test(lab) && !/体状/.test(lab)) return 2;      // 熟背
+    if(/主病诗/.test(lab) && !/体状/.test(lab)) return 3;      // 熟读
+    return 1;                                                   // 必背
+  };
+  const lvName = l => l === 1 ? '必背' : l === 2 ? '熟背' : '熟读';
+
+  function lineHTML(cl, idx, key, lv){
+    return '<div class="rc-line" data-key="' + key + '" data-i="' + idx + '" data-lv="' + (lv||1) + '">' +
+      '<div class="rc-txt">' + wrap(lineText(cl)) + '</div>' +
+      '<button class="rc-ok" title="背下了就点一下（计入进度，自动存档）">✓</button>' +
+      '<button class="rc-spk" data-say="' + esc(lineText(cl)) + '">读</button></div>';
+  }
+
+  /* —— 逐行「已背」记录：按使用者存档，键名 u:<id>:... 隔离 —— */
+  function recMap(){ if(!LS.rck) LS.rck = {}; return LS.rck; }
+  function markDone(){
+    const m = recMap();
+    $$('#scRecite .rc-line[data-key]').forEach(el => {
+      el.classList.toggle('ok', !!m[el.dataset.key]);
+    });
+  }
+  function updateDoneBar(){
+    const bar = $('#rcDone'); if(!bar) return;
+    const box = (tab === 'sz') ? $('#rcSzBox') : $('#rcPmBox');
+    if(!box) return;
+    const all = box.querySelectorAll('.rc-line[data-key]');
+    let done = 0;
+    all.forEach(el => { if(el.classList.contains('ok')) done++; });
+    const total = all.length, pct = total ? Math.round(done/total*100) : 0;
+    bar.innerHTML = '<span>已背 <b>' + done + '</b> / ' + total + ' 行</span>' +
+      '<span class="rc-done-bar"><i style="width:' + pct + '%"></i></span>' +
+      '<span>' + pct + '%</span>' +
+      (done ? '<button class="rc-done-rst" id="rcDoneRst">清零</button>' : '');
+  }
+
+  /* —— 百分比遮字：逐字随机遮挡，点击逐字揭开 —— */
+  function applyMask(){
+    const root = document.getElementById('scRecite');
+    if(!root) return;
+    const all = root.querySelectorAll('.rc-txt .mchar');
+    for(let i = 0; i < all.length; i++){
+      const el = all[i];
+      el.classList.remove('lit');
+      if(maskPct <= 0){ el.classList.remove('mhide'); continue; }
+      if(maskPct >= 100){ el.classList.add('mhide'); continue; }
+      // 稳定伪随机：同一字符位置结果固定，重绘不跳动
+      const seed = (i * 2654435761) % 1000 / 10;
+      if(seed < maskPct) el.classList.add('mhide'); else el.classList.remove('mhide');
+    }
+    $$('#scRecite .rc-txt').forEach(el => el.classList.remove('hidden'));
+    $$('#scRecite .rc-pct[data-pct]').forEach(b =>
+      b.classList.toggle('on', +b.dataset.pct === maskPct));
+  }
+
+  /* —— 今日一课 —— */
+  function todayKey(){ const d = new Date(); return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
+  function hashStr(s){ let x = 0; for(let i=0;i<s.length;i++) x = (x*131 + s.charCodeAt(i)) >>> 0; return x; }
+  function todayPulses(){
+    const k = todayKey(), seed = hashStr(k);
+    const n = PM_DATA.length;
+    const a1 = seed % n, a2 = (a1 + 1 + (seed >> 7) % (n - 1)) % n;
+    return [PM_DATA[a1], PM_DATA[a2]];
+  }
+  function loadDaily(){
+    try{ return JSON.parse(localStorage.getItem(LS_KEY) || '{}'); }catch(e){ return {}; }
+  }
+  function saveDaily(o){ try{ localStorage.setItem(LS_KEY, JSON.stringify(o)); }catch(e){} MZ.touch(); }
+  function renderToday(){
+    const ps = todayPulses(), daily = loadDaily(), k = todayKey();
+    daily[k] = daily[k] || {};
+    let total = 0, done = 0;
+    Object.keys(daily).forEach(d => Object.keys(daily[d]).forEach(x => { total++; if(daily[d][x]) done++; }));
+    let html = '<div class="rc-today"><div class="th"><b>今日一课</b>' +
+      '<span class="cn">' + k + ' · 每日 2 脉，雷打不动</span></div><div class="tl">';
+    ps.forEach(p => {
+      const ok = !!daily[k][p.name];
+      html += '<button class="tc' + (ok ? ' done' : '') + '" data-daily="' + esc(p.name) + '">' +
+        '<b>' + esc(p.name) + '脉 <span style="font-size:.6rem;color:var(--ink-3);font-family:var(--mono)">' + esc(yyLab(p.yy)) + '</span></b>' +
+        '<i>' + esc(EYE[p.name] || '') + '</i></button>';
+    });
+    html += '</div><div class="rc-prog"><span>累计打卡 ' + done + ' / ' + Math.max(total, 2) + '</span>' +
+      '<span class="rc-bar"><i style="width:' + (total ? Math.round(done/total*100) : 0) + '%"></i></span>' +
+      '<span>' + (total ? Math.round(done/total*100) : 0) + '%</span></div></div>';
+    $('#rcToday').innerHTML = html;
+  }
+
+  function renderSZ(){
+    let html = '';
+    SZ_DATA.forEach((sec, si) => {
+      const n = sec.lines.length;
+      html += '<div class="rc-sec' + (folded ? ' fold' : '') + '" data-lv="1">' +
+        '<div class="rc-sh"><b>' + esc(sec.t) + '</b><span class="cn">' + n + ' 行</span>' +
+        '<span class="rc-lv rc-lv1">必背</span>' +
+        '<button class="rc-spk" data-say="' + esc(sec.lines.map(lineText).join('，')) + '" style="margin-left:auto;font-size:.56rem">读全节</button></div>' +
+        '<div class="rc-lines">';
+      sec.lines.forEach((cl, i) => { html += lineHTML(cl, i, 'sz-' + si + '-' + i, 1); });
+      html += '</div></div>';
+    });
+    $('#rcSzBox').innerHTML = html;
+    markDone(); updateDoneBar();
+  }
+
+  function renderPM(){
+    const gmap = {};
+    (typeof MAI !== 'undefined' ? MAI : []).forEach(n => { gmap[n.name] = n.g; });
+
+    // 六纲反查
+    const sixOf = {};
+    Object.keys(SIX).forEach(g => SIX[g].m.forEach(nm => { sixOf[nm] = g; }));
+
+    let groups = [];   // [{id,name,axis,color,desc,items}]
+    if(grpMode === 'six'){
+      Object.keys(SIX).forEach(g => {
+        const items = PM_DATA.filter(p => SIX[g].m.indexOf(p.name) >= 0);
+        if(items.length) groups.push({
+          id: g, name: SIX[g].n, axis: SIX[g].axis, desc: SIX[g].d,
+          color: (g.indexOf('fu')>0||g.indexOf('shu')>0) ? 'var(--zhu)' : 'var(--jade)', items: items
+        });
+      });
+    } else {
+      const order = (typeof GORDER !== 'undefined' ? GORDER : []);
+      const byG = {};
+      PM_DATA.forEach(p => {
+        const g = gmap[p.name] || 'g_mai_other';
+        (byG[g] = byG[g] || []).push(p);
+      });
+      const gs = order.filter(g => byG[g] && byG[g].length);
+      Object.keys(byG).forEach(g => { if (gs.indexOf(g) < 0) gs.push(g); });
+      gs.forEach(g => {
+        const G = (typeof GROUPS !== 'undefined' && GROUPS[g]) || {name: g, short: '其他', axis: '', color: '#888', desc: ''};
+        groups.push({ id: g, name: G.name, axis: G.axis, desc: G.desc || '', color: G.color, items: byG[g] });
+      });
+    }
+
+    let jump = '<div class="rc-sel">';
+    groups.forEach(g => {
+      jump += '<button class="chip rc-gjump" data-g="' + esc(g.id) + '">' +
+        esc(g.name.replace(/脉?类?$/, '') || g.name) + '<span class="c">' + g.items.length + '</span></button>';
+    });
+    jump += '</div>';
+
+    let body = '';
+    groups.forEach(g => {
+      body += '<div class="rc-grp" id="rcg-' + esc(g.id) + '">' +
+        '<div class="rc-gh" style="border-left-color:' + g.color + '">' +
+          '<b style="color:' + g.color + '">' + esc(g.name) + '</b>' +
+          '<span class="cn">以' + esc(g.axis) + '为纲</span>' +
+          '<span class="cn">' + g.items.length + ' 脉</span>' +
+          '<span class="gd">' + esc(g.desc || '') + '</span>' +
+        '</div>';
+      body += '<div class="rc-glist">' + g.items.map(p => {
+        const sx = (grpMode === 'six') ? (gmap[p.name] ? '' : '') :
+          (sixOf[p.name] ? '<em>' + esc(SIX[sixOf[p.name]].n) + '</em>' : '');
+        return '<button class="rc-gm" data-jump="' + esc(g.id) + '-' + esc(p.name) + '" title="跳到 ' + esc(p.name) + '脉">' + esc(p.name) + sx +
+          '<i>' + esc(yyLab(p.yy)) + '</i></button>';
+      }).join('') + '</div>';
+
+      g.items.forEach(p => {
+        const sayAll = [p.name + '脉'].concat(p.poems.map(x => x.lines.map(lineText).join('，'))).join('，');
+        body += '<div class="rc-pulse" id="rcp-' + esc(g.id) + '-' + esc(p.name) + '">' +
+          '<div class="rc-ph">' +
+            '<b>' + esc(p.name) + '脉</b>' +
+            '<span class="cn">' + esc(yyLab(p.yy)) + '</span>' +
+            '<button class="rc-spk" data-say="' + esc(sayAll) + '" style="margin-left:auto">读全部</button>' +
+          '</div>';
+        if(EYE[p.name]) body += '<div class="rc-eye"><b>字眼</b>' + esc(EYE[p.name]) + '</div>';
+        p.poems.forEach((pm2, pi) => {
+          const lv = lvOf(pm2.lab);
+          body += '<div class="rc-lab" data-lv="' + lv + '">〔' + esc(pm2.lab) + '〕' +
+            '<span class="rc-lv rc-lv' + lv + '">' + lvName(lv) + '</span></div>';
+          if(pm2.lines && pm2.lines.length){
+            body += '<div class="rc-lines" data-lv="' + lv + '">';
+            pm2.lines.forEach((cl, i) => { body += lineHTML(cl, i, 'pm-' + g.id + '-' + pi + '-' + i, lv); });
+            body += '</div>';
+          }
+          if(pm2.note) body += '<div class="rc-note">' + esc(pm2.note) + '</div>';
+        });
+        body += '</div>';
+      });
+      body += '</div>';
+    });
+    $('#rcPmBox').innerHTML = jump + body;
+    applyLvFilter();
+    markDone(); updateDoneBar();
+  }
+
+  /* 按分级过滤（只隐藏 2/3 级的诗句块） */
+  function applyLvFilter(){
+    const root = $('#rcPmBox');
+    if(!root || !root.querySelectorAll) return;
+    $$('#rcPmBox .rc-lines[data-lv]').forEach(el => {
+      const lv = +el.dataset.lv;
+      el.style.display = (!lvFilter || lv <= lvFilter) ? '' : 'none';
+    });
+    $$('#rcPmBox .rc-lab[data-lv]').forEach(el => {
+      const lv = +el.dataset.lv;
+      el.style.display = (!lvFilter || lv <= lvFilter) ? '' : 'none';
+    });
+  }
+
+  function render(){
+    if(tab === 'sz'){ renderSZ(); } else { renderPM(); }
+    $('#rcSzBox').style.display = tab === 'sz' ? '' : 'none';
+    $('#rcPmBox').style.display = tab === 'pm' ? '' : 'none';
+    $('#rcTabSz').classList.toggle('on', tab === 'sz');
+    $('#rcTabPm').classList.toggle('on', tab === 'pm');
+    $('#rcFold').textContent = folded ? '全展开' : '收起分节';
+    setTimeout(applyMask, 0);
+  }
+
+  function setPct(v){
+    maskPct = v;
+    $$('#scRecite .rc-pct[data-pct]').forEach(b => b.classList.toggle('on', +b.dataset.pct === v));
+    applyMask();
+  }
+  function toggleFold(){
+    folded = !folded;
+    $$('#scRecite .rc-sec').forEach(el => el.classList.toggle('fold', folded));
+    $('#rcFold').textContent = folded ? '全展开' : '收起分节';
+  }
+  function setTab(t){ tab = t; render(); }
+  function goPulse(name){
+    const sixOf = {};
+    Object.keys(SIX).forEach(g => SIX[g].m.forEach(nm => { sixOf[nm] = g; }));
+    const gid = grpMode === 'six'
+      ? (sixOf[name] || '')
+      : ((typeof MAI !== 'undefined' ? (MAI.find(x => x.name === name) || {}).g : '') || '');
+    const el = document.getElementById('rcp-' + gid + '-' + name);
+    if(el){
+      el.scrollIntoView({behavior:'smooth', block:'center'});
+      el.classList.add('hit');
+      setTimeout(() => el.classList.remove('hit'), 1600);
+    }
+  }
+
+  function bind(){
+    const box = $('#scRecite');
+    box.addEventListener('click', e => {
+      const ok = e.target.closest('.rc-ok');
+      if(ok){
+        const ln = ok.closest('.rc-line');
+        if(ln && ln.dataset.key){
+          const k = ln.dataset.key, m = recMap();
+          if(m[k]) delete m[k]; else m[k] = 1;
+          ln.classList.toggle('ok', !!m[k]);
+          save(); updateDoneBar();
+        }
+        return;
+      }
+
+      const rst = e.target.closest('#rcDoneRst');
+      if(rst){ LS.rck = {}; save(); markDone(); updateDoneBar(); toast('已背记录已清零'); return; }
+
+      const spk = e.target.closest('.rc-spk');
+      if(spk){ SPK.speak(spk.dataset.say || '', spk); return; }
+
+      const pct = e.target.closest('.rc-pct');
+      if(pct){
+        if(pct.dataset.pct !== undefined){ setPct(+pct.dataset.pct); return; }
+        if(pct.dataset.lv !== undefined){
+          lvFilter = +pct.dataset.lv;
+          $$('#scRecite .rc-pct[data-lv]').forEach(b => b.classList.toggle('on', +b.dataset.lv === lvFilter));
+          applyLvFilter();
+          return;
+        }
+        if(pct.dataset.gm !== undefined){
+          grpMode = pct.dataset.gm;
+          $$('#scRecite .rc-pct[data-gm]').forEach(b => b.classList.toggle('on', b.dataset.gm === grpMode));
+          renderPM(); setTimeout(applyMask, 0);
+          return;
+        }
+        return;
+      }
+
+      const dl = e.target.closest('.tc');
+      if(dl){
+        const name = dl.dataset.daily, daily = loadDaily(), k = todayKey();
+        daily[k] = daily[k] || {};
+        daily[k][name] = !daily[k][name];
+        saveDaily(daily);
+        renderToday();
+        goPulse(name);
+        return;
+      }
+
+      const gj = e.target.closest('.rc-gjump');
+      if(gj){
+        const el = document.getElementById('rcg-' + gj.dataset.g);
+        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+        $$('#scRecite .rc-gjump').forEach(x => x.classList.remove('on'));
+        gj.classList.add('on');
+        return;
+      }
+      const gm = e.target.closest('.rc-gm');
+      if(gm){
+        const el = document.getElementById('rcp-' + gm.dataset.jump);
+        if(el){
+          el.scrollIntoView({behavior:'smooth', block:'center'});
+          el.classList.add('hit');
+          setTimeout(() => el.classList.remove('hit'), 1500);
+        }
+        return;
+      }
+      if(e.target.classList && e.target.classList.contains('mchar') && e.target.classList.contains('mhide')){
+        e.target.classList.toggle('lit');
+      }
+    });
+
+    $('#rcTabSz').addEventListener('click', () => setTab('sz'));
+    $('#rcTabPm').addEventListener('click', () => setTab('pm'));
+    $('#rcFold').addEventListener('click', toggleFold);
+    $('#rcFill').addEventListener('click', () => {
+      $$('#scRecite .mchar.mhide').forEach(el => el.classList.remove('mhide'));
+      maskPct = 0;
+      $$('#scRecite .rc-pct[data-pct]').forEach(b => b.classList.toggle('on', +b.dataset.pct === 0));
+      toast('已全部揭开');
+    });
+    $('#rcSpkAll').addEventListener('click', function(){
+      let txt = '';
+      if(tab === 'sz') txt = SZ_DATA.map(s => s.lines.map(lineText).join('，')).join('，');
+      else {
+        const p = PM_DATA.find(x => x.name === pmCur) || PM_DATA[0];
+        txt = [p.name + '脉'].concat(p.poems.map(x => x.lines.map(lineText).join('，'))).join('，');
+      }
+      SPK.speak(txt, this);
+    });
+    renderToday();
+    render();
+  }
+  return {bind: bind, render: render, setTab: setTab, setPct: setPct, goPulse: goPulse};
+})();
+
+/* =========================================================
+   启动
+   ========================================================= */
+applyTheme();
+applyFont();
+buildHome();
+buildChips();
+renderList();
+fillSelects();
+// 对比默认：一对同组易混（浮/芤）
+setCompare('mai-fu', 'mai-kou');
+startQuiz();
+renderReview();
+RC.bind();
+
+// 顶栏副标题
+$('#topMeta').textContent = `廿七脉 · ${MAI.length} 条 · 位 数 形 势`;
+})();
+</script>
+
+<script>
+(function(){
+  var t=document.getElementById('hudClock');
+  var tag=document.getElementById('hudTag');
+  function tick(){
+    var d=new Date();
+    var p=function(n){return (n<10?'0':'')+n};
+    if(t) t.textContent=p(d.getHours())+':'+p(d.getMinutes());
+    if(tag){
+      var h=d.getHours();
+      var seg = h<5?'夜半':h<7?'平旦':h<9?'辰时':h<11?'巳时':h<13?'午时':h<15?'未时':h<17?'申时':h<19?'酉时':h<21?'戌时':h<23?'亥时':'子时';
+      tag.textContent=seg;
+    }
+  }
+  tick(); setInterval(tick,20000);
+})();
+</script>
+
+<script>
+(function(){
+  var cv=document.getElementById('hudWave');
+  if(!cv||!cv.getContext) return;
+  var ctx=cv.getContext('2d');
+  var reduce=false;
+  try{ reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){}
+  var W=0,H=0,dpr=Math.min(window.devicePixelRatio||1,2);
+  function size(){
+    var r=cv.getBoundingClientRect();
+    W=Math.max(1,Math.round(r.width)); H=Math.max(1,Math.round(r.height));
+    cv.width=W*dpr; cv.height=H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  size();
+  window.addEventListener('resize',function(){ size(); if(reduce) draw(); });
+
+  var period=200, scroll=0, last=0;
+  function g(u,c,w){ var d=(u-c)/w; return Math.exp(-d*d); }
+  function pulse(u){
+    return 1.00*g(u,0.330,0.011)
+         - 0.32*g(u,0.312,0.009)
+         - 0.22*g(u,0.372,0.011)
+         + 0.17*g(u,0.160,0.022)
+         + 0.24*g(u,0.560,0.040)
+         + 0.10*g(u,0.700,0.030);
+  }
+  function color(){
+    var cs=getComputedStyle(document.documentElement);
+    var c=(cs.getPropertyValue('--zhu')||'').trim();
+    return c||'#3ce9ff';
+  }
+  function draw(){
+    if(W<10) size();
+    ctx.clearRect(0,0,W,H);
+    var midY=H*0.62, amp=H*0.40;
+    var c=color();
+    ctx.beginPath();
+    for(var x=0;x<=W;x++){
+      var u=((x+scroll)%period)/period;
+      var y=midY-pulse(u)*amp;
+      if(x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    }
+    ctx.strokeStyle=c; ctx.lineWidth=1.3; ctx.lineJoin='round'; ctx.lineCap='round';
+    try{ ctx.shadowColor=c; ctx.shadowBlur=8; }catch(e){}
+    ctx.globalAlpha=.8; ctx.stroke();
+    try{ ctx.shadowBlur=0; }catch(e){}
+    ctx.globalAlpha=1;
+
+    // 最新采样点
+    var ux=(scroll%period)/period;
+    var px=0, py=midY-pulse(((0+scroll)%period)/period)*amp;
+    ctx.beginPath(); ctx.arc(px,py,2.2,0,Math.PI*2);
+    ctx.fillStyle=c; ctx.globalAlpha=.95; ctx.fill(); ctx.globalAlpha=1;
+  }
+  function loop(ts){
+    if(!last) last=ts;
+    var dt=Math.min(64, ts-last); last=ts;
+    if(W<10) size();
+    scroll=(scroll+dt*0.062)%1e6;
+    draw();
+    requestAnimationFrame(loop);
+  }
+  if(reduce){ draw(); }
+  else{ requestAnimationFrame(loop); }
+})();
+</script>
+</body>
+</html>
