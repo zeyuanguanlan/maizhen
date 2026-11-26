@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="night">
+<html lang="zh-CN" data-theme="night" data-skin="classic">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -134,7 +134,9 @@ button,select,input{font-family:inherit;color:inherit;border:0;background:none;c
 /* 脉谱：筛选 */
 .filters{position:sticky;top:calc(52px + env(safe-area-inset-top));z-index:40;
   background:color-mix(in srgb,var(--paper) 94%,transparent);backdrop-filter:blur(10px);
-  padding:8px 0 7px;margin:0 -2px}
+  padding:8px 0 7px;margin:0 -2px;
+  border-bottom:1px solid var(--line-2);
+  box-shadow:0 12px 18px -16px rgba(0,0,0,.65)}
 .chips{display:flex;gap:6px;overflow-x:auto;padding:0 2px 2px;scrollbar-width:none}
 .chips::-webkit-scrollbar{display:none}
 .chip{
@@ -170,6 +172,8 @@ html[data-theme="night"] .chip.on .c{color:rgba(26,18,16,.65)}
 /* 详情 */
 .nav-back{display:flex;align-items:center;gap:6px;padding:12px 0 4px;font-size:.76rem;color:var(--ink-3)}
 .nav-back button{display:flex;align-items:center;gap:5px;color:var(--jade);font-size:.76rem;letter-spacing:.04em}
+.nav-back #btnShare{margin-left:auto;color:var(--ink-3);font-size:.68rem;letter-spacing:.02em}
+.nav-back #btnShare:active{color:var(--jade)}
 .nhead{padding:6px 0 14px;border-bottom:1px solid var(--line)}
 .nhead .row1{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap}
 .nhead .nm{font-family:var(--serif);font-size:2.5rem;font-weight:700;line-height:1;letter-spacing:.04em}
@@ -196,6 +200,8 @@ html[data-theme="night"] .lay.on{color:#1a1210}
 }
 .quote .ref{display:block;font-family:var(--sans);font-size:.62rem;color:var(--ink-3);letter-spacing:.04em;margin-top:9px;text-align:right}
 .txt{font-size:.84rem;line-height:1.85;color:var(--ink-2)}
+.txt .lead{display:block;font-size:.92rem;line-height:1.95;color:var(--ink);
+  font-weight:600;letter-spacing:.01em;margin-bottom:3px}
 .txt em{font-style:normal;color:var(--zhu);font-weight:600}
 .dimt{width:100%;border-collapse:collapse;font-size:.78rem}
 .dimt th,.dimt td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
@@ -235,7 +241,7 @@ html[data-theme="night"] .lay.on{color:#1a1210}
 .reveal.on{display:block;animation:fade .2s ease}
 .btn{display:block;width:100%;padding:12px;border-radius:var(--r-s);background:var(--zhu);color:#fff;
   font-size:.82rem;letter-spacing:.14em;font-weight:600;text-align:center;transition:.16s}
-html[data-theme="night"] .btn{color:#1a1210}
+html[data-theme="night"] .btn:not(.ghost){color:#1a1210}
 .btn:active{transform:translateY(1px)}
 .btn.ghost{background:transparent;color:var(--jade);border:1px solid var(--jade);box-shadow:none}
 .btn.sm{padding:10px;font-size:.76rem;letter-spacing:.1em}
@@ -261,11 +267,47 @@ html[data-theme="night"] .btn{color:#1a1210}
 .vt tr.diff td:first-child{border-left:3px solid var(--zhu)}
 .vt .mk{display:block;font-size:.55rem;color:var(--zhu);letter-spacing:.04em;margin-top:3px}
 .note{font-size:.72rem;color:var(--ink-3);line-height:1.75;margin-top:10px}
+/* 全脉总表 */
+.mtwrap{margin-top:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:3px}
+table.mt{width:100%;border-collapse:collapse;font-size:.68rem;min-width:100%}
+table.mt th,table.mt td{border-bottom:1px solid var(--line-2);padding:7px 7px;text-align:left;vertical-align:top;line-height:1.6}
+table.mt thead th{position:sticky;top:0;background:var(--paper-2);font-family:var(--mono);font-size:.56rem;
+  letter-spacing:.1em;color:var(--ink-3);font-weight:600;z-index:2;white-space:nowrap}
+table.mt tbody tr:active{background:var(--zhu-bg)}
+table.mt td.nm{white-space:nowrap;width:4.6em}
+table.mt td.nm b{font-family:var(--serif);font-size:1.05rem;letter-spacing:.06em;cursor:pointer}
+table.mt td.nm em{font-style:normal;font-family:var(--mono);font-size:.5rem;color:var(--ink-3);margin-left:3px}
+table.mt td.gr{width:3.4em;font-family:var(--mono);font-size:.54rem;letter-spacing:.04em;white-space:nowrap}
+table.mt td.dm{color:var(--ink-2)}
+table.mt td.dm.same{color:var(--ink-3);opacity:.5}
+table.mt td.ac{width:2.2em;text-align:center}
+table.mt .go{font-size:.6rem;padding:2px 6px;border:1px solid var(--line);border-radius:2px;color:var(--ink-3);background:var(--card)}
+table.mt tr.gsep td{border-top:2px solid var(--line)}
+/* 手机竖屏：总表不再横向滑动，改为自适应换行，保证「脉/位」与「势」同屏可见 */
+@media(max-width:600px){
+  .mtwrap{overflow-x:hidden}
+  table.mt{min-width:0;width:100%;table-layout:auto;font-size:.62rem}
+  table.mt th,table.mt td{padding:6px 5px;line-height:1.55}
+  table.mt thead th{white-space:normal;line-height:1.4}
+  table.mt td.nm{width:3.1em}
+  table.mt td.gr{width:2.5em}
+  table.mt td.ac{width:2em}
+}
+.rc-pctbar .ck{font-family:var(--mono);font-size:.56rem;color:var(--ink-3);letter-spacing:.1em;margin-right:2px}
 
 /* 自测 */
-.qbox{padding:18px 16px;text-align:center;border-radius:var(--r);border:1px solid var(--line);background:var(--card)}
-.qbox .prog{font-size:.62rem;color:var(--ink-3);letter-spacing:.16em;margin-bottom:12px}
-.qbox .clue{font-family:var(--serif);font-size:.98rem;line-height:1.95;color:var(--ink);letter-spacing:.02em}
+.qbox{padding:15px 16px;text-align:center;border-radius:var(--r);border:1px solid var(--line);background:var(--card)}
+.qbox .prog{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  font-size:.62rem;color:var(--ink-3);letter-spacing:.16em;margin-bottom:12px}
+.qbox .prog .sc{letter-spacing:.06em;color:var(--jade);border:1px solid var(--line);
+  border-radius:99px;padding:2px 8px;font-size:.58rem}
+.qbox .clue{font-family:var(--serif);font-size:.95rem;line-height:1.9;color:var(--ink);letter-spacing:.02em}
+.qbox .cue{display:flex;align-items:baseline;gap:10px;padding:7px 0}
+.qbox .cue + .cue{border-top:1px dashed var(--line-2)}
+.qbox .cue .k{flex:none;font-size:.64rem;line-height:1;letter-spacing:.12em;color:var(--jade);
+  border:1px solid var(--line);border-radius:4px;padding:4px 6px 3px}
+.qbox .cue .v{flex:1;min-width:0;text-align:left;font-family:var(--serif);font-size:.95rem;
+  line-height:1.85;letter-spacing:.02em}
 .qbox .hintx{font-size:.7rem;color:var(--ink-3);margin-top:10px;letter-spacing:.04em}
 .opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
 .opt{
@@ -283,8 +325,12 @@ html[data-theme="night"] .opt.right{color:#10201d}
 .fb .verdict{font-weight:700;letter-spacing:.06em;margin-bottom:5px;display:block}
 .fb .verdict.ok{color:var(--jade)}
 .fb .verdict.no{color:var(--zhu)}
-.stat{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
-.stat div{background:var(--card);border:1px solid var(--line);border-radius:var(--r-s);padding:12px 6px;text-align:center}
+#scTest .stat{display:none}
+#scTest.done .stat{display:grid}
+.stat{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+#scTest .btnrow{display:flex;gap:8px;margin-top:12px;align-items:center;flex-wrap:wrap}
+#scTest .btnrow .btn{width:auto;flex:0 0 auto;padding:10px 18px}
+.stat div{background:var(--card);border:1px solid var(--line);border-radius:var(--r-s);padding:10px 6px;text-align:center}
 .stat b{display:block;font-family:var(--serif);font-size:1.5rem;line-height:1;font-weight:700;color:var(--zhu)}
 .stat span{display:block;font-size:.6rem;color:var(--ink-3);margin-top:5px;letter-spacing:.06em}
 
@@ -335,7 +381,7 @@ html[data-theme="night"] .spk.on{color:#10201d}
 .rev-hero>div{background:var(--card);border:1px solid var(--line);border-radius:var(--r-s);padding:13px 6px;text-align:center}
 .rev-hero b{display:block;font-family:var(--serif);font-size:1.55rem;line-height:1;font-weight:700;color:var(--zhu)}
 .rev-hero span{display:block;font-size:.6rem;color:var(--ink-3);margin-top:5px;letter-spacing:.06em}
-.revlist{margin-top:10px;display:grid;gap:7px}
+.revlist{margin-top:10px;display:grid;grid-template-columns:minmax(0,1fr);gap:7px}
 .revitem{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);
   border-radius:var(--r-s);padding:11px 12px;text-align:left;transition:.15s;width:100%}
 .revitem:active{transform:scale(.99);border-color:var(--zhu)}
@@ -348,6 +394,15 @@ html[data-theme="night"] .spk.on{color:#10201d}
 .rd.due{color:#fff;background:var(--zhu)}
 html[data-theme="night"] .rd.due{color:#1a1210}
 .rd.new{color:var(--jade);border:1px solid var(--jade)}
+/* 四言举要轨：✓/✗ 双按钮 */
+.szbtns{display:flex;gap:4px;flex:none}
+.szbtns button{width:24px;height:24px;border-radius:2px;border:1px solid var(--line);
+  background:var(--card);color:var(--ink-3);font-size:.66rem;line-height:1;display:grid;place-items:center}
+.szbtns .szok:active{background:var(--jade);color:#fff;border-color:var(--jade)}
+.szbtns .szno:active{background:var(--zhu);color:#fff;border-color:var(--zhu)}
+.szitem{align-items:flex-start}
+.szitem .rm i{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.rc-line.hit{box-shadow:var(--glow);border-color:var(--zhu)!important}
 .rd.ok{color:var(--ink-3);border:1px solid var(--line)}
 /* 关联区 */
 .relbox{margin-top:14px;border:1px solid var(--line);border-radius:var(--r-s);background:var(--card);overflow:hidden}
@@ -636,6 +691,9 @@ th{
 .rc-pct:hover{border-color:var(--zhu);color:var(--zhu)}
 .rc-pct.on{background:var(--zhu);border-color:var(--zhu);color:#fff;box-shadow:var(--glow)}
 .rc-pct .k{opacity:.6;font-size:.5rem;margin-left:2px}
+.rc-sep{width:1px;height:14px;background:var(--line);margin:0 3px}
+.rc-pct.roll{border-color:var(--jade);color:var(--jade)}
+.rc-pct.roll:hover{background:var(--jade);border-color:var(--jade);color:#fff}
 .rc-lv{display:inline-block;font-family:var(--mono);font-size:.5rem;padding:1px 5px;border-radius:2px;margin-left:5px;letter-spacing:.08em;vertical-align:middle}
 .rc-lv1{background:rgba(200,40,60,.12);color:#c0283c;border:1px solid rgba(200,40,60,.3)}
 .rc-lv2{background:rgba(190,120,0,.12);color:#b06a00;border:1px solid rgba(190,120,0,.3)}
@@ -1018,6 +1076,287 @@ html[data-theme="day"] .hero .hud-wave{mix-blend-mode:multiply;opacity:.5}
   .hero .big::before,.hero .big::after{animation:none !important}
 }
 
+/* =========================================================
+   皮肤 v2.0 —— 中国风古典（宣纸 · 墨 · 朱砂 · 青瓷）
+   必须置于科技皮肤之后：用 html[data-skin="classic"] 提高优先级覆盖
+   ========================================================= */
+html[data-skin="classic"]{
+  --paper:#f1e6d2; --paper-2:#f8f0df; --paper-3:#e8dbc1;
+  --card:#fcf6e8; --card-2:#f7eeda;
+  --ink:#2b2118; --ink-2:#4e4033; --ink-3:#8b7861;
+  --line:#d6c4a4; --line-2:#e6d9bd;
+  --zhu:#9c2b1c; --zhu-2:#bb4326; --zhu-bg:rgba(156,43,28,.07);
+  --jade:#3d6b58; --jade-bg:rgba(61,107,88,.08);
+  --gold:#9c7526; --gold-bg:rgba(156,117,38,.1);
+  --sel:#f6e2b8;
+  --r:3px; --r-s:2px; --r-l:5px;
+  --shadow:0 1px 0 rgba(255,252,244,.75) inset, 0 10px 24px -18px rgba(74,48,20,.75);
+  --glow:0 0 0 1px rgba(156,43,28,.14);
+  --grid:transparent;
+  --scrim:rgba(241,230,210,.9);
+  --serif:"Songti SC","STSong","Source Han Serif SC","Noto Serif SC","SimSun",serif;
+  --mono-ui:var(--serif);
+}
+html[data-skin="classic"][data-theme="night"]{
+  --paper:#171310; --paper-2:#1e1915; --paper-3:#241d17;
+  --card:#221c16; --card-2:#1c1712;
+  --ink:#ece0c8; --ink-2:#c3b49a; --ink-3:#8d7c66;
+  --line:#3a2f24; --line-2:#2c241b;
+  --zhu:#d4735a; --zhu-2:#e89272; --zhu-bg:rgba(212,115,90,.13);
+  --jade:#7fb59a; --jade-bg:rgba(127,181,154,.12);
+  --gold:#cfa55e; --gold-bg:rgba(207,165,94,.13);
+  --sel:#3b2f1c;
+  --shadow:0 1px 0 rgba(0,0,0,.5) inset, 0 14px 32px -20px #000;
+  --glow:0 0 0 1px rgba(212,115,90,.2);
+  --scrim:rgba(23,19,16,.9);
+}
+
+/* 宣纸底：无网格，改为纤维纹 + 极淡墨晕 */
+html[data-skin="classic"] body{
+  font-family:var(--serif);
+  letter-spacing:.01em;
+  background-color:var(--paper) !important;
+  background-image:
+    radial-gradient(620px 420px at 8% 4%, rgba(156,43,28,.045), transparent 62%),
+    radial-gradient(680px 460px at 96% 92%, rgba(61,107,88,.05), transparent 64%),
+    repeating-linear-gradient(92deg, rgba(120,92,56,.035) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(2deg, rgba(120,92,56,.028) 0 1px, transparent 1px 4px) !important;
+  background-size:auto,auto,auto,auto !important;
+  background-attachment:fixed !important;
+}
+html[data-skin="classic"][data-theme="night"] body{
+  background-image:
+    radial-gradient(620px 420px at 8% 4%, rgba(212,115,90,.07), transparent 62%),
+    radial-gradient(700px 470px at 96% 92%, rgba(127,181,154,.06), transparent 64%),
+    repeating-linear-gradient(92deg, rgba(236,224,200,.014) 0 1px, transparent 1px 3px) !important;
+}
+
+/* 装饰层：撤掉全息栅格 / 扫描线 / 透视地板 */
+html[data-skin="classic"] .hud-flat,
+html[data-skin="classic"] .hud-floor,
+html[data-skin="classic"] .hud-scan{ display:none !important; }
+html[data-skin="classic"] .hud-frame{ opacity:.34; }
+html[data-skin="classic"] .hud-frame *{ display:none; }
+
+/* 页头：去掉跑马光带，改成一条墨线 */
+html[data-skin="classic"] .top{
+  background:linear-gradient(180deg,color-mix(in srgb,var(--paper) 96%,transparent),color-mix(in srgb,var(--paper) 80%,transparent)) !important;
+  border-bottom:1px solid var(--line) !important;
+  box-shadow:0 6px 18px -18px rgba(60,40,20,.9) !important;
+}
+html[data-skin="classic"] .top::after{
+  animation:none !important;
+  background:linear-gradient(90deg,transparent,var(--line),transparent) !important;
+  opacity:.85 !important;
+}
+html[data-skin="classic"] .brand b{
+  font-family:var(--serif) !important;
+  font-weight:700 !important;
+  letter-spacing:.28em !important;
+  text-shadow:none !important;
+}
+html[data-skin="classic"] #topMeta{
+  letter-spacing:.22em !important;
+  font-size:.62rem !important;
+  color:var(--ink-3) !important;
+}
+html[data-skin="classic"] .hud-stat{
+  background:var(--card) !important;
+  border:1px solid color-mix(in srgb,var(--zhu) 34%,transparent) !important;
+  border-radius:2px !important;
+  color:var(--zhu) !important;
+  padding:2px 7px !important;
+}
+html[data-skin="classic"] .hud-stat b{ color:var(--zhu) !important; letter-spacing:.1em !important; }
+html[data-skin="classic"] .hud-stat span{ color:var(--ink-3) !important; }
+html[data-skin="classic"] .hud-stat .dot{
+  background:var(--zhu) !important; box-shadow:none !important; animation:none !important;
+}
+html[data-skin="classic"] .ibtn{
+  border-radius:2px !important; border-color:var(--line) !important;
+  background:var(--card) !important; color:var(--ink-2) !important;
+  font-family:var(--serif) !important;
+}
+html[data-skin="classic"] .ibtn:hover{ border-color:var(--zhu) !important; color:var(--zhu) !important; }
+
+/* 首屏：撤雷达扫描，改朱印环 */
+html[data-skin="classic"] .hero .big::before{
+  border:1px solid color-mix(in srgb,var(--zhu) 26%,transparent) !important;
+  box-shadow:inset 0 0 0 6px color-mix(in srgb,var(--zhu) 4%,transparent) !important;
+  animation:none !important;
+}
+html[data-skin="classic"] .hero .big::after{ display:none !important; }
+html[data-skin="classic"] .hero .hud-wave{ mix-blend-mode:multiply !important; opacity:.42 !important; }
+html[data-skin="classic"][data-theme="night"] .hero .hud-wave{ mix-blend-mode:screen !important; opacity:.5 !important; }
+html[data-skin="classic"] .hero .big{
+  font-family:var(--serif) !important;
+  text-shadow:none !important;
+  font-weight:600;
+}
+html[data-skin="classic"][data-theme="night"] .hero .big{ text-shadow:none !important; }
+
+/* 分节标题：宋体 + 朱砂短杠，去掉冷光 */
+html[data-skin="classic"] .sec-t{
+  border-left:2px solid var(--zhu) !important;
+  box-shadow:none !important;
+  padding-left:10px !important;
+}
+html[data-skin="classic"] .sec-t h2{
+  font-family:var(--serif) !important;
+  font-weight:700 !important;
+  letter-spacing:.2em !important;
+  text-transform:none !important;
+  color:var(--ink) !important;
+  text-shadow:none !important;
+}
+html[data-skin="classic"] .sec-t h2::after{
+  width:26px !important; height:1px !important;
+  background:linear-gradient(90deg,var(--zhu),transparent) !important;
+  box-shadow:none !important;
+}
+html[data-skin="classic"] .sec-t .sub{
+  font-family:var(--serif) !important;
+  font-size:.62rem !important;
+  letter-spacing:.14em !important;
+  text-transform:none !important;
+  color:var(--ink-3) !important;
+}
+html[data-skin="classic"] .sec-t::after{
+  height:1px !important;
+  background:linear-gradient(90deg,var(--line),transparent 70%) !important;
+  opacity:.9 !important;
+}
+
+/* 卡片：宣纸裱帧，四角朱线改细墨线 */
+html[data-skin="classic"] .card{
+  background:linear-gradient(168deg,rgba(255,251,240,.9),transparent 46%),var(--card) !important;
+  border:1px solid var(--line) !important;
+  border-radius:var(--r) !important;
+  box-shadow:var(--shadow) !important;
+}
+html[data-skin="classic"][data-theme="night"] .card{
+  background:linear-gradient(168deg,rgba(212,115,90,.06),transparent 46%),var(--card) !important;
+}
+html[data-skin="classic"] .card:hover{
+  border-color:color-mix(in srgb,var(--zhu) 44%,transparent) !important;
+  box-shadow:var(--shadow) !important;
+}
+html[data-skin="classic"] .card::after{ opacity:.3 !important; }
+
+/* 按钮 / 芯片 / 导航：全部改宋体、方角、朱砂描边 */
+html[data-skin="classic"] .btn,
+html[data-skin="classic"] .chip,
+html[data-skin="classic"] .opt,
+html[data-skin="classic"] .tb,
+html[data-skin="classic"] .spk,
+html[data-skin="classic"] .lay,
+html[data-skin="classic"] .revitem .rd,
+html[data-skin="classic"] .rc-pct,
+html[data-skin="classic"] .rc-ok,
+html[data-skin="classic"] .szbtns button{
+  font-family:var(--serif) !important;
+  letter-spacing:.1em !important;
+  border-radius:2px !important;
+}
+html[data-skin="classic"] .btn{
+  background:var(--zhu) !important;
+  color:#fdf8ee !important;
+  border:1px solid color-mix(in srgb,var(--zhu) 82%,#000) !important;
+  box-shadow:none !important;
+}
+html[data-skin="classic"] .btn:hover{
+  box-shadow:0 0 0 3px var(--zhu-bg) !important;
+}
+html[data-skin="classic"][data-theme="night"] .btn,
+html[data-skin="classic"][data-theme="night"] .chip.on,
+html[data-skin="classic"][data-theme="night"] .opt.right{
+  color:#1a120e !important;
+}
+html[data-skin="classic"] .chip{
+  background:var(--card) !important;
+  border:1px solid var(--line) !important;
+  color:var(--ink-2) !important;
+  letter-spacing:.08em !important;
+}
+html[data-skin="classic"] .chip.on{
+  background:var(--zhu) !important;
+  border-color:var(--zhu) !important;
+  color:#fdf8ee !important;
+  box-shadow:none !important;
+}
+html[data-skin="classic"] .chip .c{ color:inherit !important; opacity:.62; }
+html[data-skin="classic"] .tb i{ font-family:var(--serif) !important; }
+html[data-skin="classic"] .tb.on{ color:var(--zhu) !important; text-shadow:none !important; }
+html[data-skin="classic"] .tb.on::after{
+  background:var(--zhu) !important;
+  box-shadow:none !important;
+  height:1.5px !important;
+}
+html[data-skin="classic"] .tabbar{
+  background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--paper) 92%,transparent) 40%,var(--paper)) !important;
+  border-top:1px solid var(--line) !important;
+}
+
+/* 遮字：宣纸留白 → 墨块；点开为朱砂 */
+html[data-skin="classic"] .mchar.mhide{
+  background:color-mix(in srgb,var(--ink) 18%,transparent) !important;
+  box-shadow:none !important;
+  border-radius:0 !important;
+  border-bottom:1px solid color-mix(in srgb,var(--ink) 34%,transparent);
+}
+html[data-skin="classic"][data-theme="night"] .mchar.mhide{
+  background:color-mix(in srgb,var(--ink) 24%,transparent) !important;
+  border-bottom-color:color-mix(in srgb,var(--ink) 42%,transparent);
+}
+html[data-skin="classic"] .mchar.mhide.lit{
+  background:var(--zhu-bg) !important;
+  color:var(--zhu) !important;
+  box-shadow:none !important;
+  border-bottom-color:var(--zhu);
+}
+html[data-skin="classic"][data-theme="night"] .mchar.mhide.lit{
+  background:var(--zhu-bg) !important;
+  color:var(--zhu) !important;
+  border-bottom-color:var(--zhu);
+}
+
+/* 背诵台 / 复习台 / 全脉总表 微调 */
+html[data-skin="classic"] .rc-txt{ font-family:var(--serif) !important; letter-spacing:.05em; }
+html[data-skin="classic"] .rc-line{ border-radius:0 !important; border-left-width:1px; }
+html[data-skin="classic"] .rc-line:hover{ box-shadow:none !important; border-left-color:var(--zhu) !important; }
+html[data-skin="classic"] .revitem{ border-radius:2px !important; }
+html[data-skin="classic"] .revitem .rn{ font-family:var(--serif) !important; font-weight:700; }
+html[data-skin="classic"] table.mt thead th{
+  font-family:var(--serif) !important;
+  letter-spacing:.14em !important;
+  background:var(--paper-2) !important;
+}
+html[data-skin="classic"] table.mt td.nm b,
+html[data-skin="classic"] table.mt td.nm em,
+html[data-skin="classic"] table.mt td.gr{ font-family:var(--serif) !important; }
+html[data-skin="classic"] table.mt .go{ border-radius:1px !important; font-family:var(--serif) !important; }
+html[data-skin="classic"] .rc-pct{ font-family:var(--serif) !important; }
+html[data-skin="classic"] .rc-pct.on{ background:var(--zhu) !important; border-color:var(--zhu) !important; color:#fdf8ee !important; }
+html[data-skin="classic"] .rc-pctbar .ck{ font-family:var(--serif) !important; letter-spacing:.12em !important; }
+
+/* 皮肤开关按钮 */
+#btnSkin{ font-family:var(--serif); letter-spacing:0; }
+
+/* 页头加了一个按钮后，窄屏会挤：收紧按钮并让副标题让位 */
+@media(max-width:560px){
+  .top-r{gap:4px}
+  .ibtn{width:29px;height:29px;font-size:.78rem}
+}
+@media(max-width:430px){
+  #topMeta{display:none}
+  .brand b{font-size:.94rem;letter-spacing:.16em}
+  .top-in{gap:7px}
+}
+html[data-skin="classic"] #btnSkin{
+  border-color:color-mix(in srgb,var(--zhu) 48%,transparent) !important;
+  color:var(--zhu) !important;
+}
+
 </style>
 </head>
 
@@ -1039,6 +1378,7 @@ html[data-theme="day"] .hero .hud-wave{mix-blend-mode:multiply;opacity:.5}
     <div class="top-r">
       <button class="ibtn" id="btnFontDn" aria-label="缩小字号" title="缩小字号" style="font-size:.66rem">A－</button>
       <button class="ibtn" id="btnFontUp" aria-label="放大字号" title="放大字号" style="font-size:.66rem">A＋</button>
+      <button class="ibtn" id="btnSkin" aria-label="切换皮肤：科技 / 古典" title="切换皮肤">墨</button>
       <button class="ibtn" id="btnTheme" aria-label="切换日夜模式">☾</button>
     </div>
   </div>
@@ -1106,7 +1446,7 @@ html[data-theme="day"] .hero .hud-wave{mix-blend-mode:multiply;opacity:.5}
   <button class="btn ghost" style="margin-top:16px" id="goList">看 全 部 廿 七 脉 →</button>
 
   <div class="foot">
-    脉诊筑基 v1.8<br>
+    脉诊筑基 v1.9<br>
     逐段朗读 · 遮字默写 · 复习台 · 逐维对比<br>四言举要 166 行 · 廿七脉诗 72 首（按类分组）<br>
     你的学习与背诵进度自动存档在本机，关掉重开也从上次的地方接着练<br>
     多人共用一台设备时，可在右上角「学习档案」里各建一份，互不干扰<br>
@@ -1140,6 +1480,7 @@ html[data-theme="day"] .hero .hud-wave{mix-blend-mode:multiply;opacity:.5}
 <section class="screen" id="scDetail">
   <div class="nav-back">
     <button id="btnBack">← 返回脉谱</button>
+    <button id="btnShare">⇧ 复制这一脉的链接</button>
   </div>
   <div class="nhead">
     <div class="row1">
@@ -1251,6 +1592,11 @@ html[data-theme="day"] .hero .hud-wave{mix-blend-mode:multiply;opacity:.5}
     <h2>并 排 对 比</h2>
     <span class="sub">逐维看差别</span>
   </div>
+  <div class="chips" id="cmpTabs" style="margin:6px 0 2px">
+    <button class="chip on" id="cmpTabPair">两脉对比</button>
+    <button class="chip" id="cmpTabAll">全脉总表<span class="c">27</span></button>
+  </div>
+  <div id="cmpPair">
   <div class="selrow">
     <div class="selwrap"><select id="selA" aria-label="选择脉 A"></select></div>
     <div class="vs">对<br>比</div>
@@ -1262,6 +1608,23 @@ html[data-theme="day"] .hero .hud-wave{mix-blend-mode:multiply;opacity:.5}
   </div>
   <table class="vt" id="cmpTable"></table>
   <p class="note" id="cmpNote"></p>
+  </div>
+
+  <div id="cmpAll" style="display:none">
+    <div class="rc-pctbar" id="cmpAllFilter" style="margin-top:8px">
+      <span class="ck">按类筛</span>
+      <button class="rc-pct on" data-cg="all">全部 27</button>
+      <button class="rc-pct" data-cg="g_mai_fu">浮类</button>
+      <button class="rc-pct" data-cg="g_mai_chen">沉类</button>
+      <button class="rc-pct" data-cg="g_mai_chishu">迟数</button>
+      <button class="rc-pct" data-cg="g_mai_xing">形类</button>
+      <button class="rc-pct" data-cg="g_mai_shi">势类</button>
+    </div>
+    <div class="mtwrap">
+      <table class="mt" id="mtTable"></table>
+    </div>
+    <p class="note">整张表按「位 / 数 / 形 / 势」四维横向排开，同一类脉相邻（手机上表格自动换行，四维同屏可见）。点任一脉名进详情，点右侧「比」可直接把它设为对比的 A 脉。表中标注的取值以上文脉谱数据为准，未校条目仍在详情页以黄底标出。</p>
+  </div>
 </section>
 
 <!-- ============ 自测 ============ -->
@@ -1271,17 +1634,17 @@ html[data-theme="day"] .hero .hud-wave{mix-blend-mode:multiply;opacity:.5}
     <span class="sub">四维反推脉名</span>
   </div>
   <div class="qbox">
-    <div class="prog" id="tProg">第 1 / 10 题</div>
+    <div class="prog"><span id="tProg">第 1 / 10 题</span><span class="sc" id="tScore">对 0</span></div>
     <div class="clue" id="tClue">—</div>
     <div class="hintx" id="tHint"></div>
   </div>
   <div class="opts" id="tOpts"></div>
   <div class="fb" id="tFb"></div>
-  <div style="display:flex;gap:8px;margin-top:12px">
-    <button class="btn ghost sm" id="btnNext" style="display:none">下 一 题 →</button>
+  <div class="btnrow">
+    <button class="btn sm" id="btnNext" style="display:none">下 一 题 →</button>
     <button class="btn ghost sm" id="btnRestart">重 新 开 始</button>
   </div>
-  <div class="stat">
+  <div class="stat" id="tStat">
     <div><b class="mono" id="stDone">0</b><span>已答</span></div>
     <div><b class="mono" id="stOk">0</b><span>正确</span></div>
     <div><b class="mono" id="stRate">—</b><span>正确率</span></div>
@@ -1294,6 +1657,11 @@ html[data-theme="day"] .hero .hud-wave{mix-blend-mode:multiply;opacity:.5}
     <h2>复 习 台</h2>
     <span class="sub">今天该看哪几张</span>
   </div>
+  <div class="chips" id="rvTrack" style="margin:8px 0 0">
+    <button class="chip on" id="rvTrackPm">七言诀<span class="c">27 脉</span></button>
+    <button class="chip" id="rvTrackSz">四言举要<span class="c">166 行</span></button>
+  </div>
+  <p class="note" id="rvTrackNote" style="margin-top:6px">当前检测：七言诀（二十七脉体状／相类／主病诗），按脉抽检。</p>
   <div class="rev-hero">
     <div><b class="mono" id="rvDue">0</b><span>待复习</span></div>
     <div><b class="mono" id="rvNew">0</b><span>新卡</span></div>
@@ -1333,6 +1701,8 @@ html[data-theme="day"] .hero .hud-wave{mix-blend-mode:multiply;opacity:.5}
     <button class="rc-pct" data-pct="50">50<span class="k">%</span></button>
     <button class="rc-pct" data-pct="70">70<span class="k">%</span></button>
     <button class="rc-pct" data-pct="100">100<span class="k">全遮</span></button>
+    <span class="rc-sep"></span>
+    <button class="rc-pct roll" id="rcRoll" title="换一批被遮住的字，同一比例下重新抽">⇄ 随机遮字</button>
   </div>
   <div class="rc-pctbar">
     <span style="font-family:var(--mono);font-size:.56rem;color:var(--ink-3);letter-spacing:.1em">分级</span>
@@ -2015,7 +2385,7 @@ const GROUPS = {
 const GORDER = ['g_mai_fu','g_mai_chen','g_mai_chishu','g_mai_xing','g_mai_shi'];
 const AXES = ['位','数','形','势'];
 /* =========================================================
-   v1.8 · 多用户学习档案 / 自动存档 / 云端同步
+    v1.9 · 多用户学习档案 / 自动存档 / 云端同步
    设计要点：
    1) 每个使用者在浏览器内有独立命名空间 u:<id>:<原始键>，互不覆盖
    2) 任何写入（save / saveDaily）都会自动落盘并刷新「已存档」时标
@@ -2388,7 +2758,7 @@ function toast(msg){
   const t = $('#toast'); t.textContent = msg; t.classList.add('on');
   clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('on'), 1700);
 }
-let LS = {theme:'night', fs:1, srs:{}, test:{done:0, ok:0}, last:'mai-fu'};
+let LS = {theme:'night', skin:'classic', fs:1, srs:{}, test:{done:0, ok:0}, last:'mai-fu'};
 try{ const raw = localStorage.getItem(LSK); if(raw) LS = Object.assign(LS, JSON.parse(raw)); }catch(e){}
 // v1.7 全息皮肤：首次加载强制切到夜间深空（只做一次，之后尊重用户选择）
 try{
@@ -2467,8 +2837,27 @@ const SRS = (function(){
     if(!r || !r.seen) return 'new';
     return r.due <= today() ? 'due' : 'ok';
   }
-  function reset(){ LS.srs = {}; save(); }
-  return {grade:grade, status:status, rec:rec, reset:reset, today:today};
+  function reset(){ LS.srs = {}; LS.srsSz = {}; save(); }
+
+  /* ---- 四言举要逐行调度：与七言诀互不干扰，键为 sz-<节>-<行> ---- */
+  function szMap(){ if(!LS.srsSz) LS.srsSz = {}; return LS.srsSz; }
+  function szRec(k){ return szMap()[k]; }
+  function gradeSz(k, ok){
+    const m = szMap();
+    const r = m[k] || {n:0, due:today(), seen:0};
+    r.seen = (r.seen||0) + 1;
+    if(ok){ r.n = (r.n||0) + 1; r.due = today() + STEP[Math.min(r.n-1, STEP.length-1)]; }
+    else  { r.n = 0; r.due = today(); }
+    r.at = Date.now();
+    m[k] = r; save();
+  }
+  function statusSz(k){
+    const r = szMap()[k];
+    if(!r || !r.seen) return 'new';
+    return r.due <= today() ? 'due' : 'ok';
+  }
+  return {grade:grade, status:status, rec:rec, reset:reset, today:today,
+          gradeSz:gradeSz, statusSz:statusSz, szRec:szRec};
 })();
 
 /* =========================================================
@@ -2611,7 +3000,31 @@ function attachSpeakers(){
    复习台
    ========================================================= */
 let rvTab = 'due';
+let rvTrack = 'pm';   // 'pm' = 七言诀（按脉）  'sz' = 四言举要（逐行）
+
+/* 四言举要的全部行（供复习台逐行检测） */
+function szLines(){
+  const out = [];
+  SZ_DATA.forEach(function(sec, si){
+    sec.lines.forEach(function(cl, i){
+      out.push({
+        key: 'sz-' + si + '-' + i,
+        sec: sec.t,
+        idx: i + 1,
+        cue: cl.slice(0, 2).join(''),
+        text: cl.join('，') + '。'
+      });
+    });
+  });
+  return out;
+}
+
 function renderReview(){
+  if(rvTrack === 'sz'){ renderReviewSZ(); return; }
+  $('#rvTrackNote').textContent = '当前检测：七言诀（二十七脉 体状／相类／主病诗），按脉抽检。';
+  $('#rvTrackPm').classList.add('on');
+  $('#rvTrackSz').classList.remove('on');
+
   const rows = MAI.map(function(n){ return {n:n, st:SRS.status(n.id)}; });
   const due = rows.filter(function(x){ return x.st === 'due'; });
   const nw  = rows.filter(function(x){ return x.st === 'new'; });
@@ -2647,6 +3060,7 @@ function renderReview(){
       '<span class="rm"><i>' + esc(n.understand || '') + '</i><em>' + esc(em) + '</em></span>' +
       '<span class="rd ' + x.st + '">' + (label[x.st] || '') + '</span></button>';
   }).join('');
+  $('#rvEmpty').textContent = '这里空了。去「脉谱」开新卡，或用「自测」练一轮。';
   $('#rvEmpty').style.display = arr.length ? 'none' : 'block';
 
   $('#rvList').querySelectorAll('.revitem').forEach(function(b){
@@ -2659,26 +3073,114 @@ function renderReview(){
 }
 
 
+/* ---------- 复习台：四言举要逐行轨 ---------- */
+function renderReviewSZ(){
+  $('#rvTrackNote').textContent = '当前检测：四言举要逐行（共 166 行），按行抽检，与七言诀分开记。';
+  $('#rvTrackSz').classList.add('on');
+  $('#rvTrackPm').classList.remove('on');
+
+  const all = szLines();
+  const rows = all.map(function(x){ return {x:x, st:SRS.statusSz(x.key)}; });
+  const due = rows.filter(function(r){ return r.st === 'due'; });
+  const nw  = rows.filter(function(r){ return r.st === 'new'; });
+  const ok  = rows.filter(function(r){ return r.st === 'ok'; });
+
+  if(rvTab === 'due' && !due.length){
+    rvTab = nw.length ? 'new' : (ok.length ? 'all' : 'new');
+  }
+  $('#rvDue').textContent = due.length;
+  $('#rvNew').textContent = nw.length;
+  $('#rvDone').textContent = ok.length;
+  $('#rvTabDue').classList.toggle('on', rvTab === 'due');
+  $('#rvTabNew').classList.toggle('on', rvTab === 'new');
+  $('#rvTabAll').classList.toggle('on', rvTab === 'all');
+
+  let arr = rvTab === 'due' ? due : (rvTab === 'new' ? nw : rows);
+  arr = arr.slice();
+  const rank = {due:0, new:1, ok:2};
+  arr.sort(function(a,b){ return rank[a.st] - rank[b.st]; });
+
+  const label = {due:'该复', new:'新行', ok:'已排'};
+  $('#rvList').innerHTML = arr.length ? arr.map(function(r){
+    const x = r.x, rc = SRS.szRec(x.key);
+    let em = x.sec;
+    if(r.st === 'ok' && rc) em += ' · 已对 ' + rc.n + ' 次';
+    if(r.st === 'due' && rc && rc.n) em += ' · 上次错，今日回炉';
+    return '<div class="revitem szitem" data-key="' + x.key + '">' +
+      '<span class="rn" style="font-size:.92rem;min-width:2.2em">' + esc(x.cue) + '…</span>' +
+      '<span class="rm"><i>' + esc(x.text) + '</i><em>' + esc(em + ' · 第 ' + x.idx + ' 句') + '</em></span>' +
+      '<span class="szbtns">' +
+        '<button class="szok" data-ok="1" title="背得出">✓</button>' +
+        '<button class="szno" data-ok="0" title="卡住了">✗</button>' +
+      '</span>' +
+      '<span class="rd ' + r.st + '">' + (label[r.st] || '') + '</span></div>';
+  }).join('') : '';
+  $('#rvEmpty').style.display = arr.length ? 'none' : 'block';
+  $('#rvEmpty').textContent = arr.length ? '' : '这个分轨还没开卡。去「背诵台 · 四言举要」逐行点 ✓ 记已背，或直接点上面的「新行」开始抽检。';
+
+  $$('#rvList .szitem').forEach(function(el){
+    const key = el.dataset.key;
+    el.querySelector('.szok').addEventListener('click', function(ev){
+      ev.stopPropagation(); SRS.gradeSz(key, true); renderReview();
+      toast('已记一次「背得出」，下次间隔拉长');
+    });
+    el.querySelector('.szno').addEventListener('click', function(ev){
+      ev.stopPropagation(); SRS.gradeSz(key, false); renderReview();
+      toast('已回到今天，明天再来');
+    });
+    el.addEventListener('click', function(){
+      if(typeof RC !== 'undefined' && RC.locate){ RC.locate(key); }
+    });
+  });
+}
+
+$('#rvTrackPm').addEventListener('click', function(){ rvTrack = 'pm'; renderReview(); });
+$('#rvTrackSz').addEventListener('click', function(){ rvTrack = 'sz'; renderReview(); });
+
 /* ---------- 主题 ---------- */
 function applyTheme(){
   document.documentElement.setAttribute('data-theme', LS.theme);
+  document.documentElement.setAttribute('data-skin', LS.skin === 'tech' ? 'tech' : 'classic');
   $('#btnTheme').textContent = LS.theme === 'night' ? '☀' : '☾';
+  const cls = LS.skin !== 'tech';
+  const bs = $('#btnSkin');
+  if(bs){
+    bs.textContent = cls ? '墨' : '光';
+    bs.title = cls ? '当前：中国风古典 · 点此切回科技' : '当前：科技全息 · 点此切到古典';
+    bs.setAttribute('aria-label', bs.title);
+  }
   const mt = document.querySelector('meta[name=theme-color]');
-  if(mt) mt.setAttribute('content', LS.theme === 'night' ? '#03070c' : '#e9f1f7');
+  if(mt){
+    const night = LS.theme === 'night';
+    mt.setAttribute('content', night ? (cls ? '#171310' : '#03070c') : (cls ? '#f1e6d2' : '#e9f1f7'));
+  }
   applyFont();
 }
 $('#btnTheme').addEventListener('click', () => {
   LS.theme = LS.theme === 'night' ? 'day' : 'night';
   applyTheme(); save();
 });
+$('#btnSkin').addEventListener('click', () => {
+  LS.skin = (LS.skin === 'tech') ? 'classic' : 'tech';
+  applyTheme(); save();
+  toast(LS.skin === 'classic' ? '已切到中国风古典' : '已切到科技全息');
+});
 
 /* ---------- 路由 ---------- */
 const SCREENS = ['scHome','scList','scDetail','scCompare','scTest','scReview','scRecite'];
+// 地址栏深链：#mai-fu 直接打开浮脉，#scTest 直接进自测
+function writeHash(id){
+  try{
+    const base = location.pathname + location.search;
+    history.replaceState(null, '', base + (id && id !== 'scHome' ? '#' + id : ''));
+  }catch(e){}
+}
 function go(id, quiet){
   SPK.stop();
   SCREENS.forEach(s => $('#' + s).classList.toggle('on', s === id));
   $$('.tb').forEach(b => b.classList.toggle('on', b.dataset.go === id));
   window.scrollTo({top:0, behavior: quiet ? 'auto' : 'smooth'});
+  writeHash(id);
 }
 $$('.tb').forEach(b => b.addEventListener('click', () => {
   SPK.stop();
@@ -2691,10 +3193,12 @@ $$('.tb').forEach(b => b.addEventListener('click', () => {
    ========================================================= */
 function buildHome(){
   $('#homeNum').textContent = MAI.length;
-  $('#axWei').textContent  = new Set(MAI.map(n => n.dims['位'])).size + ' 值';
-  $('#axShu').textContent  = new Set(MAI.map(n => n.dims['数'])).size + ' 值';
-  $('#axXing').textContent = new Set(MAI.map(n => n.dims['形'])).size + ' 值';
-  $('#axShi').textContent  = new Set(MAI.map(n => n.dims['势'])).size + ' 值';
+  // 四维是两条相对的轴，不是一张取值表：直接给出每一维的两极
+  const POLES = {'位':'浮 ⇄ 沉','数':'迟 ⇄ 数','形':'大 ⇄ 细','势':'强 ⇄ 弱'};
+  $('#axWei').textContent  = POLES['位'];
+  $('#axShu').textContent  = POLES['数'];
+  $('#axXing').textContent = POLES['形'];
+  $('#axShi').textContent  = POLES['势'];
 
   const max = Math.max(...GORDER.map(g => (BY_G[g] || []).length));
   $('#barBox').innerHTML = GORDER.map(g => {
@@ -2793,6 +3297,14 @@ $('#btnFontDn').addEventListener('click', () => { LS.fs = (Number(LS.fs)||1) - F
    ========================================================= */
 let curNode = null;
 
+// 「一句能记住」：第一句单独提出来当导语，后面再展开
+function leadHTML(t){
+  const sTxt = String(t == null ? '' : t).trim();
+  const i = sTxt.indexOf('。');
+  if(i < 8 || i > 46 || i >= sTxt.length - 1) return esc(sTxt);
+  return '<b class="lead">' + esc(sTxt.slice(0, i + 1)) + '</b>' + esc(sTxt.slice(i + 1));
+}
+
 function openNode(id){
   const n = BY_ID[id];
   if(!n){ toast('找不到该脉'); return; }
@@ -2809,7 +3321,7 @@ function openNode(id){
   ].join('');
 
   /* 认 */
-  $('#dUnderstand').innerHTML = esc(n.understand || '');
+  $('#dUnderstand').innerHTML = leadHTML(n.understand || '');
   $('#dDimQuick').innerHTML = AXES.map(a => {
     const cal = (n.dimsCal||[]).includes(a);
     return `<tr class="${cal?'cal':''}"><th>${a}</th><td>${esc(n.dims[a]||'—')}${cal?'<span class="cw">待校</span>':''}</td></tr>`;
@@ -2828,9 +3340,9 @@ function openNode(id){
   /* 记 */
   $('#dRecite').innerHTML = `${MASK.wrap(esc(n.recite||'—'))}<span class="ref">${esc(n.reciteRef||'')}</span>`;
   MASK.reset();
-  $('#dKey').innerHTML = (n.keyPoints||[]).map(k => {
+  $('#dKey').innerHTML = (n.keyPoints||[]).filter(k => n.dims[k]).map(k => {
     const d = n.dims[k];
-    return d ? `<li>记 <b style="color:var(--zhu)">${esc(k)}</b>：${esc(d)}</li>` : `<li>记 <b style="color:var(--zhu)">${esc(k)}</b></li>`;
+    return `<li>记 <b style="color:var(--zhu)">${esc(k)}</b>：${esc(d)}</li>`;
   }).join('') || '<li>—</li>';
   $('#dAlias').innerHTML = (n.aliases||[]).map(a => `<li>${esc(a)}</li>`).join('') || '<li>无别名</li>';
 
@@ -2876,6 +3388,7 @@ function openNode(id){
   // 重置到「认」
   setLayer(1);
   go('scDetail');
+  writeHash(id);
 }
 function setLayer(k){
   SPK.stop();
@@ -2884,6 +3397,33 @@ function setLayer(k){
 }
 $$('.lay').forEach(b => b.addEventListener('click', () => setLayer(+b.dataset.lay)));
 $('#btnBack').addEventListener('click', () => go('scList'));
+function copyText(t){
+  const legacy = function(){
+    return new Promise(function(res, rej){
+      try{
+        const ta = document.createElement('textarea');
+        ta.value = t; ta.style.position = 'fixed'; ta.style.top = '-9999px';
+        document.body.appendChild(ta); ta.select();
+        const ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        ok ? res() : rej(new Error('copy failed'));
+      }catch(e){ rej(e); }
+    });
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    return navigator.clipboard.writeText(t).catch(legacy);
+  }
+  return legacy();
+}
+if($('#btnShare')) $('#btnShare').addEventListener('click', function(){
+  const id = (curNode && curNode.id) || LS.last || 'mai-fu';
+  const url = location.href.split('#')[0] + '#' + id;
+  copyText(url).then(function(){
+    toast('链接已复制，发给同学就能直接打开这一脉');
+  }).catch(function(){
+    toast('复制失败，请手动复制地址栏里的链接');
+  });
+});
 $('#btnMask').addEventListener('click', () => {
   const on = MASK.toggle();
   toast(on ? '已遮住，凭记忆默一遍' : '已显示原文');
@@ -2943,11 +3483,18 @@ function renderCompare(){
       <th>${esc(B.name)}<span style="display:block;font-size:.56rem;color:var(--ink-3);font-family:var(--sans);letter-spacing:.04em;font-weight:400">${GROUPS[B.g].short}</span></th>
     </tr></thead><tbody>${rows}</tbody>`;
 
-  const diffN = AXES.filter(ax => A.dims[ax] !== B.dims[ax]).length;
+  const diffAx = AXES.filter(ax => A.dims[ax] !== B.dims[ax]);
+  const diffN = diffAx.length;
   const sameG = A.g === B.g;
   $('#cmpNote').innerHTML = diffN === 0
     ? '四维全同——这两条在此数据层里没有区分度，需回到原文或指感层面再辨。'
-    : `四维中 <b style="color:var(--zhu)">${diffN}</b> 维不同${sameG?'，且同属「'+GROUPS[A.g].name+'」，只有一维之别，最易混':''}。高亮行为差异维。`;
+    : diffN === 1
+      ? `四维里只有 <b style="color:var(--zhu)">1</b> 维不同（${diffAx[0]}），`
+        + (sameG ? `又同属「${GROUPS[A.g].name}」，差别就落在这一维上，最容易被并成一脉。`
+                 : '差别就落在这一维上。')
+      : `四维里有 <b style="color:var(--zhu)">${diffN}</b> 维不同（${diffAx.join('、')}），`
+        + (sameG ? `同属「${GROUPS[A.g].name}」，按高亮的差异维逐条看，别只记“都是同类”。`
+                 : '按高亮的差异维逐条看。');
 }
 $('#selA').addEventListener('change', renderCompare);
 $('#selB').addEventListener('change', renderCompare);
@@ -2955,6 +3502,79 @@ $('#btnSwap').addEventListener('click', () => {
   const a = $('#selA').value; $('#selA').value = $('#selB').value; $('#selB').value = a;
   renderCompare();
 });
+/* ---------- 全脉总表：27 脉 × 位数形势 ---------- */
+let cmpAllG = 'all';   // 全脉总表的纲类筛选（all / g_mai_*）
+
+function renderAllTable(){
+  const head = '<thead><tr><th>脉</th><th>纲类</th>' +
+    AXES.map(a => '<th>' + a + '</th>').join('') + '<th>操作</th></tr></thead>';
+  const list = GORDER.reduce((acc, g) => acc.concat(BY_G[g] || []), []);
+  const prevVals = {};
+  const rows = list.map(n => {
+    const G = GROUPS[n.g] || {};
+    const inAll = cmpAllG === 'all' || cmpAllG === n.g;
+    const dims = AXES.map(a => {
+      const v = n.dims[a] || '—';
+      const same = prevVals[a] === v;
+      prevVals[a] = v;
+      return '<td class="dm' + (same ? ' same' : '') + '">' + esc(v) + '</td>';
+    }).join('');
+    return '<tr data-id="' + n.id + '"' + (inAll ? '' : ' style="display:none"') + '>' +
+      '<td class="nm"><b data-act="open">' + esc(n.name) + '</b><em>' + esc(String(n.yy || '').replace(/，即软字/,'（软）').replace(/，/g,'·')) + '</em></td>' +
+      '<td class="gr" style="color:' + (G.color || 'var(--ink-3)') + '">' + esc(G.short || '') + '</td>' +
+      dims +
+      '<td class="ac"><button class="go" data-act="setA">比</button></td></tr>';
+  }).join('');
+  $('#mtTable').innerHTML = head + '<tbody>' + rows + '</tbody>';
+  // 加粗分类分隔线
+  let prev = null;
+  $$('#mtTable tbody tr').forEach(tr => {
+    const g = (BY_ID[tr.dataset.id] || {}).g;
+    if(prev !== null && g !== prev) tr.classList.add('gsep');
+    prev = g;
+  });
+}
+
+function bindAllTable(){
+  $('#mtTable').addEventListener('click', e => {
+    const tr = e.target.closest('tr[data-id]');
+    if(!tr) return;
+    const id = tr.dataset.id;
+    const act = (e.target.closest('[data-act]') || {}).dataset;
+    if(act && act.act === 'setA'){
+      const other = ($('#selB').value === id) ? $('#selA').value : $('#selB').value;
+      setCompare(id, other === id ? ORDER.filter(x => x !== id)[0] : other);
+      showCmpTab('pair');
+      toast('已设为 A 脉，B 脉保持不变');
+      return;
+    }
+    openNode(id);
+  });
+}
+
+function showCmpTab(which){
+  $('#cmpPair').style.display = which === 'pair' ? '' : 'none';
+  $('#cmpAll').style.display = which === 'all' ? '' : 'none';
+  $('#cmpTabPair').classList.toggle('on', which === 'pair');
+  $('#cmpTabAll').classList.toggle('on', which === 'all');
+  if(which === 'all' && !$('#mtTable').innerHTML) renderAllTable();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+$('#cmpTabPair').addEventListener('click', () => showCmpTab('pair'));
+$('#cmpTabAll').addEventListener('click', () => { renderAllTable(); showCmpTab('all'); });
+$('#cmpAllFilter').addEventListener('click', e => {
+  const b = e.target.closest('.rc-pct[data-cg]');
+  if(!b) return;
+  cmpAllG = b.dataset.cg;
+  $$('#cmpAllFilter .rc-pct[data-cg]').forEach(x => x.classList.toggle('on', x.dataset.cg === cmpAllG));
+  $$('#mtTable tbody tr').forEach(tr => {
+    const g = (BY_ID[tr.dataset.id] || {}).g;
+    tr.style.display = (cmpAllG === 'all' || g === cmpAllG) ? '' : 'none';
+  });
+});
+bindAllTable();
+
 $('#btnRand').addEventListener('click', () => {
   const g = GORDER[Math.floor(Math.random()*GORDER.length)];
   const arr = BY_G[g] || [];
@@ -2983,6 +3603,7 @@ function startQuiz(fixedIds){
     pool = shuffle(hot.slice()).concat(shuffle(rest.slice())).slice(0, 10);
   }
   Q.pool = pool; Q.idx = 0; Q.stat = {done:0, ok:0};
+  $('#scTest').classList.remove('done');
   renderStat();
   nextQ();
 }
@@ -2990,10 +3611,13 @@ function renderStat(){
   $('#stDone').textContent = Q.stat.done;
   $('#stOk').textContent = Q.stat.ok;
   $('#stRate').textContent = Q.stat.done ? Math.round(Q.stat.ok / Q.stat.done * 100) + '%' : '—';
+  $('#tScore').textContent = '对 ' + Q.stat.ok + ' / ' + Q.stat.done;
 }
 function nextQ(){
   if(Q.idx >= Q.pool.length){
+    $('#scTest').classList.add('done');
     $('#tProg').textContent = '本 轮 完 成';
+    $('#tScore').textContent = '对 ' + Q.stat.ok + ' / ' + Q.stat.done;
     $('#tClue').textContent = `共 ${Q.stat.done} 题，答对 ${Q.stat.ok} 题。`;
     $('#tHint').textContent = '点「重新开始」再练一轮';
     $('#tOpts').innerHTML = '';
@@ -3010,7 +3634,7 @@ function nextQ(){
   // 出题：取该脉 2 个主导维
   const kp = (n.keyPoints || []).filter(k => AXES.includes(k));
   const shown = (kp.length >= 2 ? kp : AXES).slice(0, 2);
-  $('#tClue').innerHTML = shown.map(a => `<span style="color:var(--ink-3);font-size:.7rem;letter-spacing:.1em">${a}</span><br>「${esc(n.dims[a]||'')}」`).join('<br><span style="color:var(--line);font-size:1rem">·</span><br>');
+  $('#tClue').innerHTML = shown.map(a => `<div class="cue"><span class="k">${a}</span><span class="v">「${esc(n.dims[a]||'')}」</span></div>`).join('');
   $('#tHint').textContent = `所属：${GROUPS[n.g].name}`;
 
   // 干扰项：同组优先
@@ -3026,6 +3650,8 @@ function nextQ(){
   $('#tOpts').querySelectorAll('.opt').forEach(b => {
     b.addEventListener('click', () => answer(b));
   });
+  // 答完一题再点「下一题」时，避免停在页面底部看不到新题
+  if(window.scrollY > 40) window.scrollTo({top:0, behavior:'smooth'});
 }
 function answer(btn){
   if(Q.answered) return;
@@ -3041,9 +3667,9 @@ function answer(btn){
   SRS.grade(n.id, ok);
 
   const fb = $('#tFb');
-  fb.innerHTML = `<span class="verdict ${ok?'ok':'no'}">${ok ? '对' : '错 → 正确答案是「' + esc(n.name) + '」'}</span>
+  fb.innerHTML = `<span class="verdict ${ok?'ok':'no'}">${ok ? '对 · 就是「' + esc(n.name) + '」' : '错 → 正确答案是「' + esc(n.name) + '」'}</span>
     ${esc(n.understand||'')}<br>
-    <span style="color:var(--ink-3);font-size:.74rem">四维：${AXES.map(a=>a+'·'+esc(n.dims[a]||'')).join('　')}</span>`;
+    <span style="color:var(--ink-3);font-size:.74rem">四维：${AXES.map(a=>'<b style="color:var(--jade);font-weight:600">'+a+'</b>·'+esc(n.dims[a]||'')).join('　')}</span>`;
   fb.classList.add('on');
   $('#btnNext').style.display = 'block';
 }
@@ -3067,6 +3693,7 @@ const PM_DATA = [{"name":"浮","yy":"阳","poems":[{"lab":"体状诗","lines":[[
 
 const RC = (function(){
   let tab = 'sz', maskPct = 0, lvFilter = 0, grpMode = 'five', folded = false, pmCur = null;
+  let maskSeed = 1;               // 「随机遮字」的抽签种子：同一比例下换一批被遮的字
   const SIX = {"g_six_fu":{"n":"浮纲","axis":"位","d":"举之有余，按之不足；主表。","m":["浮","洪","濡","散","芤","革"]},"g_six_chen":{"n":"沉纲","axis":"位","d":"轻取不应，重按始得；主里。","m":["沉","伏","牢","弱"]},"g_six_chi":{"n":"迟纲","axis":"数","d":"一息三至，去来极慢；主寒。","m":["迟","缓","涩","结"]},"g_six_shu":{"n":"数纲","axis":"数","d":"一息六至，来去薄疾；主热。","m":["数","促","动"]},"g_six_xu":{"n":"虚纲","axis":"势","d":"按之无力，脉体不足；主虚。","m":["虚","微","细","代","短"]},"g_six_shi":{"n":"实纲","axis":"势","d":"按之有力，脉体有余；主实。","m":["实","滑","紧","长","弦"]}};
   const EYE = {"浮":"如水漂木·举有余","沉":"如石投水·按至骨","迟":"一息三至","数":"一息六至","滑":"如珠替替·流利","涩":"如刀刮竹·往来难","虚":"迟大而软·按之空","实":"大而长·应指愊愊","长":"过于本位·迢迢","短":"不能满部·两头缩","洪":"来盛去衰·拍拍然","微":"极细而软·若有若无","紧":"如转索·左右弹手","缓":"一息四至·阿阿然","芤":"如按慈葱·中空","弦":"端直以长·如张弓弦","革":"如按鼓皮·芤弦合","牢":"沉伏之间·实大弦长","濡":"如帛在水·浮细而软","弱":"沉细而软·按乃得","散":"杨花散漫·去来无定","细":"细直而软·如丝线","伏":"推筋着骨·指下裁动","动":"如豆·厥厥动摇","促":"数而时一止","结":"缓而时一止","代":"止有常数·不能自还"};
   let LS_KEY = MZ.key('mz_recite_daily_v15');
@@ -3111,23 +3738,39 @@ const RC = (function(){
       (done ? '<button class="rc-done-rst" id="rcDoneRst">清零</button>' : '');
   }
 
-  /* —— 百分比遮字：逐字随机遮挡，点击逐字揭开 —— */
+  /* —— 百分比遮字：逐字随机遮挡，点击逐字揭开 ——
+     maskSeed 变化即「换一批」：同一比例下被遮的字符整批重抽，
+     种子稳定，所以重绘（切 tab / 切纲）不会让已遮的字乱跳。 */
   function applyMask(){
     const root = document.getElementById('scRecite');
     if(!root) return;
     const all = root.querySelectorAll('.rc-txt .mchar');
+    const sd = (maskSeed * 977 + 13) % 10007;
     for(let i = 0; i < all.length; i++){
       const el = all[i];
       el.classList.remove('lit');
       if(maskPct <= 0){ el.classList.remove('mhide'); continue; }
       if(maskPct >= 100){ el.classList.add('mhide'); continue; }
-      // 稳定伪随机：同一字符位置结果固定，重绘不跳动
-      const seed = (i * 2654435761) % 1000 / 10;
+      // 稳定伪随机：同一位置 + 同一种子 结果固定，重绘不跳动
+      let x = (i + 1) * 2654435761 + sd * 40503;
+      x = (x ^ (x >>> 15)) >>> 0;
+      const seed = (x % 1000) / 10;
       if(seed < maskPct) el.classList.add('mhide'); else el.classList.remove('mhide');
     }
     $$('#scRecite .rc-txt').forEach(el => el.classList.remove('hidden'));
     $$('#scRecite .rc-pct[data-pct]').forEach(b =>
       b.classList.toggle('on', +b.dataset.pct === maskPct));
+  }
+
+  /* —— 随机遮字：不选比例，直接抽一档并换一批 —— */
+  function rollMask(){
+    if(maskPct <= 0 || maskPct >= 100){
+      const pick = [30, 50, 70][Math.floor(Math.random() * 3)];
+      maskPct = pick;
+    }
+    maskSeed = (maskSeed + 1 + Math.floor(Math.random() * 97)) % 10007;
+    applyMask();
+    toast('已换一批：遮住 ' + maskPct + '%');
   }
 
   /* —— 今日一课 —— */
@@ -3287,6 +3930,7 @@ const RC = (function(){
   }
 
   function setPct(v){
+    if(v > 0 && v < 100 && v === maskPct) maskSeed = (maskSeed + 7) % 10007;
     maskPct = v;
     $$('#scRecite .rc-pct[data-pct]').forEach(b => b.classList.toggle('on', +b.dataset.pct === v));
     applyMask();
@@ -3384,12 +4028,14 @@ const RC = (function(){
       }
     });
 
+    $('#rcRoll').addEventListener('click', rollMask);
     $('#rcTabSz').addEventListener('click', () => setTab('sz'));
     $('#rcTabPm').addEventListener('click', () => setTab('pm'));
     $('#rcFold').addEventListener('click', toggleFold);
     $('#rcFill').addEventListener('click', () => {
       $$('#scRecite .mchar.mhide').forEach(el => el.classList.remove('mhide'));
       maskPct = 0;
+      maskSeed = 1;
       $$('#scRecite .rc-pct[data-pct]').forEach(b => b.classList.toggle('on', +b.dataset.pct === 0));
       toast('已全部揭开');
     });
@@ -3405,7 +4051,21 @@ const RC = (function(){
     renderToday();
     render();
   }
-  return {bind: bind, render: render, setTab: setTab, setPct: setPct, goPulse: goPulse};
+  /* 从复习台跳到背诵台的某一行（key = sz-<节>-<行>） */
+  function locate(key){
+    if(!key) return;
+    const sz = key.indexOf('sz-') === 0;
+    setTab(sz ? 'sz' : 'pm');
+    go('scRecite');
+    setTimeout(function(){
+      const el = document.querySelector('#scRecite .rc-line[data-key="' + key + '"]');
+      if(!el){ toast('没找到这一行'); return; }
+      el.scrollIntoView({behavior:'smooth', block:'center'});
+      el.classList.add('hit');
+      setTimeout(function(){ el.classList.remove('hit'); }, 1800);
+    }, 60);
+  }
+  return {bind: bind, render: render, setTab: setTab, setPct: setPct, goPulse: goPulse, locate: locate};
 })();
 
 /* =========================================================
@@ -3425,6 +4085,18 @@ RC.bind();
 
 // 顶栏副标题
 $('#topMeta').textContent = `廿七脉 · ${MAI.length} 条 · 位 数 形 势`;
+
+// 深链：#mai-fu 打开浮脉，#scTest 进自测；手动改地址栏也跟随
+function routeFromHash(){
+  const h = decodeURIComponent((location.hash || '').slice(1));
+  if(!h) return false;
+  if(h === 'scDetail'){ openNode(LS.last || 'mai-fu'); return true; }
+  if(BY_ID[h]){ openNode(h); return true; }
+  if(SCREENS.indexOf(h) >= 0){ go(h, true); return true; }
+  return false;
+}
+routeFromHash();
+window.addEventListener('hashchange', routeFromHash);
 })();
 </script>
 
